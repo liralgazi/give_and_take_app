@@ -24,7 +24,7 @@
     <item
         android:id="@+id/nav_find_friends"
         android:icon="@drawable/find_people"
-        android:title="@string/find_friends"></item>
+        android:title="@string/find_friends" />
     <item
         android:title="@string/messages"
         android:id="@+id/nav_messages"
@@ -32,7 +32,8 @@
     </item>
     <item
         android:title="@string/my_donations"
-        android:id="@+id/nav_my_donations">
+        android:id="@+id/nav_my_donations"
+        android:icon="@drawable/donations">
     </item>
     <item
         android:title="@string/settings"

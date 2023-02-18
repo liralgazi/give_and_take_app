@@ -13,5 +13,10 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     <string name="username">username</string>
+    <string name="confirm_password">Confirm Password...</string>
+    <string name="create_account">Create Account</string>
+    <string name="todo">TODO</string>
+    <string name="email">Email...</string>
+    <string name="password">Password...</string>
 
 </resources>

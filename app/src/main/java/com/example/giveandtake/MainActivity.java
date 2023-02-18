@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.nav_my_donations:
+                Toast.makeText(this, "My Donations", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 }
