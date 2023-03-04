@@ -46,13 +46,13 @@
         android:autofillHints=""
         android:drawableLeft="@drawable/password"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/register_confirm_password"
+        android:id="@+id/register_fullname"
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -71,7 +71,7 @@
         android:textColorHint="#616161" />
 
     <EditText
-        android:id="@+id/register_confirm_password2"
+        android:id="@+id/fullname_register"
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -90,7 +90,7 @@
         android:textColorHint="#616161" />
 
     <EditText
-        android:id="@+id/register_confirm_password3"
+        android:id="@+id/register_confirm_password"
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
