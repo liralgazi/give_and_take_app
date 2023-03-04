@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/light_background_pink"
+    android:background="@drawable/light_purple_background"
     tools:context=".RegisterActivity">
 
     <ImageView
@@ -26,13 +25,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="450dp"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/email"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:autofillHints=""
-        android:padding="10dp"
-        android:drawableLeft="@drawable/email"/>
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/register_password"
@@ -44,13 +43,13 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="385dp"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/password"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:autofillHints=""
-        android:padding="10dp"
-        android:drawableLeft="@drawable/password"/>
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/register_confirm_password"
@@ -63,13 +62,13 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="317dp"
         android:autofillHints=""
+        android:drawableLeft="@drawable/password"
         android:ems="10"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#616161"
         android:padding="10dp"
-        android:drawableLeft="@drawable/password"/>
+        android:textColorHint="#616161" />
 
     <Button
         android:id="@+id/register_create_account"
@@ -77,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="83dp"
+        android:layout_marginStart="95dp"
         android:layout_marginBottom="221dp"
         android:background="@drawable/button"
         android:fontFamily="sans-serif"
