@@ -12,16 +12,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giveandtake.FragmentReplacerActivity;
 import com.example.giveandtake.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreateAccountFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CreateAccountFragment extends Fragment {
 
     private EditText nameEt, emailEt, passwordEt, confirmPasswordEt;
@@ -87,6 +86,26 @@ public class CreateAccountFragment extends Fragment {
                 if(password.isEmpty() || password.length()<6){
                     nameEt.setError("Please input valid password");
                     return;
+                }
+                if(!password.equals(confirmPassword)){
+                    nameEt.setError("Password not matech");
+                    return;
+                }
+
+                createAccount(name, email, password);
+            }
+        });
+    }
+
+    private void createAccount(String name, String email, String password){
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+
+                }else{
+                    String exception = task.getException().getMessage();
+                    Toast.makeText(getContext(), "Error: "+ exception, Toast.LENGTH_SHORT).show();
                 }
             }
         });
