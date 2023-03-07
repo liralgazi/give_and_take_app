@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 import com.example.giveandtake.R;
 
-public class loginFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
 
-    public loginFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
