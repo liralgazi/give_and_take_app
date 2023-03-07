@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".fragments.loginFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.CreateAccountFragment"
     android:background="@drawable/light_purpel_background">
+
 
     <ImageView
         android:id="@+id/register_icon"
@@ -23,17 +24,7 @@
         android:layout_centerInParent="true">
 
         <EditText
-            android:id="@+id/register_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="12dp"
-            android:hint="Name"
-            android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/email"/>
-
-        <EditText
-            android:id="@+id/register_email"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -43,7 +34,7 @@
             android:drawableLeft="@drawable/email"/>
 
         <EditText
-            android:id="@+id/register_password"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -53,23 +44,27 @@
             android:autofillHints=""
             android:drawableLeft="@drawable/password"/>
 
-        <EditText
-            android:id="@+id/register_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="12dp"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            android:textColorHint="#616161"
-            android:drawableLeft="@drawable/password"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/register_create_account"
+        android:id="@+id/login_signin_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="Sign In"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_above="@id/google_signin_btn"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/google_signin_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In With Google"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button"
@@ -77,22 +72,20 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:layout_above="@id/loginTv"
-        android:layout_marginBottom="20dp"/>
+        android:layout_above="@id/signup_tv"
+        android:layout_marginBottom="70dp"/>
 
 
     <TextView
-        android:id="@+id/loginTv"
+        android:id="@+id/signup_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="26dp"
-        android:text="Back to Login"
+        android:text="Don't have an account? Click here to create"
         android:textStyle="bold"
         android:textColor="@color/black"/>
-
-
 
 
 </RelativeLayout>
