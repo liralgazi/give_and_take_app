@@ -17,6 +17,7 @@
         app:srcCompat="@drawable/giveandtake_logo"
         tools:ignore="ImageContrastCheck" />
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -64,6 +65,16 @@
             android:textColorHint="#616161"
             android:drawableLeft="@drawable/password"/>
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ll1"
+        android:visibility="gone"
+        android:layout_above="@+id/register_signup"/>
+
 
     <Button
         android:id="@+id/register_signup"
