@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:id="@+id/ll1">
 
         <EditText
             android:id="@+id/login_email"
@@ -45,6 +46,15 @@
             android:drawableLeft="@drawable/password"/>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ll1"
+        android:visibility="gone"
+        android:layout_above="@+id/login_signin_btn"/>
 
     <Button
         android:id="@+id/login_signin_btn"
