@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.CreateAccountFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/light_purpel_background">
 
+
     <ImageView
-        android:id="@+id/register_icon"
+        android:id="@+id/signup_icon"
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:layout_alignParentEnd="true"
@@ -17,24 +18,24 @@
         app:srcCompat="@drawable/giveandtake_logo"
         tools:ignore="ImageContrastCheck" />
     <LinearLayout
-        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:id="@+id/ll1">
 
         <EditText
-            android:id="@+id/register_username"
+            android:id="@+id/signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="12dp"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/email"/>
 
         <EditText
-            android:id="@+id/register_email"
+            android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -44,7 +45,7 @@
             android:drawableLeft="@drawable/email"/>
 
         <EditText
-            android:id="@+id/register_password"
+            android:id="@+id/signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -55,29 +56,29 @@
             android:drawableLeft="@drawable/password"/>
 
         <EditText
-            android:id="@+id/register_confirm_password"
+            android:id="@+id/signup_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="12dp"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textColorHint="#616161"
+            android:autofillHints=""
             android:drawableLeft="@drawable/password"/>
+
     </LinearLayout>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
+        android:id="@+id/singup_progressBar"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/ll1"
         android:visibility="gone"
-        android:layout_above="@+id/register_signup"/>
-
+        android:layout_above="@+id/login_sign_up_btn"/>
 
     <Button
-        android:id="@+id/register_signup"
+        android:id="@+id/login_sign_up_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
@@ -85,25 +86,22 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/button"
         android:fontFamily="sans-serif"
-        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:layout_above="@id/loginTv"
+        android:layout_above="@id/signup_tv"
         android:layout_marginBottom="20dp"/>
 
 
     <TextView
-        android:id="@+id/loginTv"
+        android:id="@+id/signup_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="26dp"
-        android:text="Back to Login"
+        android:text="Log In Now"
         android:textStyle="bold"
         android:textColor="@color/black"/>
-
-
 
 
 </RelativeLayout>

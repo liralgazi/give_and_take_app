@@ -54,100 +54,109 @@ public class CreateAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        clickListener();
+       // clickListener();
     }
 
-    private void init(View view){
-        nameEt = view.findViewById(R.id.register_username);
-        emailEt = view.findViewById(R.id.register_email);
-        passwordEt = view.findViewById(R.id.register_password);
-        confirmPasswordEt = view.findViewById(R.id.register_confirm_password);
-        loginTv = view.findViewById(R.id.register_signup);
-        signUpBtn = view.findViewById(R.id.loginTv);
-        progressBar = view.findViewById(R.id.progressBar);
+    private void init(View view) {
+        nameEt = view.findViewById(R.id.signup_name);
+        emailEt = view.findViewById(R.id.signup_email);
+        passwordEt = view.findViewById(R.id.signup_password);
+        confirmPasswordEt = view.findViewById(R.id.signup_confirm_password);
+        loginTv = view.findViewById(R.id.signup_tv);
+        signUpBtn = view.findViewById(R.id.login_sign_up_btn);
+        progressBar = view.findViewById(R.id.singup_progressBar);
 
         auth = FirebaseAuth.getInstance();
     }
 
-    private void clickListener(){
-        loginTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((FragmentReplacerActivity)getActivity()).setFragment(new LoginFragment());
-            }
-        });
+    //  private void clickListener() {
+//        loginTv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((FragmentReplacerActivity) getActivity()).setFragment(new LoginFragment());
+//            }
+//        });
 
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = nameEt.getText().toString();
-                String email = emailEt.getText().toString();
-                String password = passwordEt.getText().toString();
-                String confirmPassword = confirmPasswordEt.getText().toString();
+//        signUpBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String name = nameEt.getText().toString();
+//                String email = emailEt.getText().toString();
+//                String password = passwordEt.getText().toString();
+//                String confirmPassword = confirmPasswordEt.getText().toString();
+//
+//                if (name.isEmpty() || name.equals(" ")) {
+//                    nameEt.setError("Please input valid name");
+//                    return;
+//                }
+//                if (email.isEmpty() || !email.matches(EMAIL_REGEX)) {
+//                    emailEt.setError("Please input valid email");
+//                    return;
+//                }
+//                if (password.isEmpty() || password.length() < 6) {
+//                    passwordEt.setError("Please input valid password");
+//                    return;
+//                }
+//                if (!password.equals(confirmPassword)) {
+//                    confirmPasswordEt.setError("Password not matech");
+//                    return;
+//                }
+//
+//                progressBar.setVisibility(View.VISIBLE);
+//
+////                createAccount(name, email, password);
+//            }
+//        });
+//    }
 
-                if(name.isEmpty() || name.equals(" ")){
-                    nameEt.setError("Please input valid name");
-                    return;
-                }
-                if(email.isEmpty() || !email.matches(EMAIL_REGEX)){
-                    nameEt.setError("Please input valid email");
-                    return;
-                }
-                if(password.isEmpty() || password.length()<6){
-                    nameEt.setError("Please input valid password");
-                    return;
-                }
-                if(!password.equals(confirmPassword)){
-                    nameEt.setError("Password not matech");
-                    return;
-                }
+//    private void createAccount(String name, String email, String password) {
+//        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//                    FirebaseUser user = auth.getCurrentUser();
+//                    user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()) {
+//                                Toast.makeText(getContext(), "Email verification link send", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                    uploadUser(user, name, email);
+//                } else {
+//                    progressBar.setVisibility(View.GONE);
+//                    String exception = task.getException().getMessage();
+//                    Toast.makeText(getContext(), "Error: " + exception, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
+//
+//    private void uploadUser(FirebaseUser user, String name, String email) {
+//        Map<String, Object> map = new HashMap<>();
+//
+//        map.put("name", name);
+//        map.put("email", email);
+//        map.put("profileImage", "");
+//        map.put("uid", user.getUid());
+//
+//        FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()) {
+//                    assert getActivity() != null;
+//                    progressBar.setVisibility(View.GONE);
+//                    startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+//                    getActivity().finish();
+//                } else {
+//                    progressBar.setVisibility(View.GONE);
+//                    String exception = task.getException().getMessage();
+//                    Toast.makeText(getContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//    }
 
-                progressBar.setVisibility(View.VISIBLE);
-
-                createAccount(name, email, password);
-            }
-        });
-    }
-
-    private void createAccount(String name, String email, String password){
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    FirebaseUser user = auth.getCurrentUser();
-                    uploadUser(user, name, email);
-                }else{
-                    progressBar.setVisibility(View.GONE);
-                    String exception = task.getException().getMessage();
-                    Toast.makeText(getContext(), "Error: "+ exception, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void uploadUser(FirebaseUser user, String name, String email) {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("name", name);
-        map.put("email",  email);
-        map.put("profileImage", "");
-        map.put("uid", user.getUid());
-
-        FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    assert getActivity() != null;
-                    progressBar.setVisibility(View.GONE);
-                    startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
-                    getActivity().finish();
-                }else{
-                    progressBar.setVisibility(View.GONE);
-                    String exception = task.getException().getMessage();
-                    Toast.makeText(getContext(), "Error: "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
 }
