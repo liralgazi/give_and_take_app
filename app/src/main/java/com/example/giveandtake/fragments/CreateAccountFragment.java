@@ -37,7 +37,7 @@ public class CreateAccountFragment extends Fragment {
     private Button signUpBtn;
     private FirebaseAuth auth;
 
-    public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    public static final String EMAIL_REGEX = "\"^(.+)@(.+)$\"";
 
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -89,7 +89,7 @@ public class CreateAccountFragment extends Fragment {
                     nameEt.setError("Please input valid name");
                     return;
                 }
-                if (email.isEmpty() || !email.matches(EMAIL_REGEX)) {
+                if (email.isEmpty()) {
                     emailEt.setError("Please input valid email");
                     return;
                 }
