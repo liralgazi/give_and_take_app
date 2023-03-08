@@ -57,6 +57,21 @@
         </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:id="@+id/viewPager"
+            android:layout_above="@+id/tabLayout"/>
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabLayout"
+            android:layout_alignParentBottom="true"/>
+
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
