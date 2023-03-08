@@ -2,7 +2,7 @@ package com.example.giveandtake.adapter.model;
 
 public class HomeModel {
 
-    private String userName, timestamp, profileImage, postImage;
+    private String userName, timestamp, profileImage, postImage, uid;
 
     private  int likeCount;
 
@@ -11,12 +11,13 @@ public class HomeModel {
 
     }
 
-    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount) {
+    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount, String uid) {
         this.userName = userName;
         this.timestamp = timestamp;
         this.profileImage = profileImage;
         this.postImage = postImage;
         this.likeCount = likeCount;
+        this.uid = uid;
     }
 
 

@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init(){
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);

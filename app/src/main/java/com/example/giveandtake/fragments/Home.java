@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +49,7 @@ public class Home extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
 
-        reference = FirebaseFirestore.getInstance().collection("Posts").document(user.getUid());
+        //reference = FirebaseFirestore.getInstance().collection("Posts").document(user.getUid());
 
         list = new ArrayList<>();
 
@@ -57,6 +59,10 @@ public class Home extends Fragment {
         loadDataFromFireStore();
     }
     private void init(View view){
+        Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
+        if(getActivity()!=null)
+            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -66,6 +72,10 @@ public class Home extends Fragment {
     }
 
     private void loadDataFromFireStore(){
-
+        list.add(new HomeModel("shir","08/03/2023","","",12,"123456"));
+        list.add(new HomeModel("shir","08/03/2023","","",12,"125896"));
+        list.add(new HomeModel("shir","08/03/2023","","",12,"125874"));
+        list.add(new HomeModel("shir","08/03/2023","","",12,"582163"));
+        homeAdapter.notifyDataSetChanged();
     }
 }
