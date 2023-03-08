@@ -62,14 +62,16 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
             android:id="@+id/viewPager"
-            android:layout_above="@+id/tabLayout"/>
+            android:layout_above="@+id/main_tabLayout"/>
 
 
-        <TableLayout
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tabLayout"
-            android:layout_alignParentBottom="true"/>
+            android:id="@+id/main_tabLayout"
+            android:layout_alignParentBottom="true">
+
+        </com.google.android.material.tabs.TabLayout>
 
 
     </RelativeLayout>
