@@ -96,7 +96,6 @@ public class Profile extends Fragment {
                     friendsCountTv.setText(String.valueOf(friends));
                     volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
 
-                    //TODO: to change to ic_home to ic_person  dont forget to change in thr fragment also
                     Glide.with(getContext().getApplicationContext()).load(profileURL).placeholder(R.drawable.ic_person).timeout(6500).into(profileImage);
 
 

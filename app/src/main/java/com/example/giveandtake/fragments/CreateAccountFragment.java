@@ -89,7 +89,7 @@ public class CreateAccountFragment extends Fragment {
                     nameEt.setError("Please input valid name");
                     return;
                 }
-                if (email.isEmpty()) {
+                if (email.isEmpty() || !email.matches(EMAIL_REGEX)) {
                     emailEt.setError("Please input valid email");
                     return;
                 }
