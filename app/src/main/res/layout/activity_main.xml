@@ -34,6 +34,23 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="55dp"/>
         </FrameLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewPager"
+            android:layout_above="@+id/main_tabLayout"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_tabLayout"
+            android:layout_alignParentBottom="true">
+
+        </com.google.android.material.tabs.TabLayout>
+
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -45,5 +62,6 @@
         app:menu="@menu/navigation_menu">
 
     </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -6,12 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.example.giveandtake.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.function.ToLongBiFunction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,24 +28,38 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView postList;
     private Toolbar mToolbar;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
 
-        mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
+        addTabs();
+
+    }
+
+    public void init(){
+
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout =  findViewById(R.id.main_tabLayout);
+
+        mToolbar =  findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Home");
 
 
         //defining the variables (drawable side menu)
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawable_layout);
+        drawerLayout = findViewById(R.id.drawable_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView= (NavigationView) findViewById(R.id.navigation_view);
+        navigationView=  findViewById(R.id.navigation_view);
         //initiating the navigation header inside the layout
         View navView= navigationView.inflateHeaderView(R.layout.navigation_header);
 
@@ -51,6 +73,75 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void addTabs(){
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPager.setAdapter(viewPagerAdapter);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+
+                switch (tab.getPosition()){
+                    case 0:
+                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+                    case 1:
+                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
+                    case 2:
+                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
+                    case 3:
+                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
+                    case 4:
+                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+                    case 1:
+                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
+                    case 2:
+                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
+                    case 3:
+                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
+                    case 4:
+                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+                    case 1:
+                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
+                    case 2:
+                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
+                    case 3:
+                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
+                    case 4:
+                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

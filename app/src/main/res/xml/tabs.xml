@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        drawable = "@drawable/ic_home"
+        text="Home"
+        />
+</Tabs>
