@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.giveandtake.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.function.ToLongBiFunction;
 
@@ -175,8 +176,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_logout:
+            case R.id.nav_logout:{
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+            }
                 break;
             case R.id.nav_my_donations:
                 Toast.makeText(this, "My Donations", Toast.LENGTH_SHORT).show();
