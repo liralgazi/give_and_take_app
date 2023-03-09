@@ -31,13 +31,13 @@ import java.util.Map;
 
 public class CreateAccountFragment extends Fragment {
 
-    private EditText nameEt, emailEt, passwordEt, confirmPasswordEt;
+    private EditText nameEt, emailEt, passwordEt, confirmPasswordEt, confirmEmailEt;
     private ProgressBar progressBar;
     private TextView loginTv;
     private Button signUpBtn;
     private FirebaseAuth auth;
 
-    public static final String EMAIL_REGEX = "\"^(.+)@(.+)$\"";
+    public static final String EMAIL_REGEX = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -60,11 +60,13 @@ public class CreateAccountFragment extends Fragment {
     private void init(View view) {
         nameEt = view.findViewById(R.id.signup_name);
         emailEt = view.findViewById(R.id.signup_email);
+        confirmEmailEt = view.findViewById(R.id.signup_confirm_email);
         passwordEt = view.findViewById(R.id.signup_password);
         confirmPasswordEt = view.findViewById(R.id.signup_confirm_password);
         loginTv = view.findViewById(R.id.signup_tv);
         signUpBtn = view.findViewById(R.id.login_sign_up_btn);
         progressBar = view.findViewById(R.id.singup_progressBar);
+
 
         auth = FirebaseAuth.getInstance();
     }
@@ -82,6 +84,7 @@ public class CreateAccountFragment extends Fragment {
             public void onClick(View view) {
                 String name = nameEt.getText().toString();
                 String email = emailEt.getText().toString();
+                String confirmEmail = confirmEmailEt.getText().toString();
                 String password = passwordEt.getText().toString();
                 String confirmPassword = confirmPasswordEt.getText().toString();
 
@@ -93,12 +96,15 @@ public class CreateAccountFragment extends Fragment {
                     emailEt.setError("Please input valid email");
                     return;
                 }
-                if (password.isEmpty() || password.length() < 6) {
+                if (!email.equals(confirmEmail)) {
+                    confirmEmailEt.setError("Email not match");
+                    return;
+                }                if (password.isEmpty() || password.length() < 6) {
                     passwordEt.setError("Please input valid password");
                     return;
                 }
                 if (!password.equals(confirmPassword)) {
-                    confirmPasswordEt.setError("Password not matech");
+                    confirmPasswordEt.setError("Password not match");
                     return;
                 }
 
