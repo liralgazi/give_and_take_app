@@ -89,7 +89,7 @@ public class CreateAccountFragment extends Fragment {
                     nameEt.setError("Please input valid name");
                     return;
                 }
-                if (email.isEmpty()) {
+                if (email.isEmpty() || !email.matches(EMAIL_REGEX)) {
                     emailEt.setError("Please input valid email");
                     return;
                 }
@@ -140,6 +140,12 @@ public class CreateAccountFragment extends Fragment {
         map.put("email", email);
         map.put("profileImage", "");
         map.put("uid", user.getUid());
+        map.put("friends",0);
+        map.put("places", 0);
+        map.put("volunteerStatus", "");
+
+
+
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

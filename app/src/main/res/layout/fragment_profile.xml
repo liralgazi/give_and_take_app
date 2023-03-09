@@ -43,6 +43,7 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
+
     <LinearLayout
         android:id="@+id/liner1"
         android:layout_below="@+id/profile_toolbar"
@@ -51,12 +52,12 @@
         android:orientation="horizontal">
     
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/profile_profileImage"
         app:civ_border_color="@color/purple_200"
         app:civ_border_width="1dp"
-        android:src="@drawable/ic_home"
+        android:src="@drawable/ic_person"
         android:layout_margin="14dp"/>
     
     <LinearLayout
@@ -163,15 +164,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor='@color/black'
-                android:text="Posts"
+                android:text="places"
+                android:id="@+id/volunteerPlaces"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:gravity="center_horizontal" />
             <TextView
+                android:id="@+id/profile_volunteer_placesTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor='@color/black'
-                android:text="250"
+                android:text="5"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:gravity="center_horizontal" />
@@ -187,6 +190,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginTop="16dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -237,7 +241,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/profile_addFriend"
+            android:id="@+id/profile_addFriendBtn"
             android:text="Add Friend"
             android:minWidth="160dp"
             android:minHeight="10dp"
@@ -247,7 +251,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/purple_200"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/addFriend_layout"
             android:id="@+id/profile_view1"/>
@@ -258,12 +262,13 @@
         android:layout_height="2dp"
         android:background="@color/purple_200"
         android:layout_below="@+id/combinedLayout"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         android:id="@+id/profile_view2"/>
 
     
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/profile_view2"/>
