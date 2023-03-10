@@ -5,14 +5,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.giveandtake.adapter.HomeAdapter;
@@ -26,55 +31,31 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private RecyclerView postList;
-    private Toolbar mToolbar;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar toolbar;
 
     ViewPagerAdapter viewPagerAdapter;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
-
         addTabs();
-
     }
 
 
     public void init(){
-
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         viewPager = findViewById(R.id.main_viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);
-
-
-
-//        mToolbar =  findViewById(R.id.main_toolbar);
-//        setSupportActionBar(mToolbar);
-
-        //defining the variables (drawable side menu)
-       // actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout, R.string.drawer_open, R.string.drawer_close);
-       // drawerLayout.addDrawerListener(actionBarDrawerToggle);
-       // actionBarDrawerToggle.syncState();
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //initiating the navigation header inside the layout
-       // View navView= navigationView.inflateHeaderView(R.layout.navigation_header);
-
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                UserMenuSelector(item);
-//
-//                return false;
-//            }
-//        });
     }
+
 
     public void addTabs(){
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
@@ -146,53 +127,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item))
-        //if the user clicks on the toggle tool bar
-        {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void UserMenuSelector(MenuItem item) {
-        //switch-case for every user option from the menu
-        switch (item.getItemId())
-        {
-            case R.id.nav_home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_friends:
-                Toast.makeText(this, "Friends List", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_find_friends:
-                Toast.makeText(this, "Find Friends", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_messages:
-                Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_logout:{
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-                FirebaseAuth.getInstance().signOut();
-            }
-                break;
-            case R.id.nav_my_donations:
-                Toast.makeText(this, "My Donations", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
-
+    int fragmentMenuId = 0;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation_menu, menu);
-        return true;
+        if (fragmentMenuId != 0){
+            menu.removeItem(fragmentMenuId);
+        }
+        fragmentMenuId = 0;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                break;
+            case R.id.nav_profile:
+                break;
+            case R.id.nav_friends:
+                break;
+            case R.id.nav_find_friends:
+                break;
+            case R.id.nav_messages:
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_logout: {
+                FirebaseAuth.getInstance().signOut();
+                break;
+            }
+            case R.id.nav_my_donations:
+                break;
+        }
+        return false;
     }
 }
