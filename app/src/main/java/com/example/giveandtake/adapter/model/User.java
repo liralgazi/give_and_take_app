@@ -2,9 +2,14 @@ package com.example.giveandtake.adapter.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Map;
+
+@Entity
 public class User {
+    public static final String COLLECTION = "users";
     @PrimaryKey
     @NonNull
     public String id="";
@@ -36,4 +41,5 @@ public class User {
 
     @ColumnInfo(name = "last_name")
     public String lastName;
+
 }
