@@ -6,16 +6,14 @@ import com.example.giveandtake.adapter.GalleryAdapter;
 
 public class GalleryImages {
 
-    private Uri picUri;
-    private String data;
+    public Uri picUri;
 
     public GalleryImages(){
 
     }
 
-    public GalleryImages(Uri picUri, String data) {
+    public GalleryImages(Uri picUri) {
         this.picUri = picUri;
-        this.data = data;
     }
 
     public Uri getPicUri() {
@@ -26,11 +24,7 @@ public class GalleryImages {
         this.picUri = picUri;
     }
 
-    public String getData() {
-        return data;
-    }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+
+
 }

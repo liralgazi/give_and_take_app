@@ -1,5 +1,7 @@
 package com.example.giveandtake.fragments;
 
+import static com.example.giveandtake.utils.ImagesContent.loadSavedImages;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.giveandtake.R;
+import com.example.giveandtake.adapter.GalleryAdapter;
+import com.example.giveandtake.model.GalleryImages;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Add extends Fragment {
 
@@ -24,6 +32,11 @@ public class Add extends Fragment {
     private RecyclerView recyclerView;
 
     private ImageButton backBtn, nextBtn;
+
+    private List<GalleryImages> list;
+    private GalleryAdapter adapter;
+
+
     public Add() {
         // Required empty public constructor
     }
@@ -41,6 +54,12 @@ public class Add extends Fragment {
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
         recyclerView.setHasFixedSize(true);
+
+        list = new ArrayList<>();
+        adapter =  new GalleryAdapter(list);
+
+        recyclerView.setAdapter(adapter);
+
     }
 
     private void init(View view)
@@ -50,5 +69,19 @@ public class Add extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         backBtn = view.findViewById(R.id.backBtn);
         nextBtn = view.findViewById(R.id.nextBtn);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loadSavedImages(getContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

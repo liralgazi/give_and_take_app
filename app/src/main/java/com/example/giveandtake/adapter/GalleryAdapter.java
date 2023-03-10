@@ -1,6 +1,7 @@
 package com.example.giveandtake.adapter;
 
-import android.graphics.BitmapFactory;
+import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +16,39 @@ import com.example.giveandtake.model.GalleryImages;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryHolder> {
-    private List<GalleryImages> list;
+    private final List<GalleryImages> list;
+
+
+
+    public GalleryAdapter(List<GalleryImages> list)
+    {
+        this.list = list;
+    }
+
 
     @NonNull
     @Override
     public GalleryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-        //view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_create_account,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.image_items, parent,false);
         return new GalleryHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GalleryHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GalleryHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.imageView.setImageURI(list.get(position).getPicUri());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage(list.get(position).getPicUri());
+            }
+        });
+
+    }
+
+    private void chooseImage(Uri picUri)
+    {
 
     }
 
@@ -39,7 +59,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryH
 
     class GalleryHolder extends RecyclerView.ViewHolder{
 
-        private ImageView imageView;
+        private final ImageView imageView;
 
        public GalleryHolder(@NonNull View itemView) {
            super(itemView);

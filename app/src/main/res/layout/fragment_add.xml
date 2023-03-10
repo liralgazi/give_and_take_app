@@ -7,7 +7,7 @@
     tools:context=".fragments.Add">
 
     
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
@@ -18,8 +18,7 @@
         android:id="@+id/backBtn"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:background="@drawable/ic_back"
-        />
+        android:background="@drawable/ic_back" />
 
     <ImageButton
         android:id="@+id/nextBtn"
@@ -27,8 +26,7 @@
         android:layout_height="28dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_next"
-        />
+        android:background="@drawable/ic_next" />
     />
     <EditText
         android:layout_width="match_parent"
