@@ -1,4 +1,4 @@
-package com.example.giveandtake.adapter.model;
+package com.example.giveandtake.model;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

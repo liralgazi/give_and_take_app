@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.main_navhost);
-//        navController = navHostFragment.getNavController();
-//        NavigationUI.setupActionBarWithNavController(this,navController);
 
         init();
 
@@ -54,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.main_viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);
-
-
 
 
 

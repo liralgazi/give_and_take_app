@@ -8,18 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.example.giveandtake.R;
 import com.example.giveandtake.fragments.CreateAccountFragment;
 import com.example.giveandtake.fragments.LoginFragment;
-//import com.example.giveandtake.fragments.LoginFragment;
 
-public class FragmentReplacerActivity extends AppCompatActivity {
+public class ReplacerActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment_replacer);
+        setContentView(R.layout.activity_replacer);
 
         frameLayout = findViewById(R.id.frameLayout);
 
@@ -31,10 +31,11 @@ public class FragmentReplacerActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
-        fragmentTransaction.replace(frameLayout.getId(), fragment, null);
-//        if(fragment instanceof CreateAccountFragment){
-//           fragmentTransaction.addToBackStack(null);
-//          }
-                fragmentTransaction.commit();
+        if(fragment instanceof CreateAccountFragment){
+            fragmentTransaction.addToBackStack(null);
+        }
+
+        fragmentTransaction.replace(frameLayout.getId(), fragment);
+        fragmentTransaction.commit();
     }
 }

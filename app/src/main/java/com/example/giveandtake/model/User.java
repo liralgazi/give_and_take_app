@@ -1,4 +1,4 @@
-package com.example.giveandtake.adapter.model;
+package com.example.giveandtake.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

@@ -16,9 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.giveandtake.FragmentReplacerActivity;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
+import com.example.giveandtake.ReplacerActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -75,7 +75,7 @@ public class CreateAccountFragment extends Fragment {
         loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((FragmentReplacerActivity) getActivity()).setFragment(new LoginFragment());
+                ((ReplacerActivity) getActivity()).setFragment(new LoginFragment());
             }
         });
 

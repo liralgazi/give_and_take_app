@@ -16,11 +16,10 @@ import android.view.ViewGroup;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.HomeAdapter;
-import com.example.giveandtake.adapter.model.HomeModel;
+import com.example.giveandtake.model.HomeModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
