@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.giveandtake.adapter.HomeAdapter;
 import com.example.giveandtake.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.main_viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);
+
+
+
+
 
 //        mToolbar =  findViewById(R.id.main_toolbar);
 //        setSupportActionBar(mToolbar);
