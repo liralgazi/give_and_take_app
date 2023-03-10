@@ -56,23 +56,26 @@
         android:layout_below="@id/imageView">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/likeBtn"
-            android:padding="8dp"
-            android:background="@drawable/ic_home"/>
+            android:padding="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/hands"/>
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/commentBtn"
-            android:padding="8dp"
-            android:background="@drawable/ic_home"/>
+            android:padding="30dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/chat"/>
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
             android:id="@+id/shareBtn"
-            android:padding="8dp"
-            android:background="@drawable/ic_home"/>
+            android:padding="16dp"
+            android:background="@drawable/send"/>
 
     </LinearLayout>
 
