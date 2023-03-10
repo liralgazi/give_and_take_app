@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPagerAdapter viewPagerAdapter;
     NavController navController;
+    FragmentPagerAdapter adapterViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        viewPager = findViewById(R.id.main_viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);
+        viewPager = findViewById(R.id.main_viewPager);
+
+//        adapterViewPager = new HomeAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(adapterViewPager);
     }
 
 

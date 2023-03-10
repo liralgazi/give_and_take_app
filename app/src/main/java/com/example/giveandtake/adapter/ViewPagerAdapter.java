@@ -1,10 +1,17 @@
 package com.example.giveandtake.adapter;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.giveandtake.R;
 import com.example.giveandtake.fragments.Add;
 import com.example.giveandtake.fragments.Home;
 import com.example.giveandtake.fragments.Notification;
@@ -12,12 +19,12 @@ import com.example.giveandtake.fragments.Profile;
 import com.example.giveandtake.fragments.Search;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    int numOfTabs;
+
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm);
-        this.numOfTabs = numOfTabs;
     }
+
 
     @NonNull
     @Override

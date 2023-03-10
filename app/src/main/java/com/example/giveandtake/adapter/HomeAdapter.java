@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,18 +26,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
     private List<HomeModel> list;
-    LayoutInflater inflater;
     Context context;
 
-    public HomeAdapter(LayoutInflater inflater,List<HomeModel> list){
+
+    public HomeAdapter(Context context,List<HomeModel> list){
         this.list = list;
         this.context = context;
     }
 
+
     @NonNull
     @Override
     public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.home_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_items, parent, false);
         return new HomeHolder(view);
     }
 

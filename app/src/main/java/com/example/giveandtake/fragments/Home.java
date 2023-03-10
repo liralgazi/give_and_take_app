@@ -20,6 +20,7 @@ import com.example.giveandtake.model.HomeModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +53,13 @@ public class Home extends Fragment {
 
         list = new ArrayList<>();
 
-        homeAdapter = new HomeAdapter(getLayoutInflater(),list);
+        homeAdapter = new HomeAdapter(getContext(),list);
         recyclerView.setAdapter(homeAdapter);
 
         loadDataFromFireStore();
     }
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
-
         if(getActivity()!=null)
             ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
