@@ -59,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void addTabs(){
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.search));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.plus));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.store));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.user));
+
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -79,50 +80,16 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
 
-                switch (tab.getPosition()){
-                    case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
-                    case 1:
-                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
-                    case 2:
-                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
-                    case 3:
-                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
-                    case 4:
-                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
-                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
-                    case 1:
-                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
-                    case 2:
-                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
-                    case 3:
-                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
-                    case 4:
-                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
-                }
+
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
-                    case 1:
-                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_home);
-                    case 2:
-                        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home);
-                    case 3:
-                        tabLayout.getTabAt(3).setIcon(R.drawable.ic_home);
-                    case 4:
-                        tabLayout.getTabAt(4).setIcon(R.drawable.ic_home);
-                }
+
             }
         });
     }
