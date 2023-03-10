@@ -26,9 +26,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
     private List<HomeModel> list;
+    LayoutInflater inflater;
     Context context;
 
-    public HomeAdapter(List<HomeModel> list , Context context){
+    public HomeAdapter(LayoutInflater inflater,List<HomeModel> list){
         this.list = list;
         this.context = context;
     }
@@ -36,7 +37,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
     @NonNull
     @Override
     public HomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_items, parent, false);
+        View view = inflater.inflate(R.layout.home_items, parent, false);
         return new HomeHolder(view);
     }
 
@@ -58,8 +59,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
         int color = Color.argb(255,random.nextInt(256),random.nextInt(256), random.nextInt(256));
 
-        Glide.with(context.getApplicationContext()).load(list.get(position).getProfileImage()).placeholder(R.drawable.ic_home).timeout(6500).into(holder.profileImage);
-        Glide.with(context.getApplicationContext()).load(list.get(position).getPostImage()).placeholder(new ColorDrawable(color)).timeout(6500).into(holder.imageView);
+        Glide.with(context.getApplicationContext()).load(list.get(position).getProfileImage()).placeholder(R.drawable.ic_person).timeout(6500).into(holder.profileImage);
+        Glide.with(context.getApplicationContext()).load(list.get(position).getPostImage()).placeholder(new ColorDrawable(color)).timeout(7000).into(holder.imageView);
 
     }
 
@@ -85,10 +86,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
             likeBtn = itemView.findViewById(R.id.likeBtn);
             commentBtn = itemView.findViewById(R.id.commentBtn);
             shareBtn = itemView.findViewById(R.id.shareBtn);
-
-
-
-
         }
     }
 }

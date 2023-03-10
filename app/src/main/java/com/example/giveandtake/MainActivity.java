@@ -1,26 +1,22 @@
 package com.example.giveandtake;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.example.giveandtake.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.function.ToLongBiFunction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,40 +34,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.main_navhost);
+//        navController = navHostFragment.getNavController();
+//        NavigationUI.setupActionBarWithNavController(this,navController);
+
         init();
 
         addTabs();
 
     }
 
+
     public void init(){
 
-        viewPager = findViewById(R.id.viewPager);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
+        viewPager = findViewById(R.id.main_viewPager);
         tabLayout =  findViewById(R.id.main_tabLayout);
 
-        mToolbar =  findViewById(R.id.main_page_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Home");
-
+//        mToolbar =  findViewById(R.id.main_toolbar);
+//        setSupportActionBar(mToolbar);
 
         //defining the variables (drawable side menu)
-        drawerLayout = findViewById(R.id.drawable_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView=  findViewById(R.id.navigation_view);
+       // actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout, R.string.drawer_open, R.string.drawer_close);
+       // drawerLayout.addDrawerListener(actionBarDrawerToggle);
+       // actionBarDrawerToggle.syncState();
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //initiating the navigation header inside the layout
-        View navView= navigationView.inflateHeaderView(R.layout.navigation_header);
+       // View navView= navigationView.inflateHeaderView(R.layout.navigation_header);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                UserMenuSelector(item);
-
-                return false;
-            }
-        });
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                UserMenuSelector(item);
+//
+//                return false;
+//            }
+//        });
     }
 
     public void addTabs(){

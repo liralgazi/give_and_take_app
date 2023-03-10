@@ -53,13 +53,14 @@ public class Home extends Fragment {
 
         list = new ArrayList<>();
 
-        homeAdapter = new HomeAdapter(list,getContext());
+        homeAdapter = new HomeAdapter(getLayoutInflater(),list);
         recyclerView.setAdapter(homeAdapter);
 
         loadDataFromFireStore();
     }
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
+
         if(getActivity()!=null)
             ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
