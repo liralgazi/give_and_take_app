@@ -9,22 +9,26 @@
     
     <LinearLayout
         android:id="@+id/layout"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal" />
 
     <ImageButton
         android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/ic_back"
         />
 
     <ImageButton
         android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="48dp"
-        android:minHeight="48dp" />
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_next"
+        />
     />
     <EditText
         android:layout_width="match_parent"
