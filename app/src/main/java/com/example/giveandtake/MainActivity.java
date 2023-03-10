@@ -23,23 +23,19 @@ import android.widget.Toast;
 
 import com.example.giveandtake.adapter.HomeAdapter;
 import com.example.giveandtake.adapter.ViewPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-    private RecyclerView postList;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private Toolbar toolbar;
 
-    ViewPagerAdapter viewPagerAdapter;
     NavController navController;
-    FragmentPagerAdapter adapterViewPager;
+    private TabLayout tabLayout;
+    private Toolbar toolbar;
+    ViewPagerAdapter viewPagerAdapter;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +43,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         addTabs();
+
+        NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.main_navhost);
+        navController = navHostFragment.getNavController();
+        NavigationUI.setupActionBarWithNavController(this,navController);
     }
 
 
     public void init(){
         toolbar = findViewById(R.id.main_toolbar);
+        viewPager = findViewById(R.id.main_viewPager);
         setSupportActionBar(toolbar);
 
         tabLayout =  findViewById(R.id.main_tabLayout);
-        viewPager = findViewById(R.id.main_viewPager);
 
-//        adapterViewPager = new HomeAdapter(getSupportFragmentManager());
-//        viewPager.setAdapter(adapterViewPager);
+//
     }
 
 
