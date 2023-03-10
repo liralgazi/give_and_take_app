@@ -33,9 +33,8 @@
             android:hint="@string/name"
             android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/email"/>
-
         <EditText
-            android:id="@+id/signup_email"
+            android:id="@+id/signup_confirm_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -43,6 +42,16 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/email"/>
+        <EditText
+            android:id="@+id/signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="12dp"
+            android:hint="@string/confirm_email"
+            android:inputType="textEmailAddress"
+            android:drawableLeft="@drawable/email"/>
+
 
         <EditText
             android:id="@+id/signup_password"
