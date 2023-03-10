@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giveandtake.adapter.HomeAdapter;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     ViewPagerAdapter viewPagerAdapter;
     ViewPager viewPager;
+    TextView logoutTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         tabLayout =  findViewById(R.id.main_tabLayout);
+        logoutTv = findViewById(R.id.main_logout);
 
-//
+        clickListener();
+    }
+
+    public void clickListener(){
+        logoutTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -128,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_logout: {
                 FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+                startActivity(i);
                 break;
             }
             case R.id.nav_my_donations:
