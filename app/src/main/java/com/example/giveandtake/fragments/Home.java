@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.HomeAdapter;
 import com.example.giveandtake.model.HomeModel;
+import com.example.giveandtake.model.Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -29,7 +30,7 @@ import java.util.List;
 public class Home extends Fragment {
     private RecyclerView recyclerView;
     HomeAdapter homeAdapter;
-    private List<HomeModel>list;
+    private List<HomeModel>data;
     private FirebaseUser user;
     DocumentReference reference;
 
@@ -43,6 +44,10 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+
+//        Model.instance().getAllUsers((userList)->{
+//            data= userList;
+//        })
     }
 
     @Override
@@ -52,9 +57,9 @@ public class Home extends Fragment {
 
         //reference = FirebaseFirestore.getInstance().collection("Posts").document(user.getUid());
 
-        list = new ArrayList<>();
+        data = new ArrayList<>();
 
-        homeAdapter = new HomeAdapter(getContext(),list);
+        homeAdapter = new HomeAdapter(getContext(),data);
         recyclerView.setAdapter(homeAdapter);
 
         loadDataFromFireStore();

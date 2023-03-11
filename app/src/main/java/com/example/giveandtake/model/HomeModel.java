@@ -2,22 +2,40 @@ package com.example.giveandtake.model;
 
 public class HomeModel {
 
-    private String userName, timestamp, profileImage, postImage, uid;
+    private String userName, timestamp, profileImage, postImage, uid,  postText;
 
     private  int likeCount;
 
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getPostText() {
+        return postText;
+    }
+
+    public void setPostText(String postText) {
+        this.postText = postText;
+    }
 
     public HomeModel(){
 
     }
 
-    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount, String uid) {
+    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount, String uid, String postText) {
         this.userName = userName;
         this.timestamp = timestamp;
         this.profileImage = profileImage;
         this.postImage = postImage;
         this.likeCount = likeCount;
         this.uid = uid;
+        this.postText = postText;
+
     }
 
 
