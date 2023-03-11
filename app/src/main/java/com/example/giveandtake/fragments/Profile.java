@@ -1,6 +1,8 @@
 package com.example.giveandtake.fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,21 +24,32 @@ import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.giveandtake.R;
 import com.example.giveandtake.model.PostImageActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.protobuf.StringValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -86,6 +100,14 @@ public class Profile extends Fragment {
         loadPostImages();
 
         recyclerView.setAdapter(adapter);
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: to activaty after complete crop image
+                //CropImage.activity().setGuidelines(CropImageView.Guidelines.On).setAspectRatio(1,1).start(getContext(), Profile.this);
+            }
+        });
     }
 
     private void init(View view){
@@ -194,5 +216,58 @@ public class Profile extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode == RESULT_OK){
+//            CropImage.activityResult result = CropImage.getActivityResult(data);
+//
+//            Uri uri = result.getUri();
+//
+//            uploadImage();
+//        }
+//    }
+
+
+    //TODO: change upload image to picasso/ room db
+    private void uploadImage(Uri uri){
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("profile_images");
+
+        reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if(task.isSuccessful()){
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String imageURL = uri.toString();
+
+                            UserProfileChangeRequest.Builder requst = new UserProfileChangeRequest.Builder();
+                            requst.setPhotoUri(uri);
+
+                            user.updateProfile(requst.build());
+
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("profileImage", imageURL);
+
+                            FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful())
+                                        Toast.makeText(getContext(), "Update Successful", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
