@@ -2,11 +2,13 @@ package com.example.giveandtake.fragments;
 
 import static com.example.giveandtake.utils.ImagesContent.loadSavedImages;
 
+import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,6 +65,7 @@ public class Add extends Fragment {
     private List<GalleryImages> list;
     private GalleryAdapter adapter;
     private FirebaseUser user;
+    Dialog dialog;
 
     Uri imageUri;
     String imageURL;
@@ -189,6 +192,11 @@ public class Add extends Fragment {
         backBtn = view.findViewById(R.id.backBtn);
         nextBtn = view.findViewById(R.id.nextBtn);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.loading_dialog);
+        dialog.getWindow().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.dialog_background, null));
+        dialog.setCancelable(false);
     }
 
 
