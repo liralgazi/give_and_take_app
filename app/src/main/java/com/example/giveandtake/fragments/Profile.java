@@ -218,25 +218,28 @@ public class Profile extends Fragment {
         adapter.stopListening();
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode == RESULT_OK){
-//            CropImage.activityResult result = CropImage.getActivityResult(data);
-//
-//            Uri uri = result.getUri();
-//
-//            uploadImage();
-//        }
-//    }
+    /*
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode == RESULT_OK){
+            CropImage.activityResult result = CropImage.getActivityResult(data);
+
+            Uri uri = result.getUri();
+
+            uploadImage(uri);
+        }
+    }
+     */
 
 
     //TODO: change upload image to picasso/ room db
     private void uploadImage(Uri uri){
         StorageReference reference = FirebaseStorage.getInstance().getReference().child("profile_images");
 
-        reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        reference.putFile(uri)
+                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if(task.isSuccessful()){
@@ -245,15 +248,20 @@ public class Profile extends Fragment {
                         public void onSuccess(Uri uri) {
                             String imageURL = uri.toString();
 
-                            UserProfileChangeRequest.Builder requst = new UserProfileChangeRequest.Builder();
-                            requst.setPhotoUri(uri);
+                            UserProfileChangeRequest.Builder request = new UserProfileChangeRequest.Builder();
+                            request.setPhotoUri(uri);
 
-                            user.updateProfile(requst.build());
+                            user.updateProfile(request.build());
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("profileImage", imageURL);
 
-                            FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            FirebaseFirestore
+                                    .getInstance()
+                                    .collection("Users")
+                                    .document(user.getUid())
+                                    .update(map)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful())

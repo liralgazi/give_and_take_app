@@ -85,24 +85,33 @@ public class Home extends Fragment {
     private void loadDataFromFireStore(){
         data.add(new HomeModel("shir", "","","",12,"125", "hello", "hi everyone", "123"));
 
-//        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
-//        reference.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                if(error!=null){
-//                    Log.e("Error", error.getMessage());
-//                    return;
-//                }
-//                assert value != null;
-//                for(QueryDocumentSnapshot snapshot :value){
-//                    HomeModel model = new HomeModel();
-//                    data.add(new HomeModel(snapshot.get("userName").toString(), snapshot.get("timestamp").toString(), snapshot.get("profileImage").toString(),
-//                            snapshot.get("postImage").toString(),Integer.parseInt(snapshot.get("likeCount").toString()),snapshot.get("uid").toString(),snapshot.get("postText").toString(),
-//                            snapshot.get("comments").toString(),snapshot.get("postId").toString()));
-//
-//                }
-//            }
-//        });
-//        homeAdapter.notifyDataSetChanged();
+
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
+        reference.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error!=null){
+                    Log.e("Error", error.getMessage());
+                    return;
+                }
+                assert value != null;
+                for(QueryDocumentSnapshot snapshot :value){
+                    HomeModel model = new HomeModel();
+                    data.add(new HomeModel
+                    (snapshot.get("userName").toString(),
+                     snapshot.get("timestamp").toString(),
+                      snapshot.get("profileImage").toString(),
+                          snapshot.get("postImage").toString(),Integer
+                          .parseInt(snapshot.get("likeCount").toString()),
+                            snapshot.get("uid").toString(),
+                            snapshot.get("postText").toString(),
+                            snapshot.get("comments").toString(),
+                            snapshot.get("postId").toString()));
+
+                }
+            }
+        });
+        homeAdapter.notifyDataSetChanged();
+
     }
 }

@@ -156,6 +156,16 @@ public class Add extends Fragment {
         map.put("imageUrl", imageURL);
         map.put("timestamp", FieldValue.serverTimestamp());
 
+        map.put("userName", String.valueOf(user.getPhotoUrl()));
+        map.put("profileImage", user.getDisplayName());
+        map.put("likeCount", 0);
+        map.put("comments", "");
+        map.put("uid", user.getUid());
+
+
+
+
+
         reference.document(id).set(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
