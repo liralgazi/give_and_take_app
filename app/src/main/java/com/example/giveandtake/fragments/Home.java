@@ -81,7 +81,7 @@ public class Home extends Fragment {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
     }
-
+    //TODO: change to room db
     private void loadDataFromFireStore(){
         data.add(new HomeModel("shir", "","","",12,"125", "hello", "hi everyone", "123"));
 
