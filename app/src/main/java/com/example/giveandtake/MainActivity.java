@@ -1,18 +1,11 @@
 package com.example.giveandtake;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.appcompat.widget.Toolbar;;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -21,12 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.giveandtake.adapter.HomeAdapter;
+
 import com.example.giveandtake.adapter.ViewPagerAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -63,17 +53,17 @@ public class MainActivity extends AppCompatActivity {
        // clickListener();
     }
 
-    public void clickListener(){
-        logoutTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
-                startActivity(i);
-            }
-        });
-    }
+//    public void clickListener(){
+//        logoutTv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                finish();
+//                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+//                startActivity(i);
+//            }
+//        });
+//    }
 
 
     public void addTabs(){
