@@ -12,10 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/main_toolbar"
-        android:elevation="2dp"
+        android:elevation="4dp"
         android:background="@color/purple_200"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         tools:ignore="MissingConstraints">
 
 

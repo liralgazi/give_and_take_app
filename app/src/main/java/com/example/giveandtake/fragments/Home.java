@@ -19,6 +19,7 @@ import com.example.giveandtake.adapter.HomeAdapter;
 import com.example.giveandtake.model.HomeModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -72,10 +73,7 @@ public class Home extends Fragment {
     }
 
     private void loadDataFromFireStore(){
-        list.add(new HomeModel("shir","08/03/2023","","",12,"123456"));
-        list.add(new HomeModel("shir","08/03/2023","","",12,"125896"));
-        list.add(new HomeModel("shir","08/03/2023","","",12,"125874"));
-        list.add(new HomeModel("shir","08/03/2023","","",12,"582163"));
+      CollectionReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
         homeAdapter.notifyDataSetChanged();
     }
 }

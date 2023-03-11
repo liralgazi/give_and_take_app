@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -56,9 +57,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.main_toolbar);
         viewPager = findViewById(R.id.main_viewPager);
         setSupportActionBar(toolbar);
-
-        tabLayout =  findViewById(R.id.main_tabLayout);
-        logoutTv = findViewById(R.id.main_logout);
+        toolbar.showOverflowMenu();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         clickListener();
     }

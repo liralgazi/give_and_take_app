@@ -19,6 +19,9 @@ public interface UserDao {
             "last_name LIKE :last LIMIT 1")
     User findByName(String first, String last);
 
+    @Query("select * from User where id = :userId")
+    User getUserById(String userId);
+
     @Insert
     void insertAll(User... users);
 
