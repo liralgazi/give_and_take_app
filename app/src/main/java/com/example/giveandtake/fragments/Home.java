@@ -78,6 +78,6 @@ public class Home extends Fragment {
     }
 
     private void loadDataFromFireStore(){
-        data.add(new HomeModel("shir", "","","",12,"125", "hello"));
+        data.add(new HomeModel("shir", "","","",12,"125", "hello", "hi everyone"));
     }
 }

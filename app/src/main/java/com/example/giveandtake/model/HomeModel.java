@@ -2,7 +2,7 @@ package com.example.giveandtake.model;
 
 public class HomeModel {
 
-    private String userName, timestamp, profileImage, postImage, uid,  postText;
+    private String userName, timestamp, profileImage, postImage, uid,  postText, comments;
 
     private  int likeCount;
 
@@ -27,7 +27,15 @@ public class HomeModel {
 
     }
 
-    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount, String uid, String postText) {
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public HomeModel(String userName, String timestamp, String profileImage, String postImage, int likeCount, String uid, String postText, String comments) {
         this.userName = userName;
         this.timestamp = timestamp;
         this.profileImage = profileImage;
@@ -35,6 +43,7 @@ public class HomeModel {
         this.likeCount = likeCount;
         this.uid = uid;
         this.postText = postText;
+        this.comments = comments;
 
     }
 

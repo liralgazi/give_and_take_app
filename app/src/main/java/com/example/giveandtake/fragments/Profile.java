@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
@@ -41,6 +42,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends Fragment {
 
     private TextView nameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
+    private ImageButton editProfileBtn;
     private CircleImageView profileImage;
     private Button addFriendBtn;
     private RecyclerView recyclerView;
@@ -99,6 +101,7 @@ public class Profile extends Fragment {
         addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
         recyclerView = view.findViewById(R.id.profile_recycle);
         volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
+        editProfileBtn = view.findViewById(R.id.profile_editImage);
 
         countLayout = view.findViewById(R.id.addFriend_layout);
         FirebaseAuth auth = FirebaseAuth.getInstance();

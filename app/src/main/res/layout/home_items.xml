@@ -31,6 +31,7 @@
             android:id="@+id/nameTv"
             android:text="Username"
             android:textStyle="bold"
+            android:textSize="16dp"
             android:textColor="#000"/>
 
         <TextView
@@ -55,7 +56,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:id="@+id/postText"/>
 
     </LinearLayout>
