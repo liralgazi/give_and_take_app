@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.HomeAdapter;
 import com.example.giveandtake.model.HomeModel;
-import com.example.giveandtake.model.Model;
+//import com.example.giveandtake.model.Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -78,7 +78,6 @@ public class Home extends Fragment {
     }
 
     private void loadDataFromFireStore(){
-      CollectionReference documentReference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
-        homeAdapter.notifyDataSetChanged();
+
     }
 }
