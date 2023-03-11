@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class PostImageActivity {
 
-    private String imageUrl, id;
+    private String imageUrl, id, description;
 
     @ServerTimestamp
     private Date timestamp;
@@ -15,11 +15,12 @@ public class PostImageActivity {
 
     }
 
-    public PostImageActivity(String imageUrl,String id, Date timestamp){
+    public PostImageActivity(String imageUrl,String id, Date timestamp, String description){
 
         this.imageUrl = imageUrl;
         this.id = id;
         this.timestamp = timestamp;
+        this.description = description;
     }
 
 
@@ -45,5 +46,15 @@ public class PostImageActivity {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public String getDescription()
+    {
+        return this.description;
     }
 }
