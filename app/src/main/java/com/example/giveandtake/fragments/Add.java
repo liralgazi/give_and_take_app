@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 //import com.example.giveandtake.Manifest;
+//import com.canhub.cropper.CropImage;
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.GalleryAdapter;
 import com.example.giveandtake.model.GalleryImages;
@@ -102,6 +103,9 @@ public class Add extends Fragment {
                                 .load(picUri)
                                         .into(imageView);
                 imageView.setVisibility(View.VISIBLE);
+                nextBtn.setVisibility(View.VISIBLE);
+
+                //CropImage.ActivityResult(picUri)
 
             }
         });
