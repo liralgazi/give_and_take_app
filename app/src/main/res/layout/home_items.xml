@@ -64,6 +64,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:scaleType="centerCrop"
         android:layout_below="@+id/liner_post_text"
         android:layout_marginTop="10dp"
         android:background="@color/purple_200" />
@@ -100,13 +101,22 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/descTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/like_countTv"
-        android:text="100 Likes"
-        android:textStyle="bold"
-        android:layout_below="@+id/linerLayout"
+        android:layout_below="@+id/like_countTv"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
+        android:text="Description"
+        android:textStyle="bold"
         />
+    <TextView
+        android:id="@+id/like_countTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linerLayout"
+        android:text="100 Likes"
+        android:textStyle="bold"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
 </RelativeLayout>
