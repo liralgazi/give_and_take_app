@@ -1,25 +1,17 @@
 package com.example.giveandtake.model;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Dao;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.example.giveandtake.MyApplication;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FieldValue;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 @Entity(tableName = "Users")
 public class User {
+
+
     @PrimaryKey
     @NonNull
     public String id="";
