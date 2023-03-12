@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -61,6 +62,7 @@ public class Home extends Fragment {
 //        })
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,6 +77,8 @@ public class Home extends Fragment {
 
         loadDataFromFireStore();
     }
+
+
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
         if(getActivity()!=null)
