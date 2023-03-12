@@ -93,7 +93,7 @@ public class Home extends Fragment {
     }
     //TODO: change to room db - there is no timestamp (null)
     private void loadDataFromFireStore(){
-        data.add(new HomeModel("shir", null,"","",12,"125", "hello", "hi everyone", "123","my description....:)"));
+        data.add(new HomeModel("shir", null,"","",12,"125", "hello", "hi everyone", "123"));
 //
 //
 //        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");

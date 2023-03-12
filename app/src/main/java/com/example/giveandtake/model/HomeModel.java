@@ -7,7 +7,6 @@ import java.util.Date;
 public class HomeModel {
 
     private String userName, profileImage, postImage, uid,  postText, comments , postId;
-    private String description;
     @ServerTimestamp
     private Date timestamp;
     private  int likeCount;
@@ -49,7 +48,7 @@ public class HomeModel {
         this.comments = comments;
     }
 
-    public HomeModel(String userName, Date timestamp, String profileImage, String postImage, int likeCount, String uid, String postText, String comments , String postId, String description) {
+    public HomeModel(String userName, Date timestamp, String profileImage, String postImage, int likeCount, String uid, String postText, String comments , String postId ) {
         this.userName = userName;
         this.timestamp = timestamp;
         this.profileImage = profileImage;
@@ -59,7 +58,6 @@ public class HomeModel {
         this.postText = postText;
         this.comments = comments;
         this.postId = postId;
-        this.description =description;
 
     }
 
@@ -103,7 +101,5 @@ public class HomeModel {
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
     }
-    public void setDescription(String description) {this.description = description;}
-    public String getDescription(){return this.description;}
 
 }

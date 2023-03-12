@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
+@Entity(tableName = "Users")
 public class User {
     @PrimaryKey
     @NonNull
@@ -95,33 +95,33 @@ public class User {
         return st;
     }
 
-//    public static Long getLocalLastUpdate() {
-//        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-//        return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
-//    }
-//
-//    public static void setLocalLastUpdate(Long time) {
-//        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putLong(LOCAL_LAST_UPDATED,time);
-//        editor.commit();
-//    }
-//
-//    public Map<String,Object> toJson(){
-//        Map<String, Object> json = new HashMap<>();
-//        json.put(ID, getId());
-//        json.put(NAME, getName());
-//        json.put(PROFILEIMAGE, getProfileImageURL());
-//        json.put(volunteerStatus, getVolunteerStatus());
-//        json.put(String.valueOf(numFriends), getNumFriends());
-//        json.put(String.valueOf(countPlaces), getCountPlaces());
-//        json.put(address, getAddress());
-//        json.put(workAt, getWorkAt());
-//        json.put(dateBirth, getDateBirth());
-//        //json.put(friends.toString(),getFriends() );
-//        json.put(LAST_UPDATED, FieldValue.serverTimestamp());
-//        return json;
-//    }
+    public static Long getLocalLastUpdate() {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
+    }
+
+    public static void setLocalLastUpdate(Long time) {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putLong(LOCAL_LAST_UPDATED,time);
+        editor.commit();
+    }
+
+    public Map<String,Object> toJson(){
+        Map<String, Object> json = new HashMap<>();
+        json.put(ID, getId());
+        json.put(NAME, getName());
+        json.put(PROFILEIMAGE, getProfileImageURL());
+        json.put(volunteerStatus, getVolunteerStatus());
+        json.put(String.valueOf(numFriends), getNumFriends());
+        json.put(String.valueOf(countPlaces), getCountPlaces());
+        json.put(address, getAddress());
+        json.put(workAt, getWorkAt());
+        json.put(dateBirth, getDateBirth());
+        //json.put(friends.toString(),getFriends() );
+        json.put(LAST_UPDATED, FieldValue.serverTimestamp());
+        return json;
+    }
 
     @NonNull
     public String getId() {
