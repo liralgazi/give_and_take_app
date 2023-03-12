@@ -8,15 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.giveandtake.R;
+import com.example.giveandtake.model.User;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
 
-    private List<Users> list;
+    private List<User> list;
 
-    public UserAdapter(List<Users> list) {
+    public UserAdapter(List<User> list) {
         this.list = list;
     }
 

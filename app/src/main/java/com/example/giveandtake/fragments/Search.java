@@ -15,6 +15,7 @@ import android.widget.SearchView;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.UserAdapter;
+import com.example.giveandtake.model.User;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,7 +32,7 @@ public class Search extends Fragment {
     SearchView searchView;
     RecyclerView recyclerView;
     UserAdapter adapter;
-    private List<Users>  list;
+    private List<User>  list;
 
     public Search() {
         // Required empty public constructor
@@ -80,7 +81,7 @@ public class Search extends Fragment {
                 list.clear();
                 for (QueryDocumentSnapshot snapshot : value)
                 {
-                    Users users = snapshot.toObject(Users.class);
+                    User users = snapshot.toObject(User.class);
                     list.add(users);
                 }
                 adapter.notifyDataSetChanged();
