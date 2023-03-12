@@ -15,4 +15,5 @@ import androidx.room.TypeConverters;
 @TypeConverters({Converts.class})
 public abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract UserDao userDao();
+    public abstract PostDao postDao();
 }

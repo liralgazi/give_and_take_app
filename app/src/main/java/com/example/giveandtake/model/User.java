@@ -71,6 +71,10 @@ public class User {
     static public String ADDRESS= "address";
     static public String WORKAT = "workAt";
     static public String DATEBIRTH = "dateBirth";
+
+    public User(String name) {
+        this.name = name;
+    }
     //static  public String FRIENDS = "friends";
 
     public static User fromJson(Map<String,Object> json){
