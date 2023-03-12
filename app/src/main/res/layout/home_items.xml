@@ -101,16 +101,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/descTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/like_countTv"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="Description"
-        android:textStyle="bold"
-        />
-    <TextView
         android:id="@+id/like_countTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

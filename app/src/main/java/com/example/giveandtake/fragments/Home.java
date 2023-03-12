@@ -90,44 +90,44 @@ public class Home extends Fragment {
     //TODO: change to room db - there is no timestamp (null)
     private void loadDataFromFireStore(){
         data.add(new HomeModel("shir", null,"","",12,"125", "hello", "hi everyone", "123","my description....:)"));
-
-
-        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
-        reference.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.e("Error", error.getMessage());
-                    return;
-                }
-                if(value ==null)
-                    return;
-                //assert value != null;
-                //list.clear();
-                for (QueryDocumentSnapshot snapshot : value) {
-                    if(!snapshot.exists())
-                        return;
-
-                    HomeModel model = snapshot.toObject(HomeModel.class);
-                    data.add(new HomeModel(
-                            model.getUserName(),
-                            model.getTimestamp(),
-                            model.getProfileImage(),
-                            model.getPostImage(),
-                            model.getLikeCount(),
-                            model.getUid(),
-                            model.getPostText(),
-                            model.getComments(),
-                            model.getPostId(),
-                            model.getDescription()
-                    ));
-                }
-                homeAdapter.notifyDataSetChanged();
-
-                //LIST_SIZE = list.size();
-
-            }
-        });
-
+//
+//
+//        CollectionReference reference = FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).collection("Post Images");
+//        reference.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                if (error != null) {
+//                    Log.e("Error", error.getMessage());
+//                    return;
+//                }
+//                if(value ==null)
+//                    return;
+//                //assert value != null;
+//                //list.clear();
+//                for (QueryDocumentSnapshot snapshot : value) {
+//                    if(!snapshot.exists())
+//                        return;
+//
+//                    HomeModel model = snapshot.toObject(HomeModel.class);
+//                    data.add(new HomeModel(
+//                            model.getUserName(),
+//                            model.getTimestamp(),
+//                            model.getProfileImage(),
+//                            model.getPostImage(),
+//                            model.getLikeCount(),
+//                            model.getUid(),
+//                            model.getPostText(),
+//                            model.getComments(),
+//                            model.getPostId(),
+//                            model.getDescription()
+//                    ));
+//                }
+//                homeAdapter.notifyDataSetChanged();
+//
+//                //LIST_SIZE = list.size();
+//
+//            }
+//        });
+//
     }
 }

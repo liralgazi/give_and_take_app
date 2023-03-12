@@ -235,47 +235,47 @@ public class Profile extends Fragment {
 
 
     //TODO: change upload image to picasso/ room db
-    private void uploadImage(Uri uri){
-        StorageReference reference = FirebaseStorage.getInstance().getReference().child("profile_images");
-
-        reference.putFile(uri)
-                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if(task.isSuccessful()){
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String imageURL = uri.toString();
-
-                            UserProfileChangeRequest.Builder request = new UserProfileChangeRequest.Builder();
-                            request.setPhotoUri(uri);
-
-                            user.updateProfile(request.build());
-
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("profileImage", imageURL);
-
-                            FirebaseFirestore
-                                    .getInstance()
-                                    .collection("Users")
-                                    .document(user.getUid())
-                                    .update(map)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful())
-                                        Toast.makeText(getContext(), "Update Successful", Toast.LENGTH_SHORT).show();
-                                    else
-                                        Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
-                }else{
-                    Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+//    private void uploadImage(Uri uri){
+//        StorageReference reference = FirebaseStorage.getInstance().getReference().child("profile_images");
+//
+//        reference.putFile(uri)
+//                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                if(task.isSuccessful()){
+//                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                        @Override
+//                        public void onSuccess(Uri uri) {
+//                            String imageURL = uri.toString();
+//
+//                            UserProfileChangeRequest.Builder request = new UserProfileChangeRequest.Builder();
+//                            request.setPhotoUri(uri);
+//
+//                            user.updateProfile(request.build());
+//
+//                            Map<String, Object> map = new HashMap<>();
+//                            map.put("profileImage", imageURL);
+//
+//                            FirebaseFirestore
+//                                    .getInstance()
+//                                    .collection("Users")
+//                                    .document(user.getUid())
+//                                    .update(map)
+//                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if(task.isSuccessful())
+//                                        Toast.makeText(getContext(), "Update Successful", Toast.LENGTH_SHORT).show();
+//                                    else
+//                                        Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                        }
+//                    });
+//                }else{
+//                    Toast.makeText(getContext(), "Error: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
 }

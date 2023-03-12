@@ -55,7 +55,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
         }else{
             holder.likeCountTv.setText(count + " likes");
         }
-        holder.descriptionTv.setText(list.get(position).getDescription());
 
         Random random = new Random();
 
@@ -80,7 +79,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
 
     static class  HomeHolder extends RecyclerView.ViewHolder{
         private CircleImageView profileImage;
-        private TextView userNameTv , timeTv, likeCountTv, descriptionTv;
+        private TextView userNameTv , timeTv, likeCountTv;
         private ImageView imageView;
         private ImageButton likeBtn, commentBtn, shareBtn;
 
@@ -95,7 +94,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
             likeBtn = itemView.findViewById(R.id.likeBtn);
             commentBtn = itemView.findViewById(R.id.commentBtn);
             shareBtn = itemView.findViewById(R.id.shareBtn);
-            descriptionTv = itemView.findViewById(R.id.descTv);
         }
     }
 }
