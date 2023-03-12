@@ -23,6 +23,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
 
     private List<User> list;
+    OnUserClicked onUserClicked;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -53,6 +54,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
                 .placeholder(R.drawable.ic_person)
                 .timeout(6500)
                 .into(holder.profileImage);
+        holder.clickListener(position, list.get(position).getId());
+
     }
 
     @Override
@@ -75,6 +78,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
 
         }
+        private void clickListener(int pos, String id)
+        {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        onUserClicked.onClick(pos, id);
+                }
+            });
+        }
+    }
+    public void OnUserClicked(OnUserClicked onUserClicked)
+    {
+        this.onUserClicked = onUserClicked;
+    }
+    public interface OnUserClicked
+    {
+        void onClick(int pos, String id);
     }
 
 }

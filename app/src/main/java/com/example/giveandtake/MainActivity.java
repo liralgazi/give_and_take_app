@@ -4,16 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.ui.NavigationUI;;
+import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.ViewPager;;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.giveandtake.fragments.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Search.onDataPass {
 
 
     NavController navController;
@@ -64,7 +66,20 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-//    @Override
+    @Override
+    public void onChange(int pos) {
+       // viewPager.setCurrentItem(pos);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //if (viewPager.setCurrentItem()==4)
+            // viewPager.setCurrentItem(0);
+        //else
+        super.onBackPressed();
+    }
+
+    //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId())
 //        {

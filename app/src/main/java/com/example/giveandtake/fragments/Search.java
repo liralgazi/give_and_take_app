@@ -1,5 +1,6 @@
 package com.example.giveandtake.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,8 +39,19 @@ public class Search extends Fragment {
     private List<User> list;
     CollectionReference reference;
 
+    onDataPass onDataPass;
+
+    public interface onDataPass{
+        void onChange(int pos);
+    }
     public Search() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        onDataPass = (onDataPass)context;
     }
 
     @Override
@@ -57,8 +69,18 @@ public class Search extends Fragment {
         reference = FirebaseFirestore.getInstance().collection("Users");
         loadUserDate();
         searchUser();
+        clickListener();
     }
 
+    private void clickListener()
+    {
+        adapter.OnUserClicked(new UserAdapter.OnUserClicked() {
+            @Override
+            public void onClick(int pos, String id) {
+                onDataPass.onChange(4);
+            }
+        });
+    }
     private void loadUserDate()
     {
         reference.addSnapshotListener(new EventListener<QuerySnapshot>() {
