@@ -36,7 +36,7 @@ public class FireBaseModel {
 
     }
 
-    public void getAllStudentsSince(Long since, Model.Listener<List<User>> callback){
+    public void getAllUsersSince(Long since, Model.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
                 .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
                 .get()
@@ -55,8 +55,33 @@ public class FireBaseModel {
                     }
                 });
     }
-    public void addStudent(User st, Model.Listener<Void> listener) {
-        db.collection(User.COLLECTION).document(st.getId()).set(st.toJson())
+
+    public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback){
+        db.collection(User.COLLECTION)
+                .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Post> list = new LinkedList<>();
+                        if (task.isSuccessful()){
+                            QuerySnapshot jsonsList = task.getResult();
+                            for (DocumentSnapshot json: jsonsList){
+                                Post post = Post.fromJson(json.getData());
+                                list.add(post);
+                            }
+                        }
+                        callback.onComplete(list);
+                    }
+                });
+    }
+
+    public void addUser(User st) {
+        db.collection(User.COLLECTION).document(st.getId()).set(st.toJson());
+    }
+
+    public void addPost(Post post, Model.Listener<Void> listener) {
+        db.collection(Post.COLLECTION).document(post.getPostId()).set(post.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

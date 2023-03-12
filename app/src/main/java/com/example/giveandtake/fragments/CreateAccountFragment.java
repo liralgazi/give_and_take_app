@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.ReplacerActivity;
+import com.example.giveandtake.model.Model;
+import com.example.giveandtake.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -150,9 +153,6 @@ public class CreateAccountFragment extends Fragment {
         map.put("places", 0);
         map.put("volunteerStatus", "");
 
-
-
-
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -169,6 +169,8 @@ public class CreateAccountFragment extends Fragment {
             }
         });
 
+//        User us = new User(name);
+//        Model.instance().addUser(us);
     }
 
 }
