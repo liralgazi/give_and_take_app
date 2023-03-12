@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class CreateAccountFragment extends Fragment {
@@ -152,6 +153,7 @@ public class CreateAccountFragment extends Fragment {
         map.put("friends",0);
         map.put("places", 0);
         map.put("volunteerStatus", "");
+        map.put("search", name.toLowerCase());
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

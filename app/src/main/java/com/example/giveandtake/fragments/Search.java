@@ -81,28 +81,13 @@ public class Search extends Fragment {
     }
 
 
-    /*
-     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return false;
-            }
-        });
-     */
     private void searchUser()
     {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                reference.orderBy("name").startAt(query).endAt(query+"\uf8ff")
+                reference.orderBy("search").startAt(query).endAt(query+"\uf8ff")
                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -128,6 +113,8 @@ public class Search extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.equals(""))
+                    loadUserDate();
                 return false;
             }
         });
