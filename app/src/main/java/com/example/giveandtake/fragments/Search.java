@@ -109,6 +109,7 @@ public class Search extends Fragment {
 
                                 if (task.isSuccessful())
                                 {
+                                    list.clear();
                                     for (DocumentSnapshot snapshot: task.getResult())
                                     {
                                         if(!snapshot.exists())

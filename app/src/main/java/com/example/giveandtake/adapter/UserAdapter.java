@@ -23,6 +23,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
 
     private List<User> list;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
     public UserAdapter(List<User> list) {
         this.list = list;
@@ -38,12 +40,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (list.get(position).getId().equals(user.getUid()))
-        {
-            holder.layout.setVisibility(View.GONE);
-        }
-
         holder.nameTV.setText(list.get(position).getName());
         holder.statusTV.setText(list.get(position).getVolunteerStatus());
         Glide.with(holder.itemView.getContext().getApplicationContext())
@@ -51,6 +47,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
                 .placeholder(R.drawable.ic_person)
                 .timeout(6500)
                 .into(holder.profileImage);
+        if (list.get(position).getId().equals(user.getUid()))
+        {
+            holder.layout.setVisibility(View.GONE);
+        }
 
     }
 
