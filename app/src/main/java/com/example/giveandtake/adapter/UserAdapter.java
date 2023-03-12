@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.giveandtake.R;
-import com.example.giveandtake.model.Users;
 
 import java.util.List;
 
