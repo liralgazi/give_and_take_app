@@ -1,24 +1,17 @@
 package com.example.giveandtake;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-import androidx.appcompat.widget.Toolbar;;
-import androidx.viewpager.widget.ViewPager;
-
-import android.content.Intent;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.ui.NavigationUI;;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-
-import com.example.giveandtake.adapter.ViewPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.main_navhost);
         navController = navHostFragment.getNavController();
         //NavigationUI.setupActionBarWithNavController(this,navController);
+
+        BottomNavigationView navView = findViewById(R.id.main_bottomNavigationView);
+        NavigationUI.setupWithNavController(navView,navController);
     }
 
 
