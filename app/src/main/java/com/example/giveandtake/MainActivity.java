@@ -1,6 +1,8 @@
 package com.example.giveandtake;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.appcompat.widget.Toolbar;
@@ -8,11 +10,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.giveandtake.fragments.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements Search.onDataPass {
@@ -107,4 +112,5 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
 //        }
 //        return false;
 //    }
+
 }
