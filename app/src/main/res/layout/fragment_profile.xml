@@ -265,15 +265,7 @@
             android:layout_below="@+id/liner2"
             android:visibility="gone" >
         </RelativeLayout>
-        <Button
-            android:id="@+id/profile_addFriendBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:minWidth="160dp"
-            android:minHeight="10dp"
-            android:text="Add Friend"
-            android:visibility="gone" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -282,6 +274,18 @@
             android:layout_marginTop="8dp"
             android:layout_below="@+id/addFriend_layout"
             android:id="@+id/profile_view1"/>
+
+        <Button
+            android:layout_below="@+id/addFriend_layout"
+            android:id="@+id/profile_addFriendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:minWidth="160dp"
+            android:minHeight="10dp"
+            android:text="Add Friend"
+            android:visibility="visible" />
     </RelativeLayout>
 
     <View

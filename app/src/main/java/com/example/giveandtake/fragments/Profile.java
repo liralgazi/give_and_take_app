@@ -3,6 +3,8 @@ package com.example.giveandtake.fragments;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import static com.example.giveandtake.fragments.Home.LIST_SIZE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,17 +31,22 @@ import com.example.giveandtake.R;
 import com.example.giveandtake.model.PostImageActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -52,8 +60,11 @@ public class Profile extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseUser user;
     String userId;
-    List<Objects> friendsList;
+    List<String> friendsList;
     //List<Objects> followingList;
+    boolean isFriend;
+
+    DocumentReference userRef;
 
     private RelativeLayout addFriendLayout,countLayout;
     FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
@@ -97,6 +108,10 @@ public class Profile extends Fragment {
             addFriendBtn.setVisibility(VISIBLE);
             countLayout.setVisibility(GONE);
         }
+
+        userRef = FirebaseFirestore.getInstance()
+                .collection("User")
+                .document(userId);
         loadBasicData();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3 ));
@@ -112,7 +127,42 @@ public class Profile extends Fragment {
         addFriendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    if (isFriend)
+                    {
+                        friendsList.remove(userId);
 
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("friend", friendsList);
+                        userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                            addFriendBtn.setText("Add-Friend");
+
+                                    }else {
+                                        Log.e("Tag", ""+task.getException().getMessage());
+                                    }
+                            }
+                        });
+
+                    }else {
+                        friendsList.add(user.getUid());
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("friend", friendsList);
+                        userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                {
+                                    addFriendBtn.setText("Un-Friend");
+
+                                }else {
+                                    Log.e("Tag", ""+task.getException().getMessage());
+                                }
+                            }
+                        });
+                    }
             }
         });
 
@@ -140,7 +190,6 @@ public class Profile extends Fragment {
         recyclerView = view.findViewById(R.id.profile_recycle);
         volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
         editProfileBtn = view.findViewById(R.id.profile_editImage);
-
         countLayout = view.findViewById(R.id.addFriend_layout);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -169,7 +218,7 @@ public class Profile extends Fragment {
                     volunteerStatusTv.setText(volunteerStatus);
                     //int followers = Objects.requireNonNull(value.getLong("followers")).intValue();
 
-                    friendsList = (List<Objects>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("followers"));
+                    friendsList = (List<String>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("followers"));
                     //followingList = (List<Objects>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("following"));
 
 
@@ -185,10 +234,22 @@ public class Profile extends Fragment {
                     }catch (Exception e){
                     error.printStackTrace();}
 
+                    //if they are already friends
+                        if (friendsList.contains(userId))
+                        {
+                            addFriendBtn.setText("Un-Friend");
+                            addFriendBtn.setEnabled(false);
+                            isFriend = true;
 
+                        }else{
+                            addFriendBtn.setText("Add Friend");
+                            addFriendBtn.setEnabled(true);
+                            isFriend = false;
+                        }
                 }
             }
         });
+        postCountTv.setText("" + LIST_SIZE);
     }
 
     private void loadPostImages(){
