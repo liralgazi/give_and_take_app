@@ -42,7 +42,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends Fragment implements MainActivity.onUserProfileUid {
+public class Profile extends Fragment {
 
     private TextView nameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
     private ImageButton editProfileBtn;
@@ -71,13 +71,26 @@ public class Profile extends Fragment implements MainActivity.onUserProfileUid {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+
+        if (MainActivity.IS_SEARCHED_USER)
+        {
+            isMyProfile = false;
+            userId = MainActivity.USER_ID;
+        }
+        else
+        {
+            isMyProfile = true;
+            userId = user.getUid();
+        }
         if(isMyProfile)
         {
+            editProfileBtn.setVisibility(VISIBLE);
             addFriendBtn.setVisibility(GONE);
             countLayout.setVisibility(VISIBLE);
         }
         else
         {
+            editProfileBtn.setVisibility(GONE);
             addFriendBtn.setVisibility(VISIBLE);
             countLayout.setVisibility(GONE);
         }
@@ -119,7 +132,9 @@ public class Profile extends Fragment implements MainActivity.onUserProfileUid {
     }
 
     private void loadBasicData(){
-        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
+        DocumentReference userRef = FirebaseFirestore.getInstance()
+                .collection("User")
+                .document(userId);
         userRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -157,9 +172,6 @@ public class Profile extends Fragment implements MainActivity.onUserProfileUid {
 
     private void loadPostImages(){
 
-        if (isMyProfile) {
-            userId = user.getUid();
-        }
         DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(userId);
         Query query = reference.collection("Images");
 
@@ -186,10 +198,6 @@ public class Profile extends Fragment implements MainActivity.onUserProfileUid {
 
     }
 
-    @Override
-    public void onReceiveUserUid(String id) {
-        userId = id;
-    }
 
     private static class PostImageHolder extends RecyclerView.ViewHolder{
 

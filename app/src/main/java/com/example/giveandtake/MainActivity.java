@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
     private TabLayout tabLayout;
     private Toolbar toolbar;
     TextView logoutTv;
-    onUserProfileUid onUserProfileUid;
+    //onUserProfileUid onUserProfileUid;
 
 
 
@@ -76,23 +76,31 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
         //if (viewPager.setCurrentItem()==4)
             // viewPager.setCurrentItem(0);
         //else
+        IS_SEARCHED_USER  =false;
         super.onBackPressed();
     }
 
+    public static String USER_ID;
+    public static boolean IS_SEARCHED_USER=false;
+
     @Override
     public void onChange(String id) {
-        onUserProfileUid.onReceiveUserUid(id);
+        USER_ID = id;
+        IS_SEARCHED_USER = true;
+        //onUserProfileUid.onReceiveUserUid(id,999);
 
     }
 
+    /*
     public interface onUserProfileUid{
-        void onReceiveUserUid(String id);
-
+        void onReceiveUserUid(String id, int index);
     }
+
     public void OnUserProfileUid(onUserProfileUid onUserProfileUid)
     {
         this.onUserProfileUid = onUserProfileUid;
     }
+     */
 
     //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {

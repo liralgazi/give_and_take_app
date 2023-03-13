@@ -42,7 +42,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="100dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -61,11 +61,14 @@
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:src="@drawable/ic_edit"
+            android:visibility="gone"
             android:background="@drawable/ic_outline_circle"
             android:elevation="3dp"
             android:layout_alignEnd="@+id/profile_profileImage"
             android:layout_alignBottom="@+id/profile_profileImage"
-            android:id="@+id/profile_editImage"/>
+            android:id="@+id/profile_editImage" />
+
+
         </RelativeLayout>
 
     <LinearLayout
