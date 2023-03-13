@@ -207,6 +207,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/nameTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
@@ -216,6 +217,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/addressTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor='@color/black'
@@ -224,6 +226,7 @@
                 android:padding="10dp"
                 android:layout_marginLeft="5dp"/>
             <TextView
+                android:id="@+id/workTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor='@color/black'
@@ -232,10 +235,20 @@
                 android:padding="10dp"
                 android:layout_marginLeft="5dp"/>
             <TextView
+                android:id="@+id/birthdayTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor='@color/black'
                 android:text="Date Of Birth:"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:id="@+id/friendsCountTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor='@color/black'
+                android:text="Friends:"
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:layout_marginLeft="5dp"/>

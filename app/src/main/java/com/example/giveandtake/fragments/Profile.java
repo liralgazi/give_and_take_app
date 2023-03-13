@@ -38,6 +38,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 
+import java.util.List;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -51,6 +52,8 @@ public class Profile extends Fragment {
     private RecyclerView recyclerView;
     private FirebaseUser user;
     String userId;
+    List<Objects> friendsList;
+    //List<Objects> followingList;
 
     private RelativeLayout addFriendLayout,countLayout;
     FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
@@ -102,6 +105,17 @@ public class Profile extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
+        clickListener();
+    }
+    private void clickListener()
+    {
+        addFriendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +133,7 @@ public class Profile extends Fragment {
         nameTv = view.findViewById(R.id.profile_nameTv);
         volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
         friendsCountTv = view.findViewById(R.id.profile_friends);
+        //followingCountTv = view.findViewById(R.id.profile_friends);
         postCountTv = view.findViewById(R.id.profile_posts);
         profileImage = view.findViewById(R.id.profile_image);
         addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
@@ -144,7 +159,7 @@ public class Profile extends Fragment {
                 if(value.exists()){
                     String name = value.getString("name");
                     String volunteerStatus = value.getString("volunteerStatus");
-                    int friends = Objects.requireNonNull(value.getLong("friends")).intValue();
+
                     int volunteeringPlaces = Objects.requireNonNull(value.getLong("places")).intValue();
 
                     String profileURL = value.getString("profileImage");
@@ -152,7 +167,13 @@ public class Profile extends Fragment {
 
                     nameTv.setText(name);
                     volunteerStatusTv.setText(volunteerStatus);
-                    friendsCountTv.setText(String.valueOf(friends));
+                    //int followers = Objects.requireNonNull(value.getLong("followers")).intValue();
+
+                    friendsList = (List<Objects>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("followers"));
+                    //followingList = (List<Objects>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("following"));
+
+
+                    friendsCountTv.setText(String.valueOf("" + friendsList.size()));
                     volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
 
                     try {
