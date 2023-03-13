@@ -63,9 +63,8 @@ public class Profile extends Fragment {
     private FirebaseUser user;
 
     String uid;
-    //private RelativeLayout addFriendLayout;
-    private LinearLayout countLayout;
-    //FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
+    private RelativeLayout addFriendLayout,countLayout;
+    FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
     boolean isMyProfile = true;
     public Profile() {
         // Required empty public constructor
@@ -83,31 +82,31 @@ public class Profile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-//        if(isMyProfile)
-//        {
-//            addFriendBtn.setVisibility(view.GONE);
-//            countLayout.setVisibility(view.VISIBLE);
-//        }
-//        else
-//        {
-//            addFriendBtn.setVisibility(view.VISIBLE);
-//            countLayout.setVisibility(view.GONE);
-//        }
-//        loadBasicData();
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3 ));
-//
-//        loadPostImages();
-//
-//        recyclerView.setAdapter(adapter);
-//
-//        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //TODO: to activaty after complete crop image
-//                //CropImage.activity().setGuidelines(CropImageView.Guidelines.On).setAspectRatio(1,1).start(getContext(), Profile.this);
-//            }
-//        });
+        if(isMyProfile)
+        {
+            addFriendBtn.setVisibility(view.GONE);
+            countLayout.setVisibility(view.VISIBLE);
+        }
+        else
+        {
+            addFriendBtn.setVisibility(view.VISIBLE);
+            countLayout.setVisibility(view.GONE);
+        }
+        loadBasicData();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3 ));
+
+        loadPostImages();
+
+        recyclerView.setAdapter(adapter);
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: to activaty after complete crop image
+                //CropImage.activity().setGuidelines(CropImageView.Guidelines.On).setAspectRatio(1,1).start(getContext(), Profile.this);
+            }
+        });
     }
 
     private void init(View view){
@@ -115,96 +114,96 @@ public class Profile extends Fragment {
         assert getActivity()!=null;
             ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-//        nameTv = view.findViewById(R.id.profile_nameTv);
-//        volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
-//        friendsCountTv = view.findViewById(R.id.profile_nameTv);
-//        postCountTv = view.findViewById(R.id.profile_nameTv);
+        nameTv = view.findViewById(R.id.profile_nameTv);
+        volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
+        friendsCountTv = view.findViewById(R.id.profile_nameTv);
+        postCountTv = view.findViewById(R.id.profile_nameTv);
         profileImage = view.findViewById(R.id.profile_image);
-//        addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
-//        recyclerView = view.findViewById(R.id.profile_recycle);
-//        volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
-//        editProfileBtn = view.findViewById(R.id.profile_editImage);
+        addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
+        recyclerView = view.findViewById(R.id.profile_recycle);
+        volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
+        editProfileBtn = view.findViewById(R.id.profile_editImage);
 
-//        countLayout = view.findViewById(R.id.addFriend_layout);
+        countLayout = view.findViewById(R.id.addFriend_layout);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
     }
 
-//    private void loadBasicData(){
-//        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
-//        userRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                if(error!=null)
-//                    return;
-//                assert value!=null;
-//                if(value.exists()){
-//                    String name = value.getString("name");
-//                    String volunteerStatus = value.getString("volunteerStatus");
-//                    int friends = value.getLong("friends").intValue();
-//                    int volunteeringPlaces = value.getLong("places").intValue();
-//
-//                    String profileURL = value.getString("profileImage");
-//
-//
-//                    nameTv.setText(name);
-//                    volunteerStatusTv.setText(volunteerStatus);
-//                    friendsCountTv.setText(String.valueOf(friends));
-//                    volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
-//
-//                    Glide.with(getContext().getApplicationContext()).load(profileURL).placeholder(R.drawable.ic_person).timeout(6500).into(profileImage);
-//
-//
-//                }
-//            }
-//        });
-//    }
+    private void loadBasicData(){
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
+        userRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error!=null)
+                    return;
+                assert value!=null;
+                if(value.exists()){
+                    String name = value.getString("name");
+                    String volunteerStatus = value.getString("volunteerStatus");
+                    int friends = value.getLong("friends").intValue();
+                    int volunteeringPlaces = value.getLong("places").intValue();
 
-//    private void loadPostImages(){
-//
-//        if (isMyProfile) {
-//            uid = user.getUid();
-//        }else
-//        {
-//
-//        }
-//        DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(uid);
-//        Query query = reference.collection("Images");
-//
-//        FirestoreRecyclerOptions<PostImageActivity> options = new FirestoreRecyclerOptions.Builder<PostImageActivity>().setQuery(query,PostImageActivity.class).build();
-//        adapter = new FirestoreRecyclerAdapter<PostImageActivity, PostImageHolder>(options) {
-//            @NonNull
-//            @Override
-//            public PostImageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.profile_image_items,parent,false);
-//                return new PostImageHolder(view);
-//            }
-//
-//            @Override
-//            protected void onBindViewHolder(@NonNull PostImageHolder holder, int position, @NonNull PostImageActivity model) {
-//
-//                Glide.with(holder.itemView.getContext().getApplicationContext())
-//                        .load(model.getImageUrl())
-//                        .timeout(6500)
-//                        .into(holder.imageView);
-//            }
-//        };
-//
-//
-//    }
+                    String profileURL = value.getString("profileImage");
 
-//    private class PostImageHolder extends RecyclerView.ViewHolder{
-//
-//        private ImageView imageView;
-//
-//
-//
-//        public PostImageHolder(@NonNull View itemView) {
-//            super(itemView);
-//            imageView = itemView.findViewById(R.id.imageView);
-//        }
-//    }
+
+                    nameTv.setText(name);
+                    volunteerStatusTv.setText(volunteerStatus);
+                    friendsCountTv.setText(String.valueOf(friends));
+                    volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
+
+                    Glide.with(getContext().getApplicationContext()).load(profileURL).placeholder(R.drawable.ic_person).timeout(6500).into(profileImage);
+
+
+                }
+            }
+        });
+    }
+
+    private void loadPostImages(){
+
+        if (isMyProfile) {
+            uid = user.getUid();
+        }else
+        {
+
+        }
+        DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(uid);
+        Query query = reference.collection("Images");
+
+        FirestoreRecyclerOptions<PostImageActivity> options = new FirestoreRecyclerOptions.Builder<PostImageActivity>().setQuery(query,PostImageActivity.class).build();
+        adapter = new FirestoreRecyclerAdapter<PostImageActivity, PostImageHolder>(options) {
+            @NonNull
+            @Override
+            public PostImageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.profile_image_items,parent,false);
+                return new PostImageHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull PostImageHolder holder, int position, @NonNull PostImageActivity model) {
+
+                Glide.with(holder.itemView.getContext().getApplicationContext())
+                        .load(model.getImageUrl())
+                        .timeout(6500)
+                        .into(holder.imageView);
+            }
+        };
+
+
+    }
+
+    private class PostImageHolder extends RecyclerView.ViewHolder{
+
+        private ImageView imageView;
+
+
+
+        public PostImageHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
+        }
+    }
 
     @Override
     public void onStart() {

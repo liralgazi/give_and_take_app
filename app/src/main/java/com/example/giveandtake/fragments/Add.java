@@ -85,13 +85,13 @@ public class Add extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setHasFixedSize(true);
+       // recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+       // recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
         adapter =  new GalleryAdapter(list);
 
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
 
         clickListener();
 
@@ -112,13 +112,13 @@ public class Add extends Fragment {
 
             }
         });
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadData();
-
-            }
-        });
+//        nextBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                uploadData();
+//
+//            }
+//        });
     }
 
     private void uploadData(){
