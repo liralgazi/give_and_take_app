@@ -8,14 +8,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.giveandtake.fragments.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
     NavController navController;
     private TabLayout tabLayout;
     private Toolbar toolbar;
-    TextView logoutTv;
+    ImageButton logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +51,21 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
     public void init(){
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-
-       // clickListener();
+        logoutBtn = findViewById(R.id.main_logout);
+        clickListener();
     }
 
-//    public void clickListener(){
-//        logoutTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                finish();
-//                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
-//                startActivity(i);
-//            }
-//        });
-//    }
+    public void clickListener(){
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+                startActivity(i);
+            }
+        });
+    }
 
 
     @Override

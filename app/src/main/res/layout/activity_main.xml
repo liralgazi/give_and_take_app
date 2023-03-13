@@ -25,6 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_logout"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,6 +40,13 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="@color/white"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_logout"
+                android:backgroundTint="@color/purple_200"
+                android:src="@drawable/ic_logout"/>
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
