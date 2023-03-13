@@ -42,7 +42,8 @@ public class Search extends Fragment {
     onDataPass onDataPass;
 
     public interface onDataPass{
-        void onChange(int pos);
+
+        void onChange(String id);
     }
     public Search() {
         // Required empty public constructor
@@ -75,10 +76,14 @@ public class Search extends Fragment {
     private void clickListener()
     {
         adapter.OnUserClicked(new UserAdapter.OnUserClicked() {
+
+
             @Override
-            public void onClick(int pos, String id) {
-                onDataPass.onChange(4);
+            public void onClick(String id) {
+                onDataPass.onChange(id);
+
             }
+
         });
     }
     private void loadUserDate()

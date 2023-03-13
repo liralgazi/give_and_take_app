@@ -1,5 +1,6 @@
 package com.example.giveandtake.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UserHolder holder, @SuppressLint("RecyclerView") int position) {
         if (list.get(position).getId().equals(user.getUid())) {
             holder.layout.setVisibility(View.GONE);
             holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
@@ -54,7 +55,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
                 .placeholder(R.drawable.ic_person)
                 .timeout(6500)
                 .into(holder.profileImage);
-        holder.clickListener(position, list.get(position).getId());
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onUserClicked.onClick(list.get(position).getId());
+                }
+            });
+
+        //holder.clickListener(list.get(position).getId());
 
     }
 
@@ -63,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         return list.size();
     }
 
-    class UserHolder extends RecyclerView.ViewHolder{
+    static class UserHolder extends RecyclerView.ViewHolder{
 
         private CircleImageView profileImage;
         private TextView nameTV, statusTV;
@@ -78,15 +88,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
 
         }
-        private void clickListener(int pos, String id)
-        {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                        onUserClicked.onClick(pos, id);
-                }
-            });
-        }
+
     }
     public void OnUserClicked(OnUserClicked onUserClicked)
     {
@@ -94,7 +96,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     }
     public interface OnUserClicked
     {
-        void onClick(int pos, String id);
+        void onClick(String id);
     }
 
 }

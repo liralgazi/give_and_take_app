@@ -1,8 +1,8 @@
 package com.example.giveandtake.fragments;
 
-import android.content.Intent;
-import android.graphics.drawable.Icon;
-import android.net.Uri;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,47 +13,36 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.model.PostImageActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.google.protobuf.StringValue;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile extends Fragment {
+public class Profile extends Fragment implements MainActivity.onUserProfileUid {
 
     private TextView nameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
     private ImageButton editProfileBtn;
@@ -61,8 +50,8 @@ public class Profile extends Fragment {
     private Button addFriendBtn;
     private RecyclerView recyclerView;
     private FirebaseUser user;
+    String userId;
 
-    String uid;
     private RelativeLayout addFriendLayout,countLayout;
     FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
     boolean isMyProfile = true;
@@ -84,13 +73,13 @@ public class Profile extends Fragment {
         init(view);
         if(isMyProfile)
         {
-            addFriendBtn.setVisibility(view.GONE);
-            countLayout.setVisibility(view.VISIBLE);
+            addFriendBtn.setVisibility(GONE);
+            countLayout.setVisibility(VISIBLE);
         }
         else
         {
-            addFriendBtn.setVisibility(view.VISIBLE);
-            countLayout.setVisibility(view.GONE);
+            addFriendBtn.setVisibility(VISIBLE);
+            countLayout.setVisibility(GONE);
         }
         loadBasicData();
         recyclerView.setHasFixedSize(true);
@@ -103,7 +92,7 @@ public class Profile extends Fragment {
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: to activaty after complete crop image
+                //TODO: to activity after complete crop image
                 //CropImage.activity().setGuidelines(CropImageView.Guidelines.On).setAspectRatio(1,1).start(getContext(), Profile.this);
             }
         });
@@ -116,8 +105,8 @@ public class Profile extends Fragment {
 
         nameTv = view.findViewById(R.id.profile_nameTv);
         volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
-        friendsCountTv = view.findViewById(R.id.profile_nameTv);
-        postCountTv = view.findViewById(R.id.profile_nameTv);
+        friendsCountTv = view.findViewById(R.id.profile_friends);
+        postCountTv = view.findViewById(R.id.profile_posts);
         profileImage = view.findViewById(R.id.profile_image);
         addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
         recyclerView = view.findViewById(R.id.profile_recycle);
@@ -140,8 +129,8 @@ public class Profile extends Fragment {
                 if(value.exists()){
                     String name = value.getString("name");
                     String volunteerStatus = value.getString("volunteerStatus");
-                    int friends = value.getLong("friends").intValue();
-                    int volunteeringPlaces = value.getLong("places").intValue();
+                    int friends = Objects.requireNonNull(value.getLong("friends")).intValue();
+                    int volunteeringPlaces = Objects.requireNonNull(value.getLong("places")).intValue();
 
                     String profileURL = value.getString("profileImage");
 
@@ -151,7 +140,14 @@ public class Profile extends Fragment {
                     friendsCountTv.setText(String.valueOf(friends));
                     volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
 
-                    Glide.with(getContext().getApplicationContext()).load(profileURL).placeholder(R.drawable.ic_person).timeout(6500).into(profileImage);
+                    try {
+                        Glide.with(getContext().getApplicationContext())
+                                .load(profileURL)
+                                .placeholder(R.drawable.ic_person)
+                                .timeout(6500)
+                                .into(profileImage);
+                    }catch (Exception e){
+                    error.printStackTrace();}
 
 
                 }
@@ -162,12 +158,9 @@ public class Profile extends Fragment {
     private void loadPostImages(){
 
         if (isMyProfile) {
-            uid = user.getUid();
-        }else
-        {
-
+            userId = user.getUid();
         }
-        DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(uid);
+        DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(userId);
         Query query = reference.collection("Images");
 
         FirestoreRecyclerOptions<PostImageActivity> options = new FirestoreRecyclerOptions.Builder<PostImageActivity>().setQuery(query,PostImageActivity.class).build();
@@ -193,9 +186,14 @@ public class Profile extends Fragment {
 
     }
 
-    private class PostImageHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onReceiveUserUid(String id) {
+        userId = id;
+    }
 
-        private ImageView imageView;
+    private static class PostImageHolder extends RecyclerView.ViewHolder{
+
+        private final ImageView imageView;
 
 
 
