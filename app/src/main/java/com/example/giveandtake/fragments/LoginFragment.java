@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment {
         passwordEt = view.findViewById(R.id.login_password);
         progressBar = view.findViewById(R.id.login_progressBar);
         loginBtn = view.findViewById(R.id.login_signin_btn);
-        googleBtn = view.findViewById(R.id.google_signin_btn);
+        //googleBtn = view.findViewById(R.id.google_signin_btn);
         signUpTv = view.findViewById(R.id.signup_tv);
 
         auth = FirebaseAuth.getInstance();

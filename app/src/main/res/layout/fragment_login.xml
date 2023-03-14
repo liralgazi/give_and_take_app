@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/light_purpel_background">
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/register_icon"
         android:layout_width="350dp"
@@ -67,23 +69,8 @@
         android:fontFamily="sans-serif"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:layout_above="@id/google_signin_btn"
-        android:layout_marginBottom="20dp"/>
-
-    <Button
-        android:id="@+id/google_signin_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign In With Google"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/button"
-        android:fontFamily="sans-serif"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
         android:layout_above="@id/signup_tv"
-        android:layout_marginBottom="70dp"/>
+        android:layout_marginBottom="100dp"/>
 
 
     <TextView
@@ -96,6 +83,8 @@
         android:text="Don't have an account? Click here to create"
         android:textStyle="bold"
         android:textColor="@color/black"/>
-
-
 </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
