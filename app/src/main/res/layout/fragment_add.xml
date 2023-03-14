@@ -3,60 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".fragments.Add">
 
     
     <RelativeLayout
-        android:id="@+id/layout"
+        android:id="@+id/layout1"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal" />
+        android:background="@color/purple_200"
+        android:orientation="horizontal" >
 
     <ImageButton
-        android:id="@+id/backBtn"
+        android:id="@+id/add_backBtn"
         android:layout_width="28dp"
         android:layout_height="28dp"
+        android:layout_marginLeft="8dp"
         android:background="@drawable/ic_back" />
 
-    <ImageButton
-        android:id="@+id/nextBtn"
-        android:visibility="gone"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_next" />
-    />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionET"
-        android:background="@android:color/transparent"
-        android:hint="Add Something about this post"
-        android:minLines="12" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New post"
+            android:textSize="22dp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="6dp"
-        android:background="#000"
-        android:layout_below="@+id/descriptionET"/>
+        <ImageButton
+            android:id="@+id/add_nextBtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/ic_next" />
+    </RelativeLayout>
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/imageView"
-        android:visibility="gone"
-        android:contentDescription="@null"
-        android:layout_below="@+id/view"
-        android:background="@color/purple_200"/>
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:id="@+id/add_recyclerView" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_height="20dp"
+            android:id="@+id/descriptionET"
+            android:layout_marginLeft="8dp"
+            android:background="@android:color/transparent"
+            android:hint="Add text to your post"
+            android:minLines="12" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="6dp"
+            android:background="#000"
+            android:layout_below="@+id/descriptionET"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imageView"
+            android:visibility="gone"
+            android:contentDescription="@null"
+            android:layout_below="@+id/view"
+            android:background="@color/purple_200"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView"
+            android:id="@+id/add_recyclerView" />
+
+    </RelativeLayout>
 </RelativeLayout>

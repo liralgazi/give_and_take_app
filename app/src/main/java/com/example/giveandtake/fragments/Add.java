@@ -93,7 +93,7 @@ public class Add extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        nextBtn = view.findViewById(R.id.nextBtn);
+        nextBtn = view.findViewById(R.id.add_nextBtn);
 
         clickListener();
 
@@ -191,8 +191,8 @@ public class Add extends Fragment {
         descET = view.findViewById(R.id.descriptionET);
         imageView = view.findViewById(R.id.imageView);
         recyclerView = view.findViewById(R.id.recyclerView);
-        backBtn = view.findViewById(R.id.backBtn);
-        nextBtn = view.findViewById(R.id.nextBtn);
+        backBtn = view.findViewById(R.id.add_backBtn);
+        nextBtn = view.findViewById(R.id.add_nextBtn);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         dialog = new Dialog(getContext());

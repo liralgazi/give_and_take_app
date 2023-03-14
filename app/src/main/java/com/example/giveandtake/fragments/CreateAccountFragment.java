@@ -179,8 +179,8 @@ public class CreateAccountFragment extends Fragment {
             }
         });
 
-//        User us = new User(name);
-//        Model.instance().addUser(us);
+        User us = new User(name);
+        Model.instance().addUser(us);
     }
 
 }
