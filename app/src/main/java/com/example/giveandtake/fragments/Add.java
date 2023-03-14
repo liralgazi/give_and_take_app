@@ -60,7 +60,7 @@ public class Add extends Fragment {
     private ImageView imageView;
     private RecyclerView recyclerView;
 
-    private ImageButton backBtn, nextBtn;
+    private ImageButton backBtn, nextBtn, addPostBtn;
 
     private List<GalleryImages> list;
     private GalleryAdapter adapter;
@@ -84,16 +84,18 @@ public class Add extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.add_recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        recyclerView.setHasFixedSize(true);
+//        recyclerView = view.findViewById(R.id.add_recyclerView);
+//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+//        recyclerView.setHasFixedSize(true);
 
         list = new ArrayList<>();
         adapter =  new GalleryAdapter(list);
 
-        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(adapter);
 
         nextBtn = view.findViewById(R.id.add_nextBtn);
+
+        addPostBtn = view.findViewById(R.id.add_addPostBtn);
 
         clickListener();
 
@@ -121,6 +123,15 @@ public class Add extends Fragment {
 
             }
         });
+
+        addPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
     }
 
     private void uploadData(){
@@ -144,8 +155,7 @@ public class Add extends Fragment {
                 });
     }
 
-    private void uploadData(String imageURL)
-    {
+    private void uploadData(String imageURL) {
 
         CollectionReference reference = FirebaseFirestore
                 .getInstance()
@@ -166,10 +176,6 @@ public class Add extends Fragment {
         map.put("likeCount", 0);
         map.put("comments", "");
         map.put("uid", user.getUid());
-
-
-
-
 
         reference.document(id).set(map)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

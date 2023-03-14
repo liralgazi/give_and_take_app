@@ -34,6 +34,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
         this.context = context;
     }
 
+    public void setData(List<HomeModel> list){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

@@ -35,12 +35,13 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Home extends Fragment {
     private RecyclerView recyclerView;
     HomeAdapter homeAdapter;
-    private List<HomeModel>data;
+    private List<HomeModel>data = new LinkedList<>();
     private FirebaseUser user;
 
     public static int LIST_SIZE =0;
@@ -55,12 +56,14 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+//        HomeModel.instance().getAllPosts((postsList)->{
+//            data = postsList;
+//            homeAdapter.setData(data);
+//        });
         return inflater.inflate(R.layout.fragment_home, container, false);
-
-//        Model.instance().getAllUsers((userList)->{
-//            data= userList;
-//        })
     }
+
+
 
 
     @Override
@@ -78,6 +81,11 @@ public class Home extends Fragment {
         loadDataFromFireStore();
     }
 
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        HomeModel.instance().getAllPosts();
+//    }
 
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);

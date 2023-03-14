@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.ReplacerActivity;
-import com.example.giveandtake.model.Model;
+import com.example.giveandtake.model.UserModel;
 import com.example.giveandtake.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +31,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class CreateAccountFragment extends Fragment {
@@ -179,8 +177,9 @@ public class CreateAccountFragment extends Fragment {
             }
         });
 
-        User us = new User(name);
-        Model.instance().addUser(us);
+        String sName = nameEt.getText().toString();
+        User us = new User("", sName, "", "", 0, 0, "", "", "");
+        UserModel.instance().addUser(us);
     }
 
 }

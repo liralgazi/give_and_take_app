@@ -36,7 +36,7 @@ public class FireBaseModel {
 
     }
 
-    public void getAllUsersSince(Long since, Model.Listener<List<User>> callback){
+    public void getAllUsersSince(Long since, UserModel.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
                 .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
                 .get()
@@ -56,7 +56,7 @@ public class FireBaseModel {
                 });
     }
 
-    public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback){
+    public void getAllPostsSince(Long since, UserModel.Listener<List<Post>> callback){
         db.collection(User.COLLECTION)
                 .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
                 .get()
@@ -80,7 +80,7 @@ public class FireBaseModel {
         db.collection(User.COLLECTION).document(st.getId()).set(st.toJson());
     }
 
-    public void addPost(Post post, Model.Listener<Void> listener) {
+    public void addPost(Post post, UserModel.Listener<Void> listener) {
         db.collection(Post.COLLECTION).document(post.getPostId()).set(post.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -90,7 +90,7 @@ public class FireBaseModel {
                 });
     }
 
-    void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
+    void uploadImage(String name, Bitmap bitmap, UserModel.Listener<String> listener){
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

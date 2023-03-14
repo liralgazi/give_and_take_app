@@ -8,22 +8,24 @@ import androidx.core.os.HandlerCompat;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Model {
-    private static final Model _instance = new Model();
+public class UserModel {
+    private static final UserModel _instance = new UserModel();
 
     private Executor executor = Executors.newSingleThreadExecutor();
     private Handler mainHandler = HandlerCompat.createAsync(Looper.getMainLooper());
     private FireBaseModel fireBaseModel = new FireBaseModel();
     AppLocalDbRepository localDb = AppLocalDb.getAppDb();
-    public static Model instance(){
+    private FireBaseModel firebaseModel = new FireBaseModel();
+
+    public static UserModel instance(){
         return _instance;
     }
-    //AppLocalDbRepository localDb = AppLocalDb.getAppDb();
-    private FireBaseModel firebaseModel = new FireBaseModel();
-    private Model(){
+
+    private UserModel(){
     }
 
     public interface Listener<T>{
@@ -35,7 +37,14 @@ public class Model {
         LOADING,
         NOT_LOADING
     }
+
     final public MutableLiveData<LoadingState> EventUsersListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
+
+    public void getAllUsers(){
+        executor.execute(()->{
+            List<User> data = localDb.userDao().getAll();
+        });
+    }
 
     private User getUser(String id){
         User user = localDb.userDao().getUserById(id);

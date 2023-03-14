@@ -18,8 +18,6 @@ import java.util.Map;
 
 @Entity(tableName = "Users")
 public class User {
-
-
     @PrimaryKey
     @NonNull
     public String id="";
@@ -45,9 +43,10 @@ public class User {
 //    public void setFriends(ArrayList<String> friends) {
 //        this.friends = friends;
 //    }
-
     public User(){
+
     }
+
 
     public User(String Id, String name, String profileImageURL, String volunteerStatus, Integer numFriends, Integer countPlaces, String address, String workAt, String dateBirth){
         this.id = Id;
@@ -72,9 +71,6 @@ public class User {
     static public String WORKAT = "workAt";
     static public String DATEBIRTH = "dateBirth";
 
-    public User(String name) {
-        this.name = name;
-    }
     //static  public String FRIENDS = "friends";
 
     public static User fromJson(Map<String,Object> json){

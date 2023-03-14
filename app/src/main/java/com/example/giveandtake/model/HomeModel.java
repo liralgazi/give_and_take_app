@@ -5,11 +5,19 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 public class HomeModel {
-
+    private static final HomeModel _instance = new HomeModel();
     private String userName, profileImage, postImage, uid,  postText, comments , postId;
     @ServerTimestamp
     private Date timestamp;
     private  int likeCount;
+
+    public static HomeModel instance(){
+        return _instance;
+    }
+
+    public void getAllPosts(){
+
+    }
 
 
     public String getUid() {
