@@ -1,4 +1,4 @@
-package com.example.giveandtake.fragments;
+package com.example.giveandtake.fragments.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.ReplacerActivity;
+import com.example.giveandtake.fragments.auth.CreateAccountFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,10 +32,7 @@ public class LoginFragment extends Fragment {
     private TextView signUpTv;
     private Button loginBtn, googleBtn;
     private ProgressBar progressBar;
-
     private FirebaseAuth auth;
-    //private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
-   // private boolean showOneTapUI = true;
 
     public static final String EMAIL_REGEX = "^(.+)@(.+)$";
 
@@ -64,20 +62,8 @@ public class LoginFragment extends Fragment {
         passwordEt = view.findViewById(R.id.login_password);
         progressBar = view.findViewById(R.id.login_progressBar);
         loginBtn = view.findViewById(R.id.login_signin_btn);
-        //googleBtn = view.findViewById(R.id.google_signin_btn);
         signUpTv = view.findViewById(R.id.signup_tv);
-
         auth = FirebaseAuth.getInstance();
-
-//        BeginSignInRequest signInRequest = BeginSignInRequest.builder()
-//                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-//                        .setSupported(true)
-//                        // Your server's client ID, not your Android client ID.
-//                        .setServerClientId(getString(R.string.default_web_client_id))
-//                        // Only show accounts previously used to sign in.
-//                        .setFilterByAuthorizedAccounts(true)
-//                        .build())
-//                .build();
     }
 
     private void clickListener() {
@@ -124,12 +110,6 @@ public class LoginFragment extends Fragment {
                 ((ReplacerActivity) getActivity()).setFragment(new CreateAccountFragment());
             }
         });
-//        googleBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
     }
 
     private void sendUserToMainActivity() {
@@ -140,38 +120,6 @@ public class LoginFragment extends Fragment {
         startActivity(new Intent(getContext().getApplicationContext(), MainActivity.class));
         getActivity().finish();
     }
-
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = auth.getCurrentUser();
-//        updateUI(currentUser);
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        switch (requestCode) {
-//            case REQ_ONE_TAP:
-//                try {
-//                    SignInClient oneTapClient;
-//                    SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(data);
-//                    String idToken = credential.getGoogleIdToken();
-//                    if (idToken !=  null) {
-//                        // Got an ID token from Google. Use it to authenticate
-//                        // with Firebase.
-//                        Log.d(TAG, "Got ID token.");
-//                    }
-//                } catch (ApiException e) {
-//                    // ...
-//                }
-//                break;
-//        }
-//    }
-//}
 }
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragments.CreateAccountFragment"
+    tools:context=".fragments.auth.CreateAccountFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/light_purpel_background">
 <RelativeLayout

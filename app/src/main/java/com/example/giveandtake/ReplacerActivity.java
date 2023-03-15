@@ -8,9 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.example.giveandtake.R;
-import com.example.giveandtake.fragments.CreateAccountFragment;
-import com.example.giveandtake.fragments.LoginFragment;
+import com.example.giveandtake.fragments.auth.CreateAccountFragment;
+import com.example.giveandtake.fragments.auth.LoginFragment;
 
 public class ReplacerActivity extends AppCompatActivity {
 
