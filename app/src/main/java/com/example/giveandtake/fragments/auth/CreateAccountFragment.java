@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.ReplacerActivity;
-import com.example.giveandtake.model.UserModel;
+import com.example.giveandtake.model.Model;
 import com.example.giveandtake.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +36,7 @@ import java.util.Map;
 public class CreateAccountFragment extends Fragment {
 
     private EditText nameEt, emailEt, passwordEt, confirmPasswordEt, confirmEmailEt;
+    private EditText workEt, addressEt, ageEt, volunteerEt;
     private ProgressBar progressBar;
     private TextView loginTv;
     private Button signUpBtn;
@@ -71,11 +72,17 @@ public class CreateAccountFragment extends Fragment {
         signUpBtn = view.findViewById(R.id.login_sign_up_btn);
         progressBar = view.findViewById(R.id.singup_progressBar);
 
+        //here
+        workEt = view.findViewById(R.id.signup_work);
+        addressEt  = view.findViewById(R.id.signup_address);
+        volunteerEt = view.findViewById(R.id.signup_volunteer);
+        ageEt = view.findViewById(R.id.signup_age);
+
 
         auth = FirebaseAuth.getInstance();
     }
 
-      private void clickListener() {
+    private void clickListener() {
         loginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +98,10 @@ public class CreateAccountFragment extends Fragment {
                 String confirmEmail = confirmEmailEt.getText().toString();
                 String password = passwordEt.getText().toString();
                 String confirmPassword = confirmPasswordEt.getText().toString();
+                String work = workEt.getText().toString();
+                String age = ageEt.getText().toString();
+                String volunteer = volunteerEt.getText().toString();
+                String address = addressEt.getText().toString();
 
                 if (name.isEmpty() || name.equals(" ")) {
                     nameEt.setError("Please input valid name");
@@ -114,12 +125,12 @@ public class CreateAccountFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                createAccount(name, email, password);
+                createAccount(name, email, password,address,age,work,volunteer);
             }
         });
     }
 
-    private void createAccount(String name, String email, String password) {
+    private void createAccount(String name, String email, String password, String address, String age, String work, String volunteer) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -133,7 +144,7 @@ public class CreateAccountFragment extends Fragment {
                             }
                         }
                     });
-                    uploadUser(user, name, email);
+                    uploadUser(user, name, email, address,age,work,volunteer);
                 } else {
                     progressBar.setVisibility(View.GONE);
                     String exception = task.getException().getMessage();
@@ -142,8 +153,8 @@ public class CreateAccountFragment extends Fragment {
             }
         });
     }
-
-    private void uploadUser(FirebaseUser user, String name, String email) {
+    //private void uploadUser(FirebaseUser user, String name, String email) {
+    private void uploadUser(FirebaseUser user, String name, String email, String address, String age, String work, String volunteer) {
         Map<String, Object> map = new HashMap<>();
 
         List<String> list  = new ArrayList<>();
@@ -155,10 +166,13 @@ public class CreateAccountFragment extends Fragment {
         map.put("uid", user.getUid());
         //map.put("friends",0);
         map.put("places", 0);
-        map.put("volunteerStatus", "");
+        map.put("volunteerStatus", volunteer);
         map.put("search", name.toLowerCase());
-        map.put("followers", list);
-        map.put("following", list1);
+        //map.put("followers", list);
+        //map.put("following", list1);
+        map.put("age", age);
+        map.put("work", work);
+        map.put("address", address);
 
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -176,10 +190,6 @@ public class CreateAccountFragment extends Fragment {
                 }
             }
         });
-
-        String sName = nameEt.getText().toString();
-        User us = new User("", sName, "", "", 0, 0, "", "", "");
-        UserModel.instance().addUser(us);
     }
 
 }

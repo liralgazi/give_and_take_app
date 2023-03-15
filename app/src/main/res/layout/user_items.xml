@@ -37,5 +37,4 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"/>
 
-
 </RelativeLayout>

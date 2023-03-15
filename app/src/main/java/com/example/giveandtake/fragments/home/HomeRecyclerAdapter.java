@@ -18,6 +18,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
 class HomeViewHolder extends RecyclerView.ViewHolder{
     CircleImageView profileImage;
     TextView nameTv;

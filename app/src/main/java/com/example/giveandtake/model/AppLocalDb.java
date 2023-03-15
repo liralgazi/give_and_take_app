@@ -13,7 +13,7 @@ import com.example.giveandtake.MyApplication;
                 User.class,
                 Post.class
         },
-        version = 7
+        version = 8
         , exportSchema = false
 )
 @TypeConverters({Converts.class})

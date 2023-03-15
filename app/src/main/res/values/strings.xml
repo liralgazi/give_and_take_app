@@ -8,19 +8,27 @@
     <string name="logout">Logout</string>
     <string name="find_friends">Find Friends</string>
     <string name="profile">Profile</string>
+    <string name="updateProfile">Edit Profile</string>
     <string name="add_new_post">Add New Post</string>
     <string name="hello">hello</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     <string name="username">username</string>
-    <string name="confirm_password">Confirm Password...</string>
+    <string name="confirm_password">Confirm Password…</string>
     <string name="create_account">Create Account</string>
     <string name="login">Login</string>
     <string name="todo">TODO</string>
-    <string name="email">Email...</string>
-    <string name="confirm_email">Confirm Email...</string>
-    <string name="password">Password...</string>
-    <string name="name">Name...</string>
+    <string name="email">Email…</string>
+    <string name="confirm_email">Confirm Email…</string>
+    <string name="password">Password…</string>
+    <string name="name">Name…</string>
+    <string name="work">where do you work…</string>
+    <string name="age">How old are you…</string>
+    <string name="volunteer">Do you volunteer(YES/NO)?</string>
+    <string name="address">Where do you live?</string>
+
+
+
     <string name="sign_up">Sign Up</string>
     <string name="back_login">Back To Login</string>
     <string name="postText">Write your post here...</string>

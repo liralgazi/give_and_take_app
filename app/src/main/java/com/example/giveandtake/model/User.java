@@ -24,11 +24,9 @@ public class User {
     public String name="";
     public String profileImageURL="";
     public String volunteerStatus = "";
-    public Integer numFriends= 0;
-    public  Integer countPlaces = 0;
     public String address= "";
     public String workAt = "";
-    public String dateBirth = "";
+    public String age = "";
     //public ArrayList<String> friends;
     public Long lastUpdated;
 
@@ -48,13 +46,11 @@ public class User {
     }
 
 
-    public User(String Id, String name, String profileImageURL, String volunteerStatus, Integer numFriends, Integer countPlaces, String address, String workAt, String dateBirth){
+    public User(String Id, String name, String profileImageURL, String volunteerStatus, String address, String workAt, String age){
         this.id = Id;
         this.name = name;
         this.address = address;
-        this.numFriends = numFriends;
-        this.countPlaces = countPlaces;
-        this.dateBirth = dateBirth;
+        this.age = age;
         this.profileImageURL = profileImageURL;
         this.workAt = workAt;
         this.volunteerStatus = volunteerStatus;
@@ -65,8 +61,6 @@ public class User {
     static public String NAME="name";
     static public String PROFILEIMAGE="profileImageURL";
     static public String VOLUNTEERSTATUS = "volunteerStatus";
-    static public int NUMFRIEND= 0;
-    static public  int COUNTPLACES = 0;
     static public String ADDRESS= "address";
     static public String WORKAT = "workAt";
     static public String DATEBIRTH = "dateBirth";
@@ -80,12 +74,10 @@ public class User {
         String volunteer = (String) json.get(VOLUNTEERSTATUS);
         String address = (String) json.get(ADDRESS);
         String workAt = (String) json.get(WORKAT);
-        String dateBirth = (String) json.get(DATEBIRTH);
-        Integer numFriends = (Integer) json.get(NUMFRIEND);
-        Integer countPlaces = (Integer) json.get(COUNTPLACES);
+        String age = (String) json.get(DATEBIRTH);
         //ArrayList<String> friends = (ArrayList<String>)json.get(FRIENDS);
 
-        User st = new User(id,name, profileImage, volunteer, numFriends, countPlaces, address,workAt, dateBirth);
+        User st = new User(id,name, profileImage, volunteer, address,workAt, age);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             st.setLastUpdated(time.getSeconds());
@@ -113,11 +105,9 @@ public class User {
         json.put(NAME, getName());
         json.put(PROFILEIMAGE, getProfileImageURL());
         json.put(volunteerStatus, getVolunteerStatus());
-        json.put(String.valueOf(numFriends), getNumFriends());
-        json.put(String.valueOf(countPlaces), getCountPlaces());
         json.put(address, getAddress());
         json.put(workAt, getWorkAt());
-        json.put(dateBirth, getDateBirth());
+        json.put(age, getDateBirth());
         //json.put(friends.toString(),getFriends() );
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
@@ -156,21 +146,9 @@ public class User {
         this.volunteerStatus = volunteerStatus;
     }
 
-    public int getNumFriends() {
-        return numFriends;
-    }
 
-    public void setNumFriends(int numFriends) {
-        this.numFriends = numFriends;
-    }
 
-    public int getCountPlaces() {
-        return countPlaces;
-    }
 
-    public void setCountPlaces(int countPlaces) {
-        this.countPlaces = countPlaces;
-    }
 
     public String getAddress() {
         return address;
@@ -189,7 +167,7 @@ public class User {
     }
 
     public String getDateBirth() {
-        return dateBirth;
+        return age;
     }
 
     public void setDateBirth(String dateBirth) {
