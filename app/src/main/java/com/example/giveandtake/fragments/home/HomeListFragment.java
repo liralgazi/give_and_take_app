@@ -28,17 +28,8 @@ import java.util.List;
 public class HomeListFragment extends Fragment {
     FragmentHomeListBinding binding;
    HomeRecyclerAdapter adapter;
+
     HomeListFragmentViewModel viewModel;
-
-
-
-
-    public HomeListFragment() {
-        // Required empty public constructor
-    }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +43,7 @@ public class HomeListFragment extends Fragment {
        // adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
 //        binding.recyclerView.setAdapter(adapter);
 //
+
 //        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(int pos) {
