@@ -60,7 +60,7 @@
             android:layout_marginRight="10dp"
             android:textColor="@color/black"
             android:textSize="14dp"
-            android:id="@+id/postText"/>
+            android:id="@+id/addpost_postText"/>
 
     </LinearLayout>
     <ImageView

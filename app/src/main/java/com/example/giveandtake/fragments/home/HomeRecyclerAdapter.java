@@ -33,7 +33,7 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
         this.data = data;
         profileImage = itemView.findViewById(R.id.profile_image);
         nameTv = itemView.findViewById(R.id.nameTv);
-        postTv = itemView.findViewById(R.id.postText);
+        postTv = itemView.findViewById(R.id.addpost_postText);
         likeCountTv = itemView.findViewById(R.id.like_countTv);
         postImage = itemView.findViewById(R.id.postImage);
         likeBtn = itemView.findViewById(R.id.likeBtn);
