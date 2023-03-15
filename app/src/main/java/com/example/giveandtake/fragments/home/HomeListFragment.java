@@ -39,19 +39,19 @@ public class HomeListFragment extends Fragment {
 
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-       // adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
-//        binding.recyclerView.setAdapter(adapter);
-//
-//        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int pos) {
-//                Log.d("TAG", "Row was clicked " + pos);
-//                Post post = viewModel.getData().getValue().get(pos);
-//                //TODO: add other directions to another fragment
-////                HomeListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = HomeListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.name);
-////                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
+        adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
+        binding.recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Log.d("TAG", "Row was clicked " + pos);
+                Post post = viewModel.getData().getValue().get(pos);
+                //TODO: add other directions to another fragment
+//                HomeListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = HomeListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.name);
+//                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         View addButton = view.findViewById(R.id.btnAdd);
         NavDirections action = HomeListFragmentDirections.actionHomeListFragmentToAddPostFragment();
@@ -60,17 +60,18 @@ public class HomeListFragment extends Fragment {
         binding.progressBar.setVisibility(View.GONE);
 
 
-//        viewModel.getData().observe(getViewLifecycleOwner(),list->{
-//            adapter.setData(list);
-//        });
+        viewModel.getData().observe(getViewLifecycleOwner(),list->{
+            if(list.size() != 0)
+                adapter.setData(list);
+        });
 
-//        Model.instance().EventStudentsListLoadingState.observe(getViewLifecycleOwner(), status->{
-//            binding.swipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
-//        });
+        Model.instance().EventPostListLoadingState.observe(getViewLifecycleOwner(), status->{
+            binding.swipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
+        });
 
-//        binding.swipeRefresh.setOnRefreshListener(()->{
-//            reloadData();
-//        });
+       binding.swipeRefresh.setOnRefreshListener(()->{
+           reloadData();
+       });
 
 //        LiveData<List<Movie>> data = MovieModel.instance.searchMoviesByTitle("avatar");
 //        data.observe(getViewLifecycleOwner(),list->{
@@ -89,7 +90,7 @@ public class HomeListFragment extends Fragment {
     }
 
     void reloadData(){
-//        binding.progressBar.setVisibility(View.VISIBLE);
-//        Model.instance().refreshAllPosts();
+       // binding.progressBar.setVisibility(View.VISIBLE);
+        Model.instance().refreshAllPosts();
     }
 }

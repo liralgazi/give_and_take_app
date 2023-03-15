@@ -36,7 +36,7 @@ public class FireBaseModel {
 
     }
 
-    public void getAllUsersSince(Long since, UserModel.Listener<List<User>> callback){
+    public void getAllUsersSince(Long since, Model.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
                 .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
                 .get()
@@ -56,9 +56,9 @@ public class FireBaseModel {
                 });
     }
 
-    public void getAllPostsSince(Long since, UserModel.Listener<List<Post>> callback){
-        db.collection(User.COLLECTION)
-                .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
+    public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback){
+        db.collection(Post.COLLECTION)
+                .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -80,7 +80,7 @@ public class FireBaseModel {
         db.collection(User.COLLECTION).document(st.getId()).set(st.toJson());
     }
 
-    public void addPost(Post post, UserModel.Listener<Void> listener) {
+    public void addPost(Post post, Model.Listener<Void> listener) {
         db.collection(Post.COLLECTION).document(post.getPostId()).set(post.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -114,7 +114,5 @@ public class FireBaseModel {
                 });
             }
         });
-
     }
-
 }

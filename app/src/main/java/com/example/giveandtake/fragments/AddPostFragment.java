@@ -83,7 +83,7 @@ public class AddPostFragment extends Fragment {
         binding.addpostSaveBtn.setOnClickListener(view1 -> {
             String postText = binding.addpostPostText.getText().toString();
             String postId = "id_"+postText;
-            Post post = new Post(postId,postText,"");
+            Post post = new Post("","","", 0L,postText,postId,"");
 
             if (isPictureSelected){
                 binding.avatarImg.setDrawingCacheEnabled(true);
@@ -112,7 +112,6 @@ public class AddPostFragment extends Fragment {
         binding.galleryButton.setOnClickListener(view1->{
             galleryLauncher.launch("image/*");
         });
-
             return view;
     }
 }

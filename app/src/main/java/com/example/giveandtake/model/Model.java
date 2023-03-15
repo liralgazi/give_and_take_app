@@ -28,9 +28,13 @@ public class Model {
         void onComplete(T data);
     }
 
-
+    private LiveData<List<Post>> postsList;
     public LiveData<List<Post>> getAllPosts() {
-        return null;
+        if(postsList == null){
+            postsList = localDb.postDao().getAll();
+            refreshAllPosts();
+        }
+        return postsList;
     }
 
     public enum LoadingState{
