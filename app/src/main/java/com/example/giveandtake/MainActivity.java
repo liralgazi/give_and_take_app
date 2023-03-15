@@ -1,5 +1,6 @@
 package com.example.giveandtake;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -24,12 +26,7 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
 
 
     NavController navController;
-    private TabLayout tabLayout;
     private Toolbar toolbar;
-    ImageButton logoutBtn;
-    //onUserProfileUid onUserProfileUid;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
 
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.main_navhost);
         navController = navHostFragment.getNavController();
-        //NavigationUI.setupActionBarWithNavController(this,navController);
+        NavigationUI.setupActionBarWithNavController(this,navController);
 
         BottomNavigationView navView = findViewById(R.id.main_bottomNavigationView);
         NavigationUI.setupWithNavController(navView,navController);
@@ -49,21 +46,6 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
     public void init(){
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        logoutBtn = findViewById(R.id.main_logout);
-
-        clickListener();
-    }
-
-    public void clickListener(){
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
 
@@ -73,6 +55,28 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
         getMenuInflater().inflate(R.menu.navigation_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    int fragmentMenuId = 0;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home){
+            navController.popBackStack();
+        }else{
+            if(item.getItemId() == R.id.nav_logout){
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+                startActivity(i);
+            }else{
+                fragmentMenuId = item.getItemId();
+                return NavigationUI.onNavDestinationSelected(item,navController);
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
     @Override
@@ -95,43 +99,14 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
 
     }
 
-    /*
-    public interface onUserProfileUid{
-        void onReceiveUserUid(String id, int index);
-    }
 
-    public void OnUserProfileUid(onUserProfileUid onUserProfileUid)
-    {
-        this.onUserProfileUid = onUserProfileUid;
-    }
-     */
-
-    //    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId())
-//        {
-//            case R.id.nav_home:
-//                break;
-//            case R.id.nav_profile:
-//                break;
-//            case R.id.nav_friends:
-//                break;
-//            case R.id.nav_find_friends:
-//                break;
-//            case R.id.nav_messages:
-//                break;
-//            case R.id.nav_settings:
-//                break;
-//            case R.id.nav_logout: {
-//                FirebaseAuth.getInstance().signOut();
-//                finish();
-//                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
-//                startActivity(i);
-//                break;
-//            }
-//            case R.id.nav_my_donations:
-//                break;
-//        }
-//        return false;
+//    public interface onUserProfileUid{
+//        void onReceiveUserUid(String id, int index);
 //    }
+//
+//    public void OnUserProfileUid(onUserProfileUid onUserProfileUid)
+//    {
+//        this.onUserProfileUid = onUserProfileUid;
+//    }
+
 }

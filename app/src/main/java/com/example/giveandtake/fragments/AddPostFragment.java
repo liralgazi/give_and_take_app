@@ -44,7 +44,7 @@ public class AddPostFragment extends Fragment {
         parentActivity.addMenuProvider(new MenuProvider() {
             @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menu.removeItem(R.id.nav_post);
+                menu.removeItem(R.id.addPostFragment);
             }
 
             @Override
