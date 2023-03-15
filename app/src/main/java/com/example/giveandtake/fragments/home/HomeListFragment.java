@@ -30,16 +30,6 @@ public class HomeListFragment extends Fragment {
    HomeRecyclerAdapter adapter;
     HomeListFragmentViewModel viewModel;
 
-
-
-
-    public HomeListFragment() {
-        // Required empty public constructor
-    }
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

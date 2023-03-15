@@ -41,7 +41,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
