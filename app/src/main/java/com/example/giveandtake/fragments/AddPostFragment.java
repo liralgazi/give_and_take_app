@@ -1,6 +1,7 @@
 package com.example.giveandtake.fragments;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +24,11 @@ import android.view.ViewGroup;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.databinding.FragmentAddPostBinding;
+import com.example.giveandtake.model.Model;
 import com.example.giveandtake.model.Post;
+import com.google.protobuf.StringValue;
+
+import java.util.Random;
 
 public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
@@ -76,8 +82,36 @@ public class AddPostFragment extends Fragment {
 
         binding.addpostSaveBtn.setOnClickListener(view1 -> {
             String postText = binding.addpostPostText.getText().toString();
-            Post post = new Post();
+            String postId = "id_"+postText;
+            Post post = new Post(postId,postText,"");
 
+            if (isPictureSelected){
+                binding.avatarImg.setDrawingCacheEnabled(true);
+                binding.avatarImg.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) binding.avatarImg.getDrawable()).getBitmap();
+                Model.instance().uploadImage(postId, bitmap, url->{
+                    if (url != null){
+                        post.setPostImage(url);
+                    }
+                    Model.instance().addPost(post, (unused) -> {
+                        Navigation.findNavController(view1).popBackStack();
+                    });
+                });
+            }else {
+                Model.instance().addPost(post, (unused) -> {
+                    Navigation.findNavController(view1).popBackStack();
+                });
+            }
+        });
+        binding.cancellBtn.setOnClickListener(view1 -> Navigation.findNavController(view1).popBackStack(R.id.homeListFragment,false));
+
+        binding.cameraButton.setOnClickListener(view1->{
+            cameraLauncher.launch(null);
+        });
+
+        binding.galleryButton.setOnClickListener(view1->{
+            galleryLauncher.launch("image/*");
+        });
 
             return view;
     }

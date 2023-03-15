@@ -90,7 +90,7 @@ public class FireBaseModel {
                 });
     }
 
-    void uploadImage(String name, Bitmap bitmap, UserModel.Listener<String> listener){
+    void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

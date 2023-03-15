@@ -13,7 +13,7 @@
     </item>
     <item
         android:title="@string/add_new_post"
-        android:id="@+id/addFragment"
+        android:id="@+id/addPostFragment"
         android:icon="@drawable/plus">
     </item>
     <item

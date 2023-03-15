@@ -122,8 +122,7 @@ public class UserModel {
         });
     }
 
-    public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
-        firebaseModel.uploadImage(name,bitmap,listener);
+    public void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener) {
+        firebaseModel.uploadImage(name,bitmap, listener);
     }
-
 }

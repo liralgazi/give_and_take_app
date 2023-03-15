@@ -29,16 +29,22 @@ public class Post {
     public int likeCount;
     public Long lastUpdated;
 
-    public Post(String userName, String profileImage, String postImage, int likeCount, String uid, String postText , String postId ,String postLikeText) {
-        this.userName = userName;
-        this.profileImage = profileImage;
+    public Post(String postId,String postText, String postImage){
         this.postImage = postImage;
-        this.likeCount = likeCount;
-        this.uid = uid;
         this.postText = postText;
         this.postId = postId;
-        this.postLikeText= postLikeText;
     }
+
+//    public Post(String userName, String profileImage, String postImage, int likeCount, String uid, String postText , String postId ,String postLikeText) {
+//        this.userName = userName;
+//        this.profileImage = profileImage;
+//        this.postImage = postImage;
+//        this.likeCount = likeCount;
+//        this.uid = uid;
+//        this.postText = postText;
+//        this.postId = postId;
+//        this.postLikeText= postLikeText;
+//    }
 
     static final String USERNAME = "userName";
     static final String POSTID = "postId";
@@ -62,7 +68,7 @@ public class Post {
         int likeCount = (Integer) json.get(LIKECOUNT);
         String likeText = (String)json.get(POSTLIKETEXT);
 
-        Post post = new Post(name,profileImage,postImage,likeCount,uid,postText,postId,likeText);
+        Post post = new Post(uid,postImage,postText);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
