@@ -6,92 +6,53 @@
     tools:context=".fragments.auth.CreateAccountFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/light_purpel_background">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="25dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/signup_icon"
-            android:layout_width="262dp"
-            android:layout_height="131dp"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="88dp"
+            android:layout_marginEnd="46dp"
             android:contentDescription="@string/todo"
             app:srcCompat="@drawable/giveandtake_logo"
             tools:ignore="ImageContrastCheck" />
-
         <LinearLayout
-            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_centerInParent="true"
-            android:orientation="vertical">
+            android:id="@+id/ll1">
 
             <EditText
                 android:id="@+id/signup_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:padding="12dp"
                 android:hint="@string/name"
                 android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/age"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/address"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_work"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/work"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_volunteer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/volunteer"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
+                android:drawableLeft="@drawable/email" />
             <EditText
                 android:id="@+id/signup_confirm_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:padding="12dp"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
+                android:drawableLeft="@drawable/email"/>
             <EditText
                 android:id="@+id/signup_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:padding="12dp"
                 android:hint="@string/confirm_email"
                 android:inputType="textEmailAddress"
-                android:padding="12dp" />
+                android:drawableLeft="@drawable/email"/>
 
 
             <EditText
@@ -99,57 +60,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:autofillHints=""
+                android:padding="12dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="12dp" />
+                android:autofillHints=""
+                android:drawableLeft="@drawable/password"/>
 
             <EditText
                 android:id="@+id/signup_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:autofillHints=""
+                android:padding="12dp"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
-                android:padding="12dp" />
+                android:autofillHints=""
+                android:drawableLeft="@drawable/password"/>
 
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/singup_progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/login_sign_up_btn"
-            android:layout_below="@id/ll1"
+            android:id="@+id/singup_progressBar"
             android:layout_centerHorizontal="true"
-            android:visibility="gone" />
-
+            android:layout_below="@id/ll1"
+            android:visibility="gone"
+            android:layout_above="@+id/login_sign_up_btn"/>
 
         <Button
             android:id="@+id/login_sign_up_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/signup_tv"
+            android:text="Sign Up"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="-7dp"
             android:background="@drawable/button"
             android:fontFamily="sans-serif"
-            android:text="Sign Up"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_above="@id/signup_tv"
+            android:layout_marginBottom="20dp"/>
+
 
         <TextView
             android:id="@+id/signup_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="26dp"
             android:text="Log In Now"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
 

@@ -1,6 +1,6 @@
 package com.example.giveandtake.fragments;
 
-import static com.example.giveandtake.utils.ImagesContent.loadSavedImages;
+//import static com.example.giveandtake.utils.loadSavedImages;
 
 import android.app.Dialog;
 import android.net.Uri;
@@ -207,7 +207,7 @@ public class Add extends Fragment {
         dialog.setCancelable(false);
     }
 
-
+/*
     @Override
     public void onResume() {
         super.onResume();
@@ -250,6 +250,8 @@ public class Add extends Fragment {
                         }).check();
                  */
             }
-        });
-    }
-}
+  //      });
+
+    //}
+
+//}

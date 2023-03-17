@@ -59,6 +59,7 @@ public class HomeListFragment extends Fragment {
         NavDirections action = HomeListFragmentDirections.actionGlobalAddPostFragment();
         addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
+
         binding.progressBar.setVisibility(View.GONE);
 
 

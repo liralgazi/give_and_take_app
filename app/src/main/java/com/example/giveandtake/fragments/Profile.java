@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +24,19 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
+import com.example.giveandtake.ReplacerActivity;
 import com.example.giveandtake.model.PostImageActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -41,20 +44,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends Fragment {
 
-    private TextView nameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
-    private TextView ageTv, workTv, addressTv;
+    private TextView usernameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
+    private TextView ageTv, workTv, addressTv, nameTv;
     private ImageButton editProfileBtn;
     private CircleImageView profileImage;
-    private Button addFriendBtn;
+    //private Button addFriendBtn;
     private RecyclerView recyclerView;
     private FirebaseUser user;
     String userId;
@@ -67,6 +68,7 @@ public class Profile extends Fragment {
     private RelativeLayout addFriendLayout,countLayout;
     FirestoreRecyclerAdapter<PostImageActivity,PostImageHolder> adapter;
     boolean isMyProfile = true;
+
     public Profile() {
         // Required empty public constructor
     }
@@ -97,14 +99,14 @@ public class Profile extends Fragment {
         if(isMyProfile)
         {
             editProfileBtn.setVisibility(VISIBLE);
-            addFriendBtn.setVisibility(GONE);
-            countLayout.setVisibility(VISIBLE);
+            //addFriendBtn.setVisibility(GONE);
+            //countLayout.setVisibility(VISIBLE);
         }
         else
         {
             editProfileBtn.setVisibility(GONE);
-            addFriendBtn.setVisibility(VISIBLE);
-            countLayout.setVisibility(GONE);
+            //addFriendBtn.setVisibility(VISIBLE);
+            //countLayout.setVisibility(GONE);
         }
 
         userRef = FirebaseFirestore.getInstance()
@@ -120,89 +122,49 @@ public class Profile extends Fragment {
 
         clickListener();
     }
-    private void clickListener()
-    {
-        addFriendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isFriend)
-                {
-                    friendsList.remove(userId);
-
-
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("friend", friendsList);
-                    userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
-                            {
-                                addFriendBtn.setText("Add-Friend");
-
-                            }else {
-                                Log.e("Tag", ""+task.getException().getMessage());
-                            }
-                        }
-                    });
-
-                }else {
-                    friendsList.add(user.getUid());
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("friend", friendsList);
-                    userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful())
-                            {
-                                addFriendBtn.setText("Un-Friend");
-
-                            }else {
-                                Log.e("Tag", ""+task.getException().getMessage());
-                            }
-                        }
-                    });
-                }
-            }
-        });
-
-        //TODO: when user click on the edit btn - open the new activity and pull the arguments
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: to activity after complete crop image
-
-            }
-        });
-    }
 
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
         assert getActivity()!=null;
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        nameTv = view.findViewById(R.id.profile_nameTv);
+        usernameTv = view.findViewById(R.id.profile_nameTv);
         volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
-        friendsCountTv = view.findViewById(R.id.profile_friends);
+        //friendsCountTv = view.findViewById(R.id.profile_friends);
         //followingCountTv = view.findViewById(R.id.profile_friends);
         postCountTv = view.findViewById(R.id.profile_posts);
         profileImage = view.findViewById(R.id.profile_image);
-        addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
+        //addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
         recyclerView = view.findViewById(R.id.profile_recycle);
         volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
         editProfileBtn = view.findViewById(R.id.profile_editImage);
         countLayout = view.findViewById(R.id.addFriend_layout);
-        /*
-        workTv = view.findViewById(R.id.signup_work);
-        addressTv = view.findViewById(R.id.signup_address);
-        ageTv = view.findViewById(R.id.signup_age);
-         */
+        workTv = view.findViewById(R.id.workTv);
+        addressTv = view.findViewById(R.id.addressTv);
+        ageTv = view.findViewById(R.id.birthdayTv);
+        nameTv = view.findViewById(R.id.nameTv);
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
     }
 
+
+    private void clickListener() {
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View view) {
+                //((ReplacerActivity) getActivity()).setFragment(new ProfileEdit());
+
+            }
+        });
+
+
+    }
+
     private void loadBasicData(){
         DocumentReference userRef = FirebaseFirestore.getInstance()
-                .collection("User")
+                .collection("Users")
                 .document(userId);
         userRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -211,26 +173,25 @@ public class Profile extends Fragment {
                     return;
                 assert value!=null;
                 if(value.exists()){
+                    String username = value.getString("username");
                     String name = value.getString("name");
-
                     String volunteerStatus = value.getString("volunteerStatus");
-
-                    int volunteeringPlaces = Objects.requireNonNull(value.getLong("places")).intValue();
-
                     String profileURL = value.getString("profileImage");
+                    String work = value.getString("workAt");
+                    String age = value.getString("age");
+                    String address = value.getString("address");
+
+                    usernameTv.setText(username);
+                    volunteerStatusTv.setText("Volunteer Status: "+ volunteerStatus);
+                    nameTv.setText("Name: " + name);
+                    workTv.setText("Work's at: "+ work);
+                    addressTv.setText("Address: " +address);
+                    ageTv.setText("Age: "+ age);
 
 
-                    nameTv.setText(name);
-                    volunteerStatusTv.setText(volunteerStatus);
-                    //int followers = Objects.requireNonNull(value.getLong("followers")).intValue();
-
-                    friendsList = (List<String>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("followers"));
-                    //followingList = (List<Objects>) value.getData(DocumentSnapshot.ServerTimestampBehavior.valueOf("following"));
 
 
-                    friendsCountTv.setText(String.valueOf("" + friendsList.size()));
-                    volunteerPlacesTv.setText(String.valueOf(volunteeringPlaces));
-
+/*
                     try {
                         Glide.with(getContext().getApplicationContext())
                                 .load(profileURL)
@@ -240,18 +201,7 @@ public class Profile extends Fragment {
                     }catch (Exception e){
                         error.printStackTrace();}
 
-                    //if they are already friends
-                    if (friendsList.contains(userId))
-                    {
-                        addFriendBtn.setText("Un-Friend");
-                        addFriendBtn.setEnabled(false);
-                        isFriend = true;
-
-                    }else{
-                        addFriendBtn.setText("Add Friend");
-                        addFriendBtn.setEnabled(true);
-                        isFriend = false;
-                    }
+ */
                 }
             }
         });

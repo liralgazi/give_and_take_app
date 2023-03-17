@@ -53,7 +53,6 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-
         clickListener();
     }
 
@@ -93,8 +92,6 @@ public class LoginFragment extends Fragment {
                                 Toast.makeText(getContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
                             }
                             sendUserToMainActivity();
-
-
                         } else {
                             String exception = task.getException().getMessage();
                             Toast.makeText(getContext(), "Error: " + exception, Toast.LENGTH_SHORT).show();

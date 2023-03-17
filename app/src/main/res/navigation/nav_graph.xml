@@ -26,4 +26,13 @@
         android:name="com.example.giveandtake.fragments.Search"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/profileEdit"
+        android:name="com.example.giveandtake.fragments.ProfileEdit"
+        android:label="ProfileEdit"
+        tools:layout="@layout/fragment_profile_edit">
+        <action
+            android:id="@+id/action_profileEdit_to_profileFragment"
+            app:destination="@id/profileEdit" />
+    </fragment>
 </navigation>

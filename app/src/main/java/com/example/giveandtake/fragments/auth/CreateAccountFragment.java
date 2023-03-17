@@ -36,11 +36,12 @@ import java.util.Map;
 public class CreateAccountFragment extends Fragment {
 
     private EditText nameEt, emailEt, passwordEt, confirmPasswordEt, confirmEmailEt;
-    private EditText workEt, addressEt, ageEt, volunteerEt;
     private ProgressBar progressBar;
     private TextView loginTv;
     private Button signUpBtn;
     private FirebaseAuth auth;
+    HashMap<String, Object> map = new HashMap<>();
+
 
     public static final String EMAIL_REGEX = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -72,12 +73,6 @@ public class CreateAccountFragment extends Fragment {
         signUpBtn = view.findViewById(R.id.login_sign_up_btn);
         progressBar = view.findViewById(R.id.singup_progressBar);
 
-        //here
-        workEt = view.findViewById(R.id.signup_work);
-        addressEt  = view.findViewById(R.id.signup_address);
-        volunteerEt = view.findViewById(R.id.signup_volunteer);
-        ageEt = view.findViewById(R.id.signup_age);
-
 
         auth = FirebaseAuth.getInstance();
     }
@@ -98,10 +93,6 @@ public class CreateAccountFragment extends Fragment {
                 String confirmEmail = confirmEmailEt.getText().toString();
                 String password = passwordEt.getText().toString();
                 String confirmPassword = confirmPasswordEt.getText().toString();
-                String work = workEt.getText().toString();
-                String age = ageEt.getText().toString();
-                String volunteer = volunteerEt.getText().toString();
-                String address = addressEt.getText().toString();
 
                 if (name.isEmpty() || name.equals(" ")) {
                     nameEt.setError("Please input valid name");
@@ -125,12 +116,20 @@ public class CreateAccountFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                createAccount(name, email, password,address,age,work,volunteer);
+                createAccount(name, email, password);
             }
         });
     }
 
-    private void createAccount(String name, String email, String password, String address, String age, String work, String volunteer) {
+    public HashMap<String, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(HashMap<String, Object> map) {
+        this.map = map;
+    }
+
+    private void createAccount(String name, String email, String password) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -144,7 +143,7 @@ public class CreateAccountFragment extends Fragment {
                             }
                         }
                     });
-                    uploadUser(user, name, email, address,age,work,volunteer);
+                    uploadUser(user, name, email, "","","","");
                 } else {
                     progressBar.setVisibility(View.GONE);
                     String exception = task.getException().getMessage();
@@ -153,27 +152,19 @@ public class CreateAccountFragment extends Fragment {
             }
         });
     }
-    //private void uploadUser(FirebaseUser user, String name, String email) {
-    private void uploadUser(FirebaseUser user, String name, String email, String address, String age, String work, String volunteer) {
-        Map<String, Object> map = new HashMap<>();
 
-        List<String> list  = new ArrayList<>();
-        List<String> list1  = new ArrayList<>();
 
-        map.put("name", name);
+    public void uploadUser(FirebaseUser user, String name, String email, String age, String work, String address, String volunteer) {
+
+        map.put("username", name);
         map.put("email", email);
         map.put("profileImage", "");
         map.put("uid", user.getUid());
-        //map.put("friends",0);
-        map.put("places", 0);
-        map.put("volunteerStatus", volunteer);
+        //map.put("places", 0);
+        map.put("volunteerStatus", "");
         map.put("search", name.toLowerCase());
-        //map.put("followers", list);
-        //map.put("following", list1);
-        map.put("age", age);
-        map.put("work", work);
-        map.put("address", address);
-
+        map.put("workAt","");
+        map.put("age","");
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
