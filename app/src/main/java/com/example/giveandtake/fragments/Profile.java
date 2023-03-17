@@ -51,6 +51,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends Fragment {
 
     private TextView nameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
+    private TextView ageTv, workTv, addressTv;
     private ImageButton editProfileBtn;
     private CircleImageView profileImage;
     private Button addFriendBtn;
@@ -124,50 +125,52 @@ public class Profile extends Fragment {
         addFriendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (isFriend)
-                    {
-                        friendsList.remove(userId);
+                if (isFriend)
+                {
+                    friendsList.remove(userId);
 
-                        Map<String, Object> map = new HashMap<>();
-                        map.put("friend", friendsList);
-                        userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful())
-                                    {
-                                            addFriendBtn.setText("Add-Friend");
 
-                                    }else {
-                                        Log.e("Tag", ""+task.getException().getMessage());
-                                    }
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("friend", friendsList);
+                    userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful())
+                            {
+                                addFriendBtn.setText("Add-Friend");
+
+                            }else {
+                                Log.e("Tag", ""+task.getException().getMessage());
                             }
-                        });
+                        }
+                    });
 
-                    }else {
-                        friendsList.add(user.getUid());
-                        Map<String, Object> map = new HashMap<>();
-                        map.put("friend", friendsList);
-                        userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful())
-                                {
-                                    addFriendBtn.setText("Un-Friend");
+                }else {
+                    friendsList.add(user.getUid());
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("friend", friendsList);
+                    userRef.update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful())
+                            {
+                                addFriendBtn.setText("Un-Friend");
 
-                                }else {
-                                    Log.e("Tag", ""+task.getException().getMessage());
-                                }
+                            }else {
+                                Log.e("Tag", ""+task.getException().getMessage());
                             }
-                        });
-                    }
+                        }
+                    });
+                }
             }
         });
 
+        //TODO: when user click on the edit btn - open the new activity and pull the arguments
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: to activity after complete crop image
-                //CropImage.activity().setGuidelines(CropImageView.Guidelines.On).setAspectRatio(1,1).start(getContext(), Profile.this);
+
             }
         });
     }
@@ -175,7 +178,7 @@ public class Profile extends Fragment {
     private void init(View view){
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
         assert getActivity()!=null;
-            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         nameTv = view.findViewById(R.id.profile_nameTv);
         volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
@@ -188,6 +191,11 @@ public class Profile extends Fragment {
         volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
         editProfileBtn = view.findViewById(R.id.profile_editImage);
         countLayout = view.findViewById(R.id.addFriend_layout);
+        /*
+        workTv = view.findViewById(R.id.signup_work);
+        addressTv = view.findViewById(R.id.signup_address);
+        ageTv = view.findViewById(R.id.signup_age);
+         */
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
     }
@@ -204,6 +212,7 @@ public class Profile extends Fragment {
                 assert value!=null;
                 if(value.exists()){
                     String name = value.getString("name");
+
                     String volunteerStatus = value.getString("volunteerStatus");
 
                     int volunteeringPlaces = Objects.requireNonNull(value.getLong("places")).intValue();
@@ -229,20 +238,20 @@ public class Profile extends Fragment {
                                 .timeout(6500)
                                 .into(profileImage);
                     }catch (Exception e){
-                    error.printStackTrace();}
+                        error.printStackTrace();}
 
                     //if they are already friends
-                        if (friendsList.contains(userId))
-                        {
-                            addFriendBtn.setText("Un-Friend");
-                            addFriendBtn.setEnabled(false);
-                            isFriend = true;
+                    if (friendsList.contains(userId))
+                    {
+                        addFriendBtn.setText("Un-Friend");
+                        addFriendBtn.setEnabled(false);
+                        isFriend = true;
 
-                        }else{
-                            addFriendBtn.setText("Add Friend");
-                            addFriendBtn.setEnabled(true);
-                            isFriend = false;
-                        }
+                    }else{
+                        addFriendBtn.setText("Add Friend");
+                        addFriendBtn.setEnabled(true);
+                        isFriend = false;
+                    }
                 }
             }
         });

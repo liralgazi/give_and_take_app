@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.giveandtake.R;
 import com.example.giveandtake.model.Model;
 import com.example.giveandtake.model.Post;
 

@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/profile_toolbar"
+        android:id="@+id/profile_toolbar_edit"
         android:background="@color/white"
         android:backgroundTint="@color/purple_200"
         android:elevation="2dp"
@@ -24,8 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/profile"
-                android:id="@+id/profile_toolBar_profileTv"
+                android:text="@string/updateProfile"
+                android:id="@+id/profile_toolBar_profileTv_edit"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:id="@+id/liner1"
-        android:layout_below="@+id/profile_toolbar"
+        android:layout_below="@+id/profile_toolbar_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -69,6 +69,9 @@
                 android:id="@+id/profile_editImage" />
 
 
+
+
+
         </RelativeLayout>
 
         <LinearLayout
@@ -88,15 +91,17 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="@color/black"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:maxLines="3"
-                android:id="@+id/profile_volunteerTv"
-                android:text="Volunteer At:"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:id="@+id/profile_volunteerTv_edit"
+                android:hint="Volunteer At:"
+                android:textStyle=""
+                android:textColor="@color/black"
+                android:paddingTop="10dp"/>
+
 
         </LinearLayout>
 
@@ -206,52 +211,51 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/nameTv"
+                <EditText
+                    android:id="@+id/nameTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:padding="10dp"
-                    android:text="Name:"
+                    android:hint="Enter Name.."
                     android:textColor='@color/black'
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/addressTv"
+                <EditText
+                    android:id="@+id/addressTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
-                    android:text="Address:"
+                    android:hint="Enter Address.."
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
-                <TextView
-                    android:id="@+id/workTv"
+                <EditText
+                    android:id="@+id/workTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
-                    android:text="Work At:"
+                    android:hint="Enter workplace.."
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
-                <TextView
-                    android:id="@+id/birthdayTv"
+                <EditText
+                    android:id="@+id/birthdayTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
-                    android:text="Date Of Birth:"
+                    android:hint="Enter age.."
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
-                <TextView
-                    android:id="@+id/friendsCountTv"
+
+                <Button
+                    android:id="@+id/profile_saveBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor='@color/black'
-                    android:text="Friends:"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit"
+                    android:text="SAVE CHANGES"
+                    />
 
             </LinearLayout>
 
@@ -274,34 +278,5 @@
             android:layout_marginTop="8dp"
             android:layout_below="@+id/addFriend_layout"
             android:id="@+id/profile_view1"/>
-
-        <Button
-            android:layout_below="@+id/addFriend_layout"
-            android:id="@+id/profile_addFriendBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:minWidth="160dp"
-            android:minHeight="10dp"
-            android:text="Add Friend"
-            android:visibility="visible" />
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/purple_200"
-        android:layout_below="@+id/combinedLayout"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        android:id="@+id/profile_view2"/>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profile_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/profile_view2"/>
-
 </RelativeLayout>

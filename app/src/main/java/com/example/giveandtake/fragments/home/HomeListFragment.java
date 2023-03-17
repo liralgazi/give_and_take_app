@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.navigation.NavDirections;
 
+import com.example.giveandtake.R;
 import com.example.giveandtake.databinding.FragmentHomeListBinding;
 
 
@@ -19,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.giveandtake.R;
 import com.example.giveandtake.model.Model;
 import com.example.giveandtake.model.Post;
 
@@ -28,6 +28,7 @@ import java.util.List;
 public class HomeListFragment extends Fragment {
     FragmentHomeListBinding binding;
    HomeRecyclerAdapter adapter;
+
     HomeListFragmentViewModel viewModel;
 
     @Override
@@ -39,6 +40,7 @@ public class HomeListFragment extends Fragment {
 
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
         binding.recyclerView.setAdapter(adapter);
 
@@ -52,6 +54,20 @@ public class HomeListFragment extends Fragment {
 //                Navigation.findNavController(view).navigate(action);
             }
         });
+       // adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
+//        binding.recyclerView.setAdapter(adapter);
+//
+
+//        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int pos) {
+//                Log.d("TAG", "Row was clicked " + pos);
+//                Post post = viewModel.getData().getValue().get(pos);
+//                //TODO: add other directions to another fragment
+////                HomeListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = HomeListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.name);
+////                Navigation.findNavController(view).navigate(action);
+//            }
+//        });
 
         View addButton = view.findViewById(R.id.btnAdd);
         NavDirections action = HomeListFragmentDirections.actionHomeListFragmentToAddPostFragment();
