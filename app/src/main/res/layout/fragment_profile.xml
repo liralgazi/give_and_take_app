@@ -58,16 +58,6 @@
                 app:civ_border_color="@color/purple_200"
                 app:civ_border_width="1dp" />
 
-            <ImageButton
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/ic_edit"
-                android:visibility="gone"
-                android:background="@drawable/ic_outline_circle"
-                android:elevation="3dp"
-                android:layout_alignEnd="@+id/profile_profileImage"
-                android:layout_alignBottom="@+id/profile_profileImage"
-                android:id="@+id/profile_editImage" />
 
 
         </RelativeLayout>
@@ -208,16 +198,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nameTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:padding="10dp"
-                    android:text="Name:"
-                    android:textColor='@color/black'
-                    android:textStyle="bold" />
-
-                <TextView
                     android:id="@+id/addressTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -240,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
-                    android:text="Date Of Birth:"
+                    android:text="Age:"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>

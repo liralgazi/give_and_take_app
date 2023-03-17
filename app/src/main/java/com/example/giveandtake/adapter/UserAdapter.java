@@ -49,7 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
             holder.layout.setVisibility(View.VISIBLE);
 
         holder.nameTV.setText(list.get(position).getName());
-        holder.statusTV.setText(list.get(position).getVolunteerStatus());
+        holder.statusTV.setText("volunteering at: "+ list.get(position).getVolunteerStatus());
         Glide.with(holder.itemView.getContext().getApplicationContext())
                 .load(list.get(position).getProfileImageURL())
                 .placeholder(R.drawable.ic_person)

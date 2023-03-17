@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/light_purpel_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/profile_toolbar_edit"
+        android:background="@color/white"
+        android:backgroundTint="@color/purple_200"
+        android:elevation="2dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/places"
+                android:id="@+id/toolBar_places"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/place_image1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@color/light_green"
+            app:civ_border_color="@color/light_green"
+            app:civ_border_width="2dp" />
+
+
+    <TextView
+        android:layout_toEndOf="@+id/place_image1"
+        android:id="@+id/place_name_TV1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Name"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/place_image2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@color/light_green"
+        app:civ_border_color="@color/light_green"
+        android:layout_below="@+id/place_image1"
+        app:civ_border_width="2dp"/>
+
+    <TextView
+        android:id="@+id/place_name_TV2"
+        android:layout_toEndOf="@+id/place_image2"
+        android:layout_below="@+id/place_image1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Name"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/place_image3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@color/light_green"
+        app:civ_border_color="@color/light_green"
+        android:layout_below="@+id/place_image2"
+        app:civ_border_width="2dp"/>
+
+    <TextView
+        android:id="@+id/place_name_TV3"
+        android:layout_toEndOf="@+id/place_image2"
+        android:layout_below="@+id/place_image2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place Name"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="8dp"
+        />
+
+
+
+</RelativeLayout>

@@ -156,15 +156,15 @@ public class CreateAccountFragment extends Fragment {
 
     public void uploadUser(FirebaseUser user, String name, String email, String age, String work, String address, String volunteer) {
 
-        map.put("username", name);
+        map.put("name", name);
         map.put("email", email);
         map.put("profileImage", "");
         map.put("uid", user.getUid());
-        //map.put("places", 0);
         map.put("volunteerStatus", "");
-        map.put("search", name.toLowerCase());
-        map.put("workAt","");
-        map.put("age","");
+        //map.put("search", name.toLowerCase());
+        //map.put("work","");
+        //map.put("age","");
+        //map.put("address","");
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

@@ -22,9 +22,15 @@
         android:icon="@drawable/friends">
     </item>
     <item
-        android:id="@+id/nav_find_friends"
+        android:title="@string/editProfile"
+        android:id="@+id/nav_edit_profile"
+        android:icon="@drawable/ic_pencil">
+    </item>
+    <item
+        android:id="@+id/nav_places"
         android:icon="@drawable/find_people"
-        android:title="@string/find_friends" />
+        android:title="@string/places" />
+
 <!--    <item-->
 <!--        android:title="@string/messages"-->
 <!--        android:id="@+id/nav_messages"-->

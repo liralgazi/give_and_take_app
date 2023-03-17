@@ -75,16 +75,13 @@ public class Search extends Fragment {
     private void clickListener()
     {
         adapter.OnUserClicked(new UserAdapter.OnUserClicked() {
-
-
             @Override
             public void onClick(String id) {
                 onDataPass.onChange(id);
-
             }
-
         });
     }
+
     private void loadUserDate()
     {
         reference.addSnapshotListener(new EventListener<QuerySnapshot>() {

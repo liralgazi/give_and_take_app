@@ -35,4 +35,8 @@
             android:id="@+id/action_profileEdit_to_profileFragment"
             app:destination="@id/profileEdit" />
     </fragment>
+    <fragment
+        android:id="@+id/placesSearch"
+        android:name="com.example.giveandtake.model.Places"
+        android:label="PlacesSearch" />
 </navigation>

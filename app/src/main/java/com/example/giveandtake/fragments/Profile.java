@@ -53,14 +53,13 @@ public class Profile extends Fragment {
 
     private TextView usernameTv, volunteerStatusTv, friendsCountTv, postCountTv , volunteerPlacesTv;
     private TextView ageTv, workTv, addressTv, nameTv;
-    private ImageButton editProfileBtn;
+    //private ImageButton editProfileBtn;
     private CircleImageView profileImage;
     //private Button addFriendBtn;
     private RecyclerView recyclerView;
     private FirebaseUser user;
     String userId;
-    List<String> friendsList;
-    //List<Objects> followingList;
+    //List<String> friendsList;
     boolean isFriend;
 
     DocumentReference userRef;
@@ -96,19 +95,6 @@ public class Profile extends Fragment {
             isMyProfile = true;
             userId = user.getUid();
         }
-        if(isMyProfile)
-        {
-            editProfileBtn.setVisibility(VISIBLE);
-            //addFriendBtn.setVisibility(GONE);
-            //countLayout.setVisibility(VISIBLE);
-        }
-        else
-        {
-            editProfileBtn.setVisibility(GONE);
-            //addFriendBtn.setVisibility(VISIBLE);
-            //countLayout.setVisibility(GONE);
-        }
-
         userRef = FirebaseFirestore.getInstance()
                 .collection("User")
                 .document(userId);
@@ -120,7 +106,7 @@ public class Profile extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        clickListener();
+        //clickListener();
     }
 
     private void init(View view){
@@ -137,7 +123,7 @@ public class Profile extends Fragment {
         //addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
         recyclerView = view.findViewById(R.id.profile_recycle);
         volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
-        editProfileBtn = view.findViewById(R.id.profile_editImage);
+        //editProfileBtn = view.findViewById(R.id.profile_editImage);
         countLayout = view.findViewById(R.id.addFriend_layout);
         workTv = view.findViewById(R.id.workTv);
         addressTv = view.findViewById(R.id.addressTv);
@@ -148,7 +134,7 @@ public class Profile extends Fragment {
         user = auth.getCurrentUser();
     }
 
-
+/*
     private void clickListener() {
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
@@ -162,6 +148,8 @@ public class Profile extends Fragment {
 
     }
 
+ */
+
     private void loadBasicData(){
         DocumentReference userRef = FirebaseFirestore.getInstance()
                 .collection("Users")
@@ -173,17 +161,17 @@ public class Profile extends Fragment {
                     return;
                 assert value!=null;
                 if(value.exists()){
-                    String username = value.getString("username");
-                    String name = value.getString("name");
+                    String username = value.getString("name");
+                    //String name = value.getString("name");
                     String volunteerStatus = value.getString("volunteerStatus");
                     String profileURL = value.getString("profileImage");
-                    String work = value.getString("workAt");
+                    String work = value.getString("work");
                     String age = value.getString("age");
                     String address = value.getString("address");
 
                     usernameTv.setText(username);
                     volunteerStatusTv.setText("Volunteer Status: "+ volunteerStatus);
-                    nameTv.setText("Name: " + name);
+                    //nameTv.setText("Name: " + name);
                     workTv.setText("Work's at: "+ work);
                     addressTv.setText("Address: " +address);
                     ageTv.setText("Age: "+ age);

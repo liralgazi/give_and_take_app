@@ -99,7 +99,7 @@ public class ProfileEdit extends Fragment {
         volunteerET = view.findViewById(R.id.profile_volunteerTv_edit);
         updateBtn = view.findViewById(R.id.profile_saveBtn);
         auth = FirebaseAuth.getInstance();
-        nameET = view.findViewById(R.id.nameTv_edit);
+        //nameET = view.findViewById(R.id.nameTv_edit);
         progressBar = view.findViewById(R.id.update_progressBar);
 
         //username
@@ -120,20 +120,19 @@ public class ProfileEdit extends Fragment {
                     String work = workPlaceET.getText().toString();
                     String address = addressET.getText().toString();
                     String volunteer = volunteerET.getText().toString();
-                    String name = nameET.getText().toString();
+                    //String name = nameET.getText().toString();
 
                     progressBar.setVisibility(View.VISIBLE);
-                    updateAccount(name,age, work, address, volunteer);
+                    updateAccount(age, work, address, volunteer);
 
-                    //going back to the profile after changes
-                    //((ReplacerActivity) getActivity()).setFragment(new Profile());
+
                 }
             });
 
 
     }
 
-    private void updateAccount(String name, String age, String work, String address, String volunteer)
+    private void updateAccount( String age, String work, String address, String volunteer)
     {
         auth.updateCurrentUser(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -142,23 +141,26 @@ public class ProfileEdit extends Fragment {
                 {
                     Toast.makeText(getContext(), "Profile Updated successfully", Toast.LENGTH_SHORT).show();
                 }
-                uploadUpdatedUser(user, name,age, work, address, volunteer);
+                uploadUpdatedUser(user,age, work, address, volunteer);
 
             }
         });
     }
 
-    private void uploadUpdatedUser(FirebaseUser user,String name,String age,String work, String address, String volunteer ) {
+    private void uploadUpdatedUser(FirebaseUser user,String age,String work, String address, String volunteer ) {
         Map<String, Object> map = new HashMap<>();
         //CreateAccountFragment ca = new CreateAccountFragment();
         //Map<String, Object> mapCA =  ca.getMap();
 
 
-        map.put("age", age);
-        map.put("workAt", work);
-        map.put("address", address);
-        map.put("volunteerStatus", volunteer);
-        map.put("name", name);
+        if(!age.equals(""))
+            map.put("age", age);
+        if(!work.equals(""))
+            map.put("work", work);
+        if(!address.equals(""))
+            map.put("address", address);
+        if(!volunteer.equals(""))
+            map.put("volunteerStatus", volunteer);
 
         FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

@@ -76,6 +76,8 @@ public class FireBaseModel {
                 });
     }
 
+
+
     public void addUser(User st) {
         db.collection(User.COLLECTION).document(st.getId()).set(st.toJson());
     }
@@ -116,5 +118,30 @@ public class FireBaseModel {
         });
 
     }
+
+    /*
+    public void getAllPlacesSince(Long since, UserModel.Listener<List<Post>> callback){
+        db.collection(Places.COLLECTION)
+                .whereGreaterThanOrEqualTo(Places.LAST_UPDATED, new Timestamp(since,0))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Post> list = new LinkedList<>();
+                        if (task.isSuccessful()){
+                            QuerySnapshot jsonsList = task.getResult();
+                            for (DocumentSnapshot json: jsonsList){
+                                Post post = Post.fromJson(json.getData());
+                                list.add(post);
+                            }
+                        }
+                        callback.onComplete(list);
+                    }
+                });
+    }
+
+     */
+
+
 
 }

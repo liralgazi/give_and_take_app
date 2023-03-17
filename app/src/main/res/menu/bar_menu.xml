@@ -26,4 +26,5 @@
         android:id="@+id/profileFragment"
         android:icon="@drawable/profile_icon">
     </item>
+
 </menu>
