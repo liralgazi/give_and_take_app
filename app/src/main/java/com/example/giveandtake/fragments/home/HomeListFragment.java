@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,10 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.giveandtake.model.Model;
+import com.example.giveandtake.model.PostModel;
 import com.example.giveandtake.model.Post;
-
-import java.util.List;
 
 public class HomeListFragment extends Fragment {
     FragmentHomeListBinding binding;
@@ -81,8 +78,8 @@ public class HomeListFragment extends Fragment {
                 adapter.setData(list);
         });
 
-        Model.instance().EventPostListLoadingState.observe(getViewLifecycleOwner(), status->{
-            binding.swipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
+        PostModel.instance().EventPostListLoadingState.observe(getViewLifecycleOwner(), status->{
+            binding.swipeRefresh.setRefreshing(status == PostModel.LoadingState.LOADING);
         });
 
        binding.swipeRefresh.setOnRefreshListener(()->{
@@ -107,6 +104,6 @@ public class HomeListFragment extends Fragment {
 
     void reloadData(){
        // binding.progressBar.setVisibility(View.VISIBLE);
-        Model.instance().refreshAllPosts();
+        PostModel.instance().refreshAllPosts();
     }
 }

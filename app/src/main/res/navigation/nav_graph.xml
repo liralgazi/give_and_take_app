@@ -29,4 +29,9 @@
         android:name="com.example.giveandtake.fragments.AddPostFragment"
         android:label="fragment_add_post"
         tools:layout="@layout/fragment_add_post" />
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.example.giveandtake.fragments.user.UserListFragment"
+        android:label="fragment_user_list"
+        tools:layout="@layout/fragment_user_list" />
 </navigation>

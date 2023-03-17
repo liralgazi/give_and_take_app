@@ -108,7 +108,7 @@ public class Profile extends Fragment {
         }
 
         userRef = FirebaseFirestore.getInstance()
-                .collection("User")
+                .collection("Users")
                 .document(userId);
         loadBasicData();
         recyclerView.setHasFixedSize(true);
@@ -202,7 +202,7 @@ public class Profile extends Fragment {
 
     private void loadBasicData(){
         DocumentReference userRef = FirebaseFirestore.getInstance()
-                .collection("User")
+                .collection("Users")
                 .document(userId);
         userRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override

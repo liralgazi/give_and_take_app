@@ -10,13 +10,13 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@color/light_green"
-        android:id="@+id/profileImage"
+        android:id="@+id/user_profileImage"
         app:civ_border_color="@color/light_green"
         app:civ_border_width="2dp"/>
 
     <TextView
-        android:id="@+id/nameTv"
-        android:layout_toEndOf="@+id/profileImage"
+        android:id="@+id/user_nameTv"
+        android:layout_toEndOf="@+id/user_profileImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -25,10 +25,10 @@
         android:padding="8dp" />
 
     <TextView
-        android:id="@+id/statusTv"
-        android:layout_toEndOf="@+id/profileImage"
-        android:layout_toRightOf="@+id/profileImage"
-        android:layout_below="@+id/nameTv"
+        android:id="@+id/user_statusTv"
+        android:layout_toEndOf="@+id/user_profileImage"
+        android:layout_toRightOf="@+id/user_profileImage"
+        android:layout_below="@+id/user_nameTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Volunteer Status"

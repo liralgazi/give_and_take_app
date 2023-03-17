@@ -1,5 +1,8 @@
 package com.example.giveandtake.model;
 
+import static androidx.room.OnConflictStrategy.IGNORE;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -9,20 +12,16 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM Users")
-    List<User> getAll();
+    @Query("SELECT * FROM User")
+    LiveData<List<User>> getAll();
 
-    @Query("SELECT * FROM Users WHERE id IN (:userIds)")
+    @Query("SELECT * FROM User WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
 
-    @Query("SELECT * FROM Users WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    User findByName(String first, String last);
+    @Query("select * from User where uid = :userId")
+   LiveData<User> getUserById(String userId);
 
-    @Query("select * from Users where id = :userId")
-    User getUserById(String userId);
-
-    @Insert
+    @Insert (onConflict = IGNORE)
     void insertAll(User... users);
 
     @Delete

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 
 import com.example.giveandtake.MyApplication;
 import com.google.firebase.Timestamp;
@@ -15,7 +14,6 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -48,7 +46,7 @@ public class Post {
     static final String POSTLIKETEXT = "postLikeText";
     static final String COLLECTION = "posts";
     static final String LAST_UPDATED = "lastUpdated";
-    static final String LOCAL_LAST_UPDATED = "students_local_last_update";
+    static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
     public static Post fromJson(Map<String,Object> json){
         String postId = (String)json.get(POSTID);

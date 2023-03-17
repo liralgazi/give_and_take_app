@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
+import com.example.giveandtake.adapter.UserAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,9 +37,8 @@ public class FireBaseModel {
 
     }
 
-    public void getAllUsersSince(Long since, Model.Listener<List<User>> callback){
+    public void getAllUsersSince(Long since, UserModel.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
-                .whereGreaterThanOrEqualTo(User.LAST_UPDATED, new Timestamp(since,0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -47,8 +47,8 @@ public class FireBaseModel {
                         if (task.isSuccessful()){
                             QuerySnapshot jsonsList = task.getResult();
                             for (DocumentSnapshot json: jsonsList){
-                                User st = User.fromJson(json.getData());
-                                list.add(st);
+                                User user = User.fromJson(json.getData());
+                                list.add(user);
                             }
                         }
                         callback.onComplete(list);
@@ -56,7 +56,7 @@ public class FireBaseModel {
                 });
     }
 
-    public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback){
+    public void getAllPostsSince(Long since, PostModel.Listener<List<Post>> callback){
         db.collection(Post.COLLECTION)
                 .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
                 .get()
@@ -76,11 +76,20 @@ public class FireBaseModel {
                 });
     }
 
-    public void addUser(User st) {
-        db.collection(User.COLLECTION).document(st.getId()).set(st.toJson());
+    public void addUser(User user, UserModel.Listener<Void> listener) {
+        db.collection(User.COLLECTION).document(user.getId()).set(user.toJson())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        listener.onComplete(null);
+                    }
+                });
     }
 
-    public void addPost(Post post, Model.Listener<Void> listener) {
+//    public void addUserFromCreate(User user){
+//        db.collection(User.COLLECTION).document(user.getId()).set(user.toJson());}
+
+    public void addPost(Post post, PostModel.Listener<Void> listener) {
         db.collection(Post.COLLECTION).document(post.getPostId()).set(post.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -90,7 +99,7 @@ public class FireBaseModel {
                 });
     }
 
-    void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
+    void uploadImage(String name, Bitmap bitmap, PostModel.Listener<String> listener){
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
