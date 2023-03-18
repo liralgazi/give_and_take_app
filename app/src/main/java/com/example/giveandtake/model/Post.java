@@ -2,6 +2,7 @@ package com.example.giveandtake.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.JsonReader;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -21,25 +22,32 @@ public class Post {
     @PrimaryKey
     @NonNull
     public String postId;
-    public String userName, profileImage, postImage,  postText, postLikeText;
+    public String postImage, postText;
     @ServerTimestamp
     public Date timestamp;
     public Long likeCount;
+    public User userPost;
     public Long lastUpdated;
 
-    public Post(String userName, String profileImage, String postImage, Long likeCount, String postText , String postId ,String postLikeText) {
-        this.userName = userName;
-        this.profileImage = profileImage;
+    public User getUserPost() {
+        return userPost;
+    }
+
+    public void setUserPost(User userPost) {
+        this.userPost = userPost;
+    }
+
+    public Post(User userPost, String postImage, Long likeCount, String postText , String postId) {
+       this.userPost = userPost;
         this.postImage = postImage;
         this.likeCount = likeCount;
         this.postText = postText;
         this.postId = postId;
-        this.postLikeText= postLikeText;
     }
 
-    static final String USERNAME = "userName";
+
     static final String POSTID = "postId";
-    static final String PROFILEIMAGE = "profileImage";
+    static final User USERPOST = new User();
     static final String POSTIMAGE = "postImage";
     static final String LIKECOUNT = "likeCount";
     static final String POSTEXT = "postText";
@@ -50,14 +58,13 @@ public class Post {
 
     public static Post fromJson(Map<String,Object> json){
         String postId = (String)json.get(POSTID);
-        String name = (String)json.get(USERNAME);
-        String profileImage = (String)json.get(PROFILEIMAGE);
+        User userPost = (User)json.get(USERPOST);
         String postImage = (String)json.get(POSTIMAGE);
         String postText = (String)json.get(POSTEXT);
         Long likeCount = (Long) json.get(LIKECOUNT);
         String likeText = (String)json.get(POSTLIKETEXT);
 
-        Post post = new Post(name,profileImage,postImage,likeCount, postText,postId,likeText);
+        Post post = new Post(userPost,postImage,likeCount, postText,postId);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
@@ -81,9 +88,8 @@ public class Post {
 
     public Map<String,Object> toJson(){
         Map<String, Object> json = new HashMap<>();
-        json.put(USERNAME, getUserName());
         json.put(POSTID, getPostId());
-        json.put(PROFILEIMAGE, getProfileImage());
+        json.put(String.valueOf((User)USERPOST),getUserPost());
         json.put(POSTIMAGE, getPostImage());
         json.put(POSTEXT, getPostText());
         json.put(String.valueOf(LIKECOUNT), getLikeCount());
@@ -108,15 +114,6 @@ public class Post {
         this.postId = postId;
     }
 
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public Date getTimestamp() {
         return timestamp;
     }
@@ -125,13 +122,6 @@ public class Post {
         this.timestamp = timestamp;
     }
 
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
 
     public String getPostImage() {
         return postImage;
