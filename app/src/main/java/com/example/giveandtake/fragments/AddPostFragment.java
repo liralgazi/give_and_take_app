@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.databinding.FragmentAddPostBinding;
-import com.example.giveandtake.model.AddViewModel;
 import com.example.giveandtake.model.PostModel;
 import com.example.giveandtake.model.Post;
 import com.example.giveandtake.model.User;
@@ -50,7 +49,6 @@ public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-    AddViewModel viewModel;
 
     Boolean isPictureSelected = false;
     @Override
@@ -155,11 +153,5 @@ public class AddPostFragment extends Fragment {
             galleryLauncher.launch("images/*");
         });
             return view;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        viewModel = new ViewModelProvider(this).get(AddViewModel.class);
     }
 }
