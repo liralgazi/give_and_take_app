@@ -77,7 +77,7 @@ public class Profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
@@ -110,25 +110,25 @@ public class Profile extends Fragment {
     }
 
     private void init(View view){
-//        Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
-//        assert getActivity()!=null;
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-//
-//        usernameTv = view.findViewById(R.id.profile_nameTv);
-//        volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
-//        //friendsCountTv = view.findViewById(R.id.profile_friends);
-//        //followingCountTv = view.findViewById(R.id.profile_friends);
-//        postCountTv = view.findViewById(R.id.profile_posts);
-//        profileImage = view.findViewById(R.id.profile_image);
-//        //addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
-//        recyclerView = view.findViewById(R.id.profile_recycle);
-//        volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
-//        //editProfileBtn = view.findViewById(R.id.profile_editImage);
-//        countLayout = view.findViewById(R.id.addFriend_layout);
-//        workTv = view.findViewById(R.id.workTv);
-//        addressTv = view.findViewById(R.id.addressTv);
-//        ageTv = view.findViewById(R.id.birthdayTv);
-//        nameTv = view.findViewById(R.id.nameTv);
+        Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
+        assert getActivity()!=null;
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        usernameTv = view.findViewById(R.id.profile_nameTv);
+        volunteerStatusTv = view.findViewById(R.id.profile_volunteerTv);
+        //friendsCountTv = view.findViewById(R.id.profile_friends);
+        //followingCountTv = view.findViewById(R.id.profile_friends);
+        postCountTv = view.findViewById(R.id.profile_posts);
+        profileImage = view.findViewById(R.id.profile_image);
+        //addFriendBtn = view.findViewById(R.id.profile_addFriendBtn);
+        recyclerView = view.findViewById(R.id.profile_recycle);
+        volunteerPlacesTv = view.findViewById(R.id.profile_volunteer_placesTv);
+        //editProfileBtn = view.findViewById(R.id.profile_editImage);
+        countLayout = view.findViewById(R.id.addFriend_layout);
+        workTv = view.findViewById(R.id.workTv);
+        addressTv = view.findViewById(R.id.addressTv);
+        ageTv = view.findViewById(R.id.birthdayTv);
+        nameTv = view.findViewById(R.id.nameTv);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();

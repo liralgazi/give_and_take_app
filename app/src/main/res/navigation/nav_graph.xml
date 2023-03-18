@@ -15,6 +15,11 @@
             app:destination="@id/addPostFragment" />
     </fragment>
     <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.giveandtake.fragments.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.giveandtake.fragments.AddPostFragment"
         android:label="fragment_add_post"
@@ -24,16 +29,4 @@
         android:name="com.example.giveandtake.fragments.user.UserListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_user_list" />
-    <fragment
-        android:id="@+id/profileEdit"
-        android:name="com.example.giveandtake.fragments.ProfileEdit"
-        android:label="ProfileEdit"
-        tools:layout="@layout/fragment_profile_edit">
-        <action
-            android:id="@+id/action_profileEdit_to_profileFragment"
-            app:destination="@id/profileEdit" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchPlaceFragment"
-        android:name="com.example.giveandtake.model.PlaceSearch"/>
 </navigation>

@@ -17,9 +17,8 @@
         android:icon="@drawable/plus">
     </item>
     <item
-        android:id="@+id/searchPlaceFragment"
-        android:title="@string/editProfile"
-        android:icon="@drawable/ic_pencil">
+        android:title="@string/profile"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile_icon">
     </item>
-
 </menu>
