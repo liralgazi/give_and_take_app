@@ -70,7 +70,7 @@
         android:scaleType="centerCrop"
         android:layout_below="@+id/liner_post_text"
         android:layout_marginTop="10dp"
-        android:background="@color/purple_200" />
+        android:src="@drawable/ic_photo_24" />
 
     <LinearLayout
         android:id="@+id/linerLayout"

@@ -32,8 +32,10 @@ public class UserModel {
         return usersList;
     }
 
-    public LiveData<User> getUserById(String id){
-        return null;
+    User user;
+    public User getUserById(String id){
+        firebaseModel.getUserById(id);
+        return user;
     }
 
 

@@ -59,6 +59,13 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
         }else{
             profileImage.setImageResource(R.drawable.ic_person);
         }
+        if (post.getPostImage()  != null && post.getPostImage().length() > 5) {
+            Picasso.get().load(post.getPostImage()).placeholder(R.drawable.ic_photo_24).into(postImage);
+            postImage.setVisibility(View.VISIBLE);
+        }else{
+            postImage.setImageResource(R.drawable.ic_photo_24);
+            postImage.setVisibility(View.GONE);
+        }
     }
 }
 

@@ -14,7 +14,7 @@ import com.example.giveandtake.MyApplication;
                 Post.class
         },
 
-        version = 29
+        version = 30
         , exportSchema = false
 )
 @TypeConverters({Converts.class})

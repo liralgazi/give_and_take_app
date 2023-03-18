@@ -11,7 +11,7 @@ import java.util.List;
 public class UserListFragmentViewModel extends ViewModel {
     private LiveData<List<User>> data = UserModel.instance().getAllUsers();
 
-    LiveData<List<User>> getData(){
+    public LiveData<List<User>> getData(){
         return data;
     }
 }

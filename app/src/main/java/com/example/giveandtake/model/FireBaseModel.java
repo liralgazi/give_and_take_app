@@ -11,6 +11,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -56,6 +58,21 @@ public class FireBaseModel {
                 });
     }
 
+    public User getUserById(String id){
+        final User[] user = {new User()};
+        db.collection(User.COLLECTION).whereEqualTo(User.UID, id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    QuerySnapshot jsons = task.getResult();
+                    for (DocumentSnapshot json: jsons){
+                        user[0] = User.fromJson(json.getData());
+                    }
+                }
+            }
+        });
+        return user[0];
+    }
     public void getAllPostsSince(Long since, PostModel.Listener<List<Post>> callback){
         db.collection(Post.COLLECTION)
                 .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
@@ -75,6 +92,8 @@ public class FireBaseModel {
                     }
                 });
     }
+
+
 
     public void addUser(User user, UserModel.Listener<Void> listener) {
         db.collection(User.COLLECTION).document(user.getId()).set(user.toJson())

@@ -13,7 +13,6 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -30,16 +29,20 @@ import com.example.giveandtake.model.Post;
 import com.example.giveandtake.model.User;
 import com.example.giveandtake.fragments.user.UserListFragmentViewModel;
 import com.example.giveandtake.model.UserModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-
     UserListFragmentViewModel viewModel;
 
     Boolean isPictureSelected = false;
@@ -64,7 +67,7 @@ public class AddPostFragment extends Fragment {
             @Override
             public void onActivityResult(Bitmap result) {
                 if (result != null) {
-                    binding.avatarImg.setImageBitmap(result);
+                    binding.postImage.setImageBitmap(result);
                     isPictureSelected = true;
                 }
             }
@@ -73,7 +76,7 @@ public class AddPostFragment extends Fragment {
             @Override
             public void onActivityResult(Uri result) {
                 if (result != null){
-                    binding.avatarImg.setImageURI(result);
+                    binding.postImage.setImageURI(result);
                     isPictureSelected = true;
                 }
             }
@@ -92,14 +95,13 @@ public class AddPostFragment extends Fragment {
             String postText = binding.addpostPostText.getText().toString();
             String postId = "id_"+postText;;
             FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
-           LiveData<User> user = UserModel.instance().getUserById(fireUser.getUid());
-            List<User> list = UserModel.instance().getAllUsers().getValue();
+           // User us = UserModel.instance().getUserById("atMf8zseZDZuodds8KOjkGjDalE2");
             Post post = new Post("userName","","", 0L,postText,postId,"");
 
             if (isPictureSelected){
-                binding.avatarImg.setDrawingCacheEnabled(true);
-                binding.avatarImg.buildDrawingCache();
-                Bitmap bitmap = ((BitmapDrawable) binding.avatarImg.getDrawable()).getBitmap();
+                binding.postImage.setDrawingCacheEnabled(true);
+                binding.postImage.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) binding.postImage.getDrawable()).getBitmap();
                 PostModel.instance().uploadImage(postId, bitmap, url->{
                     if (url != null){
                         post.setPostImage(url);
@@ -121,7 +123,7 @@ public class AddPostFragment extends Fragment {
         });
 
         binding.galleryButton.setOnClickListener(view1->{
-            galleryLauncher.launch("image/*");
+            galleryLauncher.launch("images/*");
         });
             return view;
     }

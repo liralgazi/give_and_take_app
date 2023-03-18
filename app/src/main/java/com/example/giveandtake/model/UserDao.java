@@ -19,7 +19,7 @@ public interface UserDao {
     List<User> loadAllByIds(int[] userIds);
 
     @Query("select * from User where uid = :userId")
-   LiveData<User> getUserById(String userId);
+     User getUserById(String userId);
 
     @Insert (onConflict = IGNORE)
     void insertAll(User... users);

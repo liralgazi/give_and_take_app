@@ -26,6 +26,7 @@ class UserViewHolder extends RecyclerView.ViewHolder{
         nameTv = itemView.findViewById(R.id.user_nameTv);
         statusTv = itemView.findViewById(R.id.user_statusTv);
         profileImage = itemView.findViewById(R.id.user_profileImage);
+
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
