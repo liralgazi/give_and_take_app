@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.PlaceAdapter;
-import com.example.giveandtake.adapter.UserAdapter;
-import com.example.giveandtake.fragments.Search;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,14 +36,14 @@ public class PlaceSearch extends Fragment {
     private List<Place> list;
     CollectionReference reference;
 
-    Search.onDataPass onDataPass;
+    //Search.onDataPass onDataPass;
 
     public PlaceSearch(){}
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        onDataPass = (Search.onDataPass)context;
+        //onDataPass = (Search.onDataPass)context;
     }
 
     @Override
