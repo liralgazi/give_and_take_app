@@ -56,10 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="shir  aaaaaaaaaaaaaaaaaaddd dddddd dddd  dddd  ddd  d"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:id="@+id/addpost_postText"/>
 
     </LinearLayout>
@@ -86,21 +85,13 @@
             android:padding="16dp"
             android:layout_margin="8dp"
             android:background="@drawable/hands"/>
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/commentBtn"
-            android:padding="30dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/chat"/>
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="8dp"
-            android:id="@+id/shareBtn"
-            android:padding="16dp"
-            android:background="@drawable/send"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="14sp"
+            android:text="Like if you want to volunteer"/>
     </LinearLayout>
 
     <TextView

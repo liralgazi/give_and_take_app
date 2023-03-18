@@ -38,7 +38,6 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
         likeCountTv = itemView.findViewById(R.id.like_countTv);
         postImage = itemView.findViewById(R.id.postImage);
         likeBtn = itemView.findViewById(R.id.likeBtn);
-        sendBtn = itemView.findViewById(R.id.shareBtn);
         likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
