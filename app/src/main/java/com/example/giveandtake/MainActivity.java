@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.giveandtake.fragments.ProfileEdit;
 import com.example.giveandtake.fragments.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -68,10 +69,17 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
                 finish();
                 Intent i = new Intent(getApplicationContext(),SplashActivity.class);
                 startActivity(i);
-            }else{
+            }
+           // else if (item.getItemId() == R.id.nav_edit_profile){
+             //       Intent i = new Intent(getApplicationContext(), ProfileEdit.class);
+               //     startActivity(i);
+
+       //     }
+        else{
                 fragmentMenuId = item.getItemId();
                 return NavigationUI.onNavDestinationSelected(item,navController);
             }
+
         }
 
         return super.onOptionsItemSelected(item);

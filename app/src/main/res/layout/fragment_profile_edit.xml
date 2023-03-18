@@ -211,15 +211,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/nameTv_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor='@color/black'
-                    android:hint="Enter your name.."
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:layout_marginLeft="5dp"/>
-                <EditText
                     android:id="@+id/addressTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

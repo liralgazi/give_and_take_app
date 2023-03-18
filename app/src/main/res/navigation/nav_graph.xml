@@ -28,7 +28,9 @@
         android:id="@+id/profileFragment"
         android:name="com.example.giveandtake.fragments.Profile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.giveandtake.fragments.Search"
@@ -39,4 +41,10 @@
         android:name="com.example.giveandtake.model.PlaceSearch"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search_place" />
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.giveandtake.fragments.ProfileEdit"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_profile_edit" />
 </navigation>

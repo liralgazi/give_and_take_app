@@ -26,8 +26,8 @@
     <string name="age">How old are you…</string>
     <string name="volunteer">Do you volunteer(YES/NO)?</string>
     <string name="address">Where do you live?</string>
-    <string name="editProfile">Edit</string>
-    <string name="places">Volunteer places</string>
+    <string name="editProfile">Edit Profile Info</string>
+    <string name="places">Volunteer</string>
 
 
 
