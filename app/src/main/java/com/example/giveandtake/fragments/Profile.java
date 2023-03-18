@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.example.giveandtake.MainActivity;
 import com.example.giveandtake.R;
 import com.example.giveandtake.ReplacerActivity;
+import com.example.giveandtake.fragments.home.HomeListFragmentDirections;
 import com.example.giveandtake.model.PostImageActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -96,7 +99,7 @@ public class Profile extends Fragment {
             userId = user.getUid();
         }
         userRef = FirebaseFirestore.getInstance()
-                .collection("Users")
+                .collection("User")
                 .document(userId);
         loadBasicData();
         recyclerView.setHasFixedSize(true);
@@ -105,6 +108,10 @@ public class Profile extends Fragment {
         loadPostImages();
 
         recyclerView.setAdapter(adapter);
+
+        View editButton = view.findViewById(R.id.btnEdit);
+        NavDirections action = HomeListFragmentDirections.actionHomeListFragmentToAddPostFragment();
+        editButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         //clickListener();
     }
@@ -197,7 +204,7 @@ public class Profile extends Fragment {
 
     private void loadPostImages(){
 
-        DocumentReference reference = FirebaseFirestore.getInstance().collection("Users").document(userId);
+        DocumentReference reference = FirebaseFirestore.getInstance().collection("User").document(userId);
         Query query = reference.collection("Images");
 
         FirestoreRecyclerOptions<PostImageActivity> options = new FirestoreRecyclerOptions.Builder<PostImageActivity>().setQuery(query,PostImageActivity.class).build();
@@ -288,7 +295,7 @@ public class Profile extends Fragment {
 //
 //                            FirebaseFirestore
 //                                    .getInstance()
-//                                    .collection("Users")
+//                                    .collection("User")
 //                                    .document(user.getUid())
 //                                    .update(map)
 //                                    .addOnCompleteListener(new OnCompleteListener<Void>() {

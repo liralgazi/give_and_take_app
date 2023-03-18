@@ -34,4 +34,9 @@
         android:name="com.example.giveandtake.fragments.Search"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/searchPlaceFragment"
+        android:name="com.example.giveandtake.model.PlaceSearch"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search_place" />
 </navigation>

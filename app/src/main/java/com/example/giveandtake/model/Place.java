@@ -1,39 +1,14 @@
 package com.example.giveandtake.model;
 
+public class Place {
 
-import androidx.fragment.app.Fragment;
-
-public class Place extends Fragment {
-
-
-    public String id;
-    public String name;
-    public String address;
-    public String description;
-    public String city;
-    public String imageURL;
-
-    public Place(){}
-
-    public Place(String id, String name, String address, String description, String city, String imageURL) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.description = description;
-        this.city = city;
-        this.imageURL = imageURL;
-    }
-
-    public String getUid()
-    {
-        return this.id;
-    }
+    String name;
+    String activeProjects;
+    String city;
+    int id;
+    int totalProjects;
 
 
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -44,35 +19,35 @@ public class Place extends Fragment {
     }
 
     public String getAddress() {
-        return address;
+        return activeProjects;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String activeProjects) {
+        this.activeProjects = activeProjects;
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setDescription(String city) {
         this.city = city;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public int getId() {
+        return id;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getMembersNum() {
+        return totalProjects;
+    }
+
+    public void setMembersNum(int totalProjects) {
+        this.totalProjects = totalProjects;
     }
 
 
