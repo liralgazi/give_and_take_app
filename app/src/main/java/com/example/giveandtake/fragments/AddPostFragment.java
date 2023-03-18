@@ -122,8 +122,9 @@ public class AddPostFragment extends Fragment {
             }
             String name = postUser.getName();
             String profileImage = postUser.profileImageURL;
+            String userId = postUser.getId();
 
-            Post post = new Post(name,profileImage,"", 0L,postText,postId,"");
+            Post post = new Post(name,profileImage,userId,"", 0L,postText,postId);
 
             if (isPictureSelected){
                 binding.postImage.setDrawingCacheEnabled(true);

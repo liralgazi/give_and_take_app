@@ -2,7 +2,6 @@ package com.example.giveandtake.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.JsonReader;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -22,49 +21,52 @@ public class Post {
     @PrimaryKey
     @NonNull
     public String postId;
-    public String postImage, postText;
+    public String userName, profileImage, userId, postImage,  postText, postLikeText;
     @ServerTimestamp
     public Date timestamp;
     public Long likeCount;
-    public User userPost;
     public Long lastUpdated;
 
-    public User getUserPost() {
-        return userPost;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserPost(User userPost) {
-        this.userPost = userPost;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public Post(User userPost, String postImage, Long likeCount, String postText , String postId) {
-       this.userPost = userPost;
+    public Post(String userName, String profileImage, String userId, String postImage, Long likeCount, String postText , String postId) {
+       this.userName = userName;
+       this.profileImage = profileImage;
+       this.userId = userId;
         this.postImage = postImage;
         this.likeCount = likeCount;
         this.postText = postText;
         this.postId = postId;
+        this.postLikeText= postLikeText;
     }
 
-
+    static final String USERNAME = "userName";
+    static final String USERID = "userId";
     static final String POSTID = "postId";
-    static final User USERPOST = new User();
+    static final String PROFILEIMAGE = "profileImage";
     static final String POSTIMAGE = "postImage";
     static final String LIKECOUNT = "likeCount";
     static final String POSTEXT = "postText";
-    static final String POSTLIKETEXT = "postLikeText";
     static final String COLLECTION = "posts";
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
     public static Post fromJson(Map<String,Object> json){
         String postId = (String)json.get(POSTID);
-        User userPost = (User)json.get(USERPOST);
+        String userId = (String)json.get(USERID);
+        String name = (String)json.get(USERNAME);
+        String profileImage = (String)json.get(PROFILEIMAGE);
         String postImage = (String)json.get(POSTIMAGE);
         String postText = (String)json.get(POSTEXT);
         Long likeCount = (Long) json.get(LIKECOUNT);
-        String likeText = (String)json.get(POSTLIKETEXT);
 
-        Post post = new Post(userPost,postImage,likeCount, postText,postId);
+        Post post = new Post(name,profileImage,userId,postImage,likeCount, postText,postId);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
@@ -88,8 +90,10 @@ public class Post {
 
     public Map<String,Object> toJson(){
         Map<String, Object> json = new HashMap<>();
+        json.put(USERNAME, getUserName());
+        json.put(USERID, getUserId());
         json.put(POSTID, getPostId());
-        json.put(String.valueOf((User)USERPOST),getUserPost());
+        json.put(PROFILEIMAGE, getProfileImage());
         json.put(POSTIMAGE, getPostImage());
         json.put(POSTEXT, getPostText());
         json.put(String.valueOf(LIKECOUNT), getLikeCount());
@@ -114,6 +118,15 @@ public class Post {
         this.postId = postId;
     }
 
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Date getTimestamp() {
         return timestamp;
     }
@@ -122,6 +135,13 @@ public class Post {
         this.timestamp = timestamp;
     }
 
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
 
     public String getPostImage() {
         return postImage;
