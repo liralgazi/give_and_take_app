@@ -123,7 +123,7 @@ public class AddPostFragment extends Fragment {
         });
 
         binding.galleryButton.setOnClickListener(view1->{
-            galleryLauncher.launch("images/*");
+            galleryLauncher.launch("image/*");
         });
             return view;
     }
