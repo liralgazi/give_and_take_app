@@ -20,11 +20,6 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.giveandtake.fragments.Search"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.giveandtake.fragments.AddPostFragment"
         android:label="fragment_add_post"

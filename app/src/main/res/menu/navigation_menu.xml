@@ -17,14 +17,9 @@
         android:icon="@drawable/home">
     </item>
     <item
-        android:title="@string/friends"
-        android:id="@+id/nav_friends"
-        android:icon="@drawable/friends">
-    </item>
-    <item
-        android:id="@+id/nav_find_friends"
+        android:id="@+id/nav_find_placees"
         android:icon="@drawable/find_people"
-        android:title="@string/find_friends" />
+        android:title="Find Places" />
     <item
         android:title="Logout"
         android:id="@+id/nav_logout"

@@ -17,11 +17,6 @@
         android:icon="@drawable/plus">
     </item>
     <item
-        android:title="@string/friends"
-        android:id="@+id/nav_friends"
-        android:icon="@drawable/friends">
-    </item>
-    <item
         android:title="@string/profile"
         android:id="@+id/profileFragment"
         android:icon="@drawable/profile_icon">
