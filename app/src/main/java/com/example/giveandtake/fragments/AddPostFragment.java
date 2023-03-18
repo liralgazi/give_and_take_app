@@ -1,5 +1,6 @@
 package com.example.giveandtake.fragments;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -9,10 +10,12 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -33,9 +36,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -43,7 +49,6 @@ public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-    UserListFragmentViewModel viewModel;
 
     Boolean isPictureSelected = false;
     @Override
@@ -91,12 +96,34 @@ public class AddPostFragment extends Fragment {
 
         View view = binding.getRoot();
 
+        List<User> list = new LinkedList<>();
+        FirebaseFirestore.getInstance().collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot jsonsList = task.getResult();
+                    for (DocumentSnapshot json : jsonsList) {
+                        User user = User.fromJson(json.getData());
+                        list.add(user);
+                    }
+                }
+            }
+        });
+
         binding.addpostSaveBtn.setOnClickListener(view1 -> {
             String postText = binding.addpostPostText.getText().toString();
             String postId = "id_"+postText;;
             FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
-           // User us = UserModel.instance().getUserById("atMf8zseZDZuodds8KOjkGjDalE2");
-            Post post = new Post("userName","","", 0L,postText,postId,"");
+            User postUser = new User();
+            for(int i=0; i<list.size(); i++){
+                if(list.get(i).getId().equals(fireUser.getUid())) {
+                    postUser = list.get(i);
+                }
+            }
+            String name = postUser.getName();
+            String profileImage = postUser.profileImageURL;
+
+            Post post = new Post(name,profileImage,"", 0L,postText,postId,"");
 
             if (isPictureSelected){
                 binding.postImage.setDrawingCacheEnabled(true);

@@ -12,6 +12,7 @@ public class UserModel {
     private static final UserModel _instance = new UserModel();
     private FireBaseModel firebaseModel = new FireBaseModel();
     AppLocalDbRepository localDb = AppLocalDb.getAppDb();
+    final public MutableLiveData<LoadingState> EventUserListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
     public static UserModel instance(){
         return _instance;
     }
@@ -21,6 +22,12 @@ public class UserModel {
 
     public interface Listener<T>{
         void onComplete(T data);
+    }
+
+    public enum LoadingState{
+        LOADING,
+        NOT_LOADING
+
     }
 
     private LiveData<List<User>> usersList;
@@ -38,14 +45,6 @@ public class UserModel {
         return user;
     }
 
-
-    public enum LoadingState{
-        LOADING,
-        NOT_LOADING
-    }
-
-    final public MutableLiveData<LoadingState> EventUserListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
-
     public void refreshAllUsers(){
         EventUserListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
@@ -62,6 +61,9 @@ public class UserModel {
                 for(User user:list){
                     // insert new records into ROOM
                     localDb.userDao().insertAll(user);
+                    if (time < user.getLastUpdated()){
+                        time = user.getLastUpdated();
+                    }
                 }
                 try {
                     Thread.sleep(3000);
@@ -81,12 +83,6 @@ public class UserModel {
             listener.onComplete(null);
         });
     }
-
-//    public void addUserFromCreate(User user){
-//        firebaseModel.addUserFromCreate(user);
-//    }
-
-
 
 //    public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
 //        firebaseModel.uploadImage(name,bitmap,listener);

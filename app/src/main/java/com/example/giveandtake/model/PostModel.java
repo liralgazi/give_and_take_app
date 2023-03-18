@@ -15,18 +15,25 @@ public class PostModel {
     private static final PostModel _instance = new PostModel();
     private FireBaseModel firebaseModel = new FireBaseModel();
     AppLocalDbRepository localDb = AppLocalDb.getAppDb();
+    final public MutableLiveData<LoadingState> EventPostListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
+
     public static PostModel instance(){
         return _instance;
     }
 
     private PostModel(){
     }
-
     public interface Listener<T>{
         void onComplete(T data);
-    }
 
+    }
+    public enum LoadingState{
+        LOADING,
+        NOT_LOADING
+
+    }
     private LiveData<List<Post>> postsList;
+
     public LiveData<List<Post>> getAllPosts() {
         if(postsList == null){
             postsList = localDb.postDao().getAll();
@@ -34,13 +41,6 @@ public class PostModel {
         }
         return postsList;
     }
-
-    public enum LoadingState{
-        LOADING,
-        NOT_LOADING
-    }
-
-    final public MutableLiveData<LoadingState> EventPostListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
 
     public void refreshAllPosts(){
         EventPostListLoadingState.setValue(LoadingState.LOADING);
