@@ -51,7 +51,7 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
     public void bind(Post post, int pos) {
         nameTv.setText(post.userName);
         postTv.setText(post.postText);
-        likeCountTv.setText(post.postLikeText);
+        likeCountTv.setText(post.likeCount + "  Likes");
         likeBtn.setTag(pos);
         if (post.getProfileImage()  != null && post.getProfileImage().length() > 5) {
             Picasso.get().load(post.getProfileImage()).placeholder(R.drawable.ic_person).into(profileImage);
