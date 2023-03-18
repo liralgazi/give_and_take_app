@@ -37,18 +37,11 @@
             android:textSize="16dp"
             android:textColor="#000"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeTv"
-            android:text="2h"
-            android:textStyle="bold"
-            android:textColor="#000"/>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:id="@+id/liner_post_text"
         android:layout_below="@id/profile_image">
 
@@ -58,7 +51,7 @@
             android:text="shir  aaaaaaaaaaaaaaaaaaddd dddddd dddd  dddd  ddd  d"
             android:layout_margin="10dp"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:id="@+id/addpost_postText"/>
 
     </LinearLayout>
@@ -76,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
         android:layout_below="@id/postImage">
 
         <ImageButton
@@ -99,8 +93,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linerLayout"
+        android:layout_marginLeft="15dp"
         android:text="100 Likes"
         android:textStyle="bold"
         android:paddingStart="8dp"
         android:paddingEnd="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/purple_200"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/like_countTv"
+        android:id="@+id/profile_view1"/>
 </RelativeLayout>
