@@ -160,12 +160,11 @@ public class CreateAccountFragment extends Fragment {
         map.put("profileImage", "");
         map.put("uid", user.getUid());
         map.put("volunteerStatus", "");
-        //map.put("search", name.toLowerCase());
-        //map.put("work","");
-        //map.put("age","");
-        //map.put("address","");
+        map.put("work","");
+        map.put("age","");
+        map.put("address","");
 
-        FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseFirestore.getInstance().collection("User").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
