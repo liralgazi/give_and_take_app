@@ -96,7 +96,7 @@ public class Profile extends Fragment {
             userId = user.getUid();
         }
         userRef = FirebaseFirestore.getInstance()
-                .collection("User")
+                .collection("Users")
                 .document(userId);
         loadBasicData();
         recyclerView.setHasFixedSize(true);

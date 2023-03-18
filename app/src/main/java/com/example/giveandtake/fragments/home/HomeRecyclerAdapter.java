@@ -34,11 +34,10 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
         this.data = data;
         profileImage = itemView.findViewById(R.id.profile_image);
         nameTv = itemView.findViewById(R.id.nameTv);
-        postTv = itemView.findViewById(R.id.postText);
+        postTv = itemView.findViewById(R.id.addpost_postText);
         likeCountTv = itemView.findViewById(R.id.like_countTv);
         postImage = itemView.findViewById(R.id.postImage);
         likeBtn = itemView.findViewById(R.id.likeBtn);
-        sendBtn = itemView.findViewById(R.id.shareBtn);
         likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +57,13 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
             Picasso.get().load(post.getProfileImage()).placeholder(R.drawable.ic_person).into(profileImage);
         }else{
             profileImage.setImageResource(R.drawable.ic_person);
+        }
+        if (post.getPostImage()  != null && post.getPostImage().length() > 5) {
+            Picasso.get().load(post.getPostImage()).placeholder(R.drawable.ic_photo_24).into(postImage);
+            postImage.setVisibility(View.VISIBLE);
+        }else{
+            postImage.setImageResource(R.drawable.ic_photo_24);
+            postImage.setVisibility(View.GONE);
         }
     }
 }

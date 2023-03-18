@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 
 import com.example.giveandtake.MyApplication;
 import com.google.firebase.Timestamp;
@@ -15,7 +14,6 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -23,18 +21,17 @@ public class Post {
     @PrimaryKey
     @NonNull
     public String postId;
-    public String userName, profileImage, postImage, uid,  postText, postLikeText;
+    public String userName, profileImage, postImage,  postText, postLikeText;
     @ServerTimestamp
     public Date timestamp;
-    public int likeCount;
+    public Long likeCount;
     public Long lastUpdated;
 
-    public Post(String userName, String profileImage, String postImage, int likeCount, String uid, String postText , String postId ,String postLikeText) {
+    public Post(String userName, String profileImage, String postImage, Long likeCount, String postText , String postId ,String postLikeText) {
         this.userName = userName;
         this.profileImage = profileImage;
         this.postImage = postImage;
         this.likeCount = likeCount;
-        this.uid = uid;
         this.postText = postText;
         this.postId = postId;
         this.postLikeText= postLikeText;
@@ -45,24 +42,22 @@ public class Post {
     static final String PROFILEIMAGE = "profileImage";
     static final String POSTIMAGE = "postImage";
     static final String LIKECOUNT = "likeCount";
-    static final String UID = "uid";
     static final String POSTEXT = "postText";
     static final String POSTLIKETEXT = "postLikeText";
     static final String COLLECTION = "posts";
     static final String LAST_UPDATED = "lastUpdated";
-    static final String LOCAL_LAST_UPDATED = "students_local_last_update";
+    static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
     public static Post fromJson(Map<String,Object> json){
         String postId = (String)json.get(POSTID);
         String name = (String)json.get(USERNAME);
         String profileImage = (String)json.get(PROFILEIMAGE);
         String postImage = (String)json.get(POSTIMAGE);
-        String uid = (String)json.get(UID);
         String postText = (String)json.get(POSTEXT);
-        int likeCount = (Integer) json.get(LIKECOUNT);
+        Long likeCount = (Long) json.get(LIKECOUNT);
         String likeText = (String)json.get(POSTLIKETEXT);
 
-        Post post = new Post(name,profileImage,postImage,likeCount,uid,postText,postId,likeText);
+        Post post = new Post(name,profileImage,postImage,likeCount, postText,postId,likeText);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
@@ -90,21 +85,12 @@ public class Post {
         json.put(POSTID, getPostId());
         json.put(PROFILEIMAGE, getProfileImage());
         json.put(POSTIMAGE, getPostImage());
-        json.put(UID, getUid());
         json.put(POSTEXT, getPostText());
         json.put(String.valueOf(LIKECOUNT), getLikeCount());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
     }
 
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
     public String getPostText() {
         return postText;
@@ -155,11 +141,11 @@ public class Post {
         this.postImage = postImage;
     }
 
-    public int getLikeCount() {
+    public Long getLikeCount() {
         return likeCount;
     }
 
-    public void setLikeCount(int likeCount) {
+    public void setLikeCount(Long likeCount) {
         this.likeCount = likeCount;
     }
 

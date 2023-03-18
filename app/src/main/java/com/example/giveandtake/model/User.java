@@ -11,80 +11,69 @@ import androidx.room.PrimaryKey;
 
 import com.example.giveandtake.MyApplication;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity(tableName = "Users")
+@Entity(tableName = "User")
 public class User {
     @PrimaryKey
     @NonNull
-    public String id="";
+    public String uid="";
     public String name="";
     public String profileImageURL="";
     public String volunteerStatus = "";
     public String address= "";
     public String workAt = "";
     public String age = "";
-    //public ArrayList<String> friends;
     public Long lastUpdated;
 
-    static final String COLLECTION = "users";
+    static final String COLLECTION = "User";
     static final String LAST_UPDATED = "lastUpdated";
-    static final String LOCAL_LAST_UPDATED = "students_local_last_update";
+    static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
-//    public ArrayList<String> getFriends() {
-//        return friends;
-//    }
-//
-//    public void setFriends(ArrayList<String> friends) {
-//        this.friends = friends;
-//    }
-    public User(){
-
-    }
-
-
-    public User(String Id, String name, String profileImageURL, String volunteerStatus, String address, String workAt, String age){
-        this.id = Id;
+    public User(String uid, String name, String profileImageURL, String volunteerStatus, String address, String workAt, String age){
+        this.uid = uid;
         this.name = name;
         this.address = address;
         this.age = age;
         this.profileImageURL = profileImageURL;
         this.workAt = workAt;
         this.volunteerStatus = volunteerStatus;
-        //this.friends = friends;
     }
 
-    static public String ID="id";
+    static public String UID="uid";
     static public String NAME="name";
     static public String PROFILEIMAGE="profileImageURL";
     static public String VOLUNTEERSTATUS = "volunteerStatus";
     static public String ADDRESS= "address";
     static public String WORKAT = "workAt";
-    static public String DATEBIRTH = "dateBirth";
+    static public String AGE = "age";
 
-    //static  public String FRIENDS = "friends";
+    public User() {
+
+    }
 
     public static User fromJson(Map<String,Object> json){
-        String id = (String)json.get(ID);
+        String uid = (String)json.get(UID);
         String name = (String)json.get(NAME);
         String profileImage = (String)json.get(PROFILEIMAGE);
         String volunteer = (String) json.get(VOLUNTEERSTATUS);
         String address = (String) json.get(ADDRESS);
         String workAt = (String) json.get(WORKAT);
-        String age = (String) json.get(DATEBIRTH);
-        //ArrayList<String> friends = (ArrayList<String>)json.get(FRIENDS);
+        String age = (String) json.get(AGE);
 
-        User st = new User(id,name, profileImage, volunteer, address,workAt, age);
+        User user = new User(uid,name, profileImage, volunteer, address,workAt, age);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
-            st.setLastUpdated(time.getSeconds());
+            user.setLastUpdated(time.getSeconds());
         }catch(Exception e){
 
         }
-        return st;
+        return user;
     }
 
     public static Long getLocalLastUpdate() {
@@ -101,25 +90,24 @@ public class User {
 
     public Map<String,Object> toJson(){
         Map<String, Object> json = new HashMap<>();
-        json.put(ID, getId());
+        json.put(UID, getId());
         json.put(NAME, getName());
         json.put(PROFILEIMAGE, getProfileImageURL());
         json.put(volunteerStatus, getVolunteerStatus());
         json.put(address, getAddress());
         json.put(workAt, getWorkAt());
-        json.put(age, getDateBirth());
-        //json.put(friends.toString(),getFriends() );
+        json.put(age, getAge());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
     }
 
     @NonNull
     public String getId() {
-        return id;
+        return uid;
     }
 
     public void setId(@NonNull String id) {
-        this.id = id;
+        this.uid = id;
     }
 
     public String getName() {
@@ -146,10 +134,6 @@ public class User {
         this.volunteerStatus = volunteerStatus;
     }
 
-
-
-
-
     public String getAddress() {
         return address;
     }
@@ -166,31 +150,6 @@ public class User {
         this.workAt = workAt;
     }
 
-    public String getDateBirth() {
-        return age;
-    }
-
-    public void setDateBirth(String dateBirth) {
-        dateBirth = dateBirth;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
     public Long getLastUpdated() {
         return lastUpdated;
     }
@@ -199,10 +158,12 @@ public class User {
         this.lastUpdated = lastUpdated;
     }
 
-    @ColumnInfo(name = "first_name")
-    public String firstName;
+    public  String getAge() {
+        return age;
+    }
 
-    @ColumnInfo(name = "last_name")
-    public String lastName;
+    public  void setAge(String age) {
+        this.age=age;
+    }
 
 }

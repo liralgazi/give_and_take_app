@@ -81,9 +81,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
         public UserHolder(@NonNull View itemView) {
             super(itemView);
-            profileImage = itemView.findViewById(R.id.profileImage);
-            nameTV = itemView.findViewById(R.id.nameTv);
-            statusTV = itemView.findViewById(R.id.statusTv);
+            profileImage = itemView.findViewById(R.id.user_profileImage);
+            nameTV = itemView.findViewById(R.id.user_nameTv);
+            statusTV = itemView.findViewById(R.id.user_statusTv);
             layout = itemView.findViewById(R.id.relativeLayout);
 
 
