@@ -62,6 +62,9 @@ public class UserModel {
                 for(User user:list){
                     // insert new records into ROOM
                     localDb.userDao().insertAll(user);
+                    if (time < user.getLastUpdated()){
+                        time = user.getLastUpdated();
+                    }
                 }
                 try {
                     Thread.sleep(3000);
@@ -81,12 +84,6 @@ public class UserModel {
             listener.onComplete(null);
         });
     }
-
-//    public void addUserFromCreate(User user){
-//        firebaseModel.addUserFromCreate(user);
-//    }
-
-
 
 //    public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
 //        firebaseModel.uploadImage(name,bitmap,listener);
