@@ -97,7 +97,7 @@
                 android:padding="4dp"
                 android:maxLines="3"
                 android:id="@+id/profile_volunteerTv_edit"
-                android:hint="Volunteer At:"
+                android:hint="Do you volunteer?"
                 android:textStyle=""
                 android:textColor="@color/black"
                 android:paddingTop="10dp"/>
@@ -210,17 +210,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <EditText
                     android:id="@+id/nameTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:padding="10dp"
-                    android:hint="Enter Name.."
                     android:textColor='@color/black'
-                    android:textStyle="bold" />
-
+                    android:hint="Enter your name.."
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:layout_marginLeft="5dp"/>
                 <EditText
                     android:id="@+id/addressTv_edit"
                     android:layout_width="match_parent"
@@ -248,6 +246,14 @@
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/update_progressBar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/ll1"
+                    android:visibility="gone"
+                    android:layout_above="@+id/login_sign_up_btn"/>
 
                 <Button
                     android:id="@+id/profile_saveBtn"

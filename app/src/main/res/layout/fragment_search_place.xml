@@ -4,17 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/light_purpel_background">
+
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchView"
+        android:id="@+id/searchViewPlace"
         android:iconifiedByDefault="false"
         android:queryHint="Search here..."/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewPlace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/searchView"
+        android:layout_below="@+id/searchViewPlace"
         android:layout_marginTop="18dp" />
+
+
 </RelativeLayout>

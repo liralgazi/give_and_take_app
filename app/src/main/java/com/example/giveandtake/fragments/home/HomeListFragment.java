@@ -65,7 +65,6 @@ public class HomeListFragment extends Fragment {
 ////                Navigation.findNavController(view).navigate(action);
 //            }
 //        });
-
         binding.progressBar.setVisibility(View.GONE);
 
 

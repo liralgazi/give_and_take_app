@@ -8,21 +8,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
 ;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.example.giveandtake.fragments.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class MainActivity extends AppCompatActivity implements Search.onDataPass {
+public class MainActivity extends AppCompatActivity {
 
 
     NavController navController;
@@ -90,23 +84,5 @@ public class MainActivity extends AppCompatActivity implements Search.onDataPass
 
     public static String USER_ID;
     public static boolean IS_SEARCHED_USER=false;
-
-    @Override
-    public void onChange(String id) {
-        USER_ID = id;
-        IS_SEARCHED_USER = true;
-        //onUserProfileUid.onReceiveUserUid(id,999);
-
-    }
-
-
-//    public interface onUserProfileUid{
-//        void onReceiveUserUid(String id, int index);
-//    }
-//
-//    public void OnUserProfileUid(onUserProfileUid onUserProfileUid)
-//    {
-//        this.onUserProfileUid = onUserProfileUid;
-//    }
 
 }

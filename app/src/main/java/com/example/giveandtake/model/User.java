@@ -53,10 +53,6 @@ public class User {
     static public String WORKAT = "workAt";
     static public String AGE = "age";
 
-    public User() {
-
-    }
-
     public static User fromJson(Map<String,Object> json){
         String uid = (String)json.get(UID);
         String name = (String)json.get(NAME);

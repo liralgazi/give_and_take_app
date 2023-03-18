@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.Profile">
+    tools:context=".fragments.Profile"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -57,16 +58,6 @@
                 app:civ_border_color="@color/purple_200"
                 app:civ_border_width="1dp" />
 
-            <ImageButton
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:src="@drawable/ic_edit"
-                android:visibility="gone"
-                android:background="@drawable/ic_outline_circle"
-                android:elevation="3dp"
-                android:layout_alignEnd="@+id/profile_profileImage"
-                android:layout_alignBottom="@+id/profile_profileImage"
-                android:id="@+id/profile_editImage" />
 
 
         </RelativeLayout>
@@ -207,16 +198,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nameTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:padding="10dp"
-                    android:text="Name:"
-                    android:textColor='@color/black'
-                    android:textStyle="bold" />
-
-                <TextView
                     android:id="@+id/addressTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -239,19 +220,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
-                    android:text="Date Of Birth:"
+                    android:text="Age:"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
-                <TextView
-                    android:id="@+id/friendsCountTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor='@color/black'
-                    android:text="Friends:"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:layout_marginLeft="5dp"/>
+
 
             </LinearLayout>
 
@@ -275,17 +248,7 @@
             android:layout_below="@+id/addFriend_layout"
             android:id="@+id/profile_view1"/>
 
-        <Button
-            android:layout_below="@+id/addFriend_layout"
-            android:id="@+id/profile_addFriendBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:minWidth="160dp"
-            android:minHeight="10dp"
-            android:text="Add Friend"
-            android:visibility="visible" />
+
     </RelativeLayout>
 
     <View

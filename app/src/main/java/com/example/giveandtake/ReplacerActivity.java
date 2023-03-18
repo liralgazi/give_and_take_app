@@ -34,6 +34,14 @@ public class ReplacerActivity extends AppCompatActivity {
             fragmentTransaction.addToBackStack(null);
         }
 
+        /*
+        if(fragment instanceof Profile){
+            fragmentTransaction.addToBackStack(null);
+        }
+        if(fragment instanceof ProfileEdit){
+            fragmentTransaction.addToBackStack(null);
+        }
+         */
         fragmentTransaction.replace(frameLayout.getId(), fragment);
         fragmentTransaction.commit();
     }

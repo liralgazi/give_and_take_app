@@ -39,6 +39,8 @@ public class CreateAccountFragment extends Fragment {
     private TextView loginTv;
     private Button signUpBtn;
     private FirebaseAuth auth;
+    HashMap<String, Object> map = new HashMap<>();
+
 
     public static final String EMAIL_REGEX = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -111,11 +113,20 @@ public class CreateAccountFragment extends Fragment {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-
                 createAccount( name, email, password);
+
             }
         });
     }
+
+    public HashMap<String, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(HashMap<String, Object> map) {
+        this.map = map;
+    }
+
 
     private void createAccount(String name, String email, String password) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -132,6 +143,7 @@ public class CreateAccountFragment extends Fragment {
                         }
                     });
                     uploadUser(user, name, email);
+
                 } else {
                     progressBar.setVisibility(View.GONE);
                     String exception = task.getException().getMessage();
@@ -140,17 +152,14 @@ public class CreateAccountFragment extends Fragment {
             }
         });
     }
-    //private void uploadUser(FirebaseUser user, String name, String email) {
-    private void uploadUser(FirebaseUser user,String name, String email) {
-        Map<String, Object> map = new HashMap<>();
-//        User userDB = new User( user.getUid(),name,"",volunteer,address,work,age);
-//        UserModel.instance().addUserFromCreate(userDB);
 
+
+
+    public void uploadUser(FirebaseUser user, String name, String email) {
         map.put("name", name);
         map.put("email", email);
         map.put("profileImage", "");
         map.put("uid", user.getUid());
-
 
         FirebaseFirestore.getInstance().collection("User").document(user.getUid()).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
