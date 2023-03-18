@@ -18,10 +18,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.giveandtake.databinding.FragmentUserListBinding;
 import com.example.giveandtake.model.User;
 import com.example.giveandtake.model.UserModel;
+
+import java.util.function.Predicate;
 
 public class UserListFragment extends Fragment {
     FragmentUserListBinding binding;
@@ -73,6 +76,25 @@ public class UserListFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.GONE);
 
+        binding.searchView.setActivated(true);
+        binding.searchView.setQueryHint("Search for volunteer");
+        binding.searchView.onActionViewExpanded();
+        binding.searchView.setIconified(false);
+        binding.searchView.clearFocus();
+
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+//                adapter.data.stream().filter(user-> user.getName().equals(newText));
+                adapter.data.stream().allMatch(user-> user.getName().equals(newText));
+                return false;
+            }
+        });
 
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
             if(list.size() != 0)

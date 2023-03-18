@@ -37,7 +37,7 @@ class UserViewHolder extends RecyclerView.ViewHolder{
 
     public void bind(User user, int pos) {
         nameTv.setText(user.name);
-        statusTv.setText(user.uid);
+        statusTv.setText(user.volunteerStatus);
         if (user.getProfileImageURL()  != null && user.getProfileImageURL().length() > 5) {
             Picasso.get().load(user.getProfileImageURL()).placeholder(R.drawable.ic_person).into(profileImage);
         }else{
