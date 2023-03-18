@@ -12,6 +12,7 @@ public class UserModel {
     private static final UserModel _instance = new UserModel();
     private FireBaseModel firebaseModel = new FireBaseModel();
     AppLocalDbRepository localDb = AppLocalDb.getAppDb();
+    final public MutableLiveData<LoadingState> EventUserListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
     public static UserModel instance(){
         return _instance;
     }
@@ -21,6 +22,12 @@ public class UserModel {
 
     public interface Listener<T>{
         void onComplete(T data);
+    }
+
+    public enum LoadingState{
+        LOADING,
+        NOT_LOADING
+
     }
 
     private LiveData<List<User>> usersList;
@@ -37,14 +44,6 @@ public class UserModel {
         firebaseModel.getUserById(id);
         return user;
     }
-
-
-    public enum LoadingState{
-        LOADING,
-        NOT_LOADING
-    }
-
-    final public MutableLiveData<LoadingState> EventUserListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
 
     public void refreshAllUsers(){
         EventUserListLoadingState.setValue(LoadingState.LOADING);
