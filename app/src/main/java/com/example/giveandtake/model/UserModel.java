@@ -39,11 +39,11 @@ public class UserModel {
         return usersList;
     }
 
-    User user;
-    public User getUserById(String id){
-        firebaseModel.getUserById(id);
-        return user;
-    }
+//    User user;
+//    public User getUserById(String id){
+//        firebaseModel.getUserById(id);
+//        return user;
+//    }
 
     public void refreshAllUsers(){
         EventUserListLoadingState.setValue(LoadingState.LOADING);

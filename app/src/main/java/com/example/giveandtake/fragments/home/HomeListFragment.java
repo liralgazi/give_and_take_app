@@ -65,12 +65,6 @@ public class HomeListFragment extends Fragment {
 ////                Navigation.findNavController(view).navigate(action);
 //            }
 //        });
-
-        View addButton = view.findViewById(R.id.btnAdd);
-        NavDirections action = HomeListFragmentDirections.actionHomeListFragmentToAddPostFragment();
-        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
-
-
         binding.progressBar.setVisibility(View.GONE);
 
 

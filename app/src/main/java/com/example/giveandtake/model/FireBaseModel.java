@@ -37,7 +37,6 @@ public class FireBaseModel {
 
     public void getAllUsersSince(Long since, UserModel.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
-                .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -55,22 +54,21 @@ public class FireBaseModel {
                 });
     }
 
-    public User getUserById(String id){
-        final User[] user = {new User()};
-        db.collection(User.COLLECTION).whereEqualTo(User.UID, id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    QuerySnapshot jsons = task.getResult();
-                    for (DocumentSnapshot json: jsons){
-                        user[0] = User.fromJson(json.getData());
-                    }
-                }
-            }
-        });
-        return user[0];
-    }
-
+//    public User getUserById(String id){
+//        //final User[] user = {new User()};
+//        db.collection(User.COLLECTION).whereEqualTo(User.UID, id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if(task.isSuccessful()){
+//                    QuerySnapshot jsons = task.getResult();
+//                    for (DocumentSnapshot json: jsons){
+//                        user[0] = User.fromJson(json.getData());
+//                    }
+//                }
+//            }
+//        });
+//        return user[0];
+//    }
     public void getAllPostsSince(Long since, PostModel.Listener<List<Post>> callback){
         db.collection(Post.COLLECTION)
                 .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
@@ -91,6 +89,8 @@ public class FireBaseModel {
                 });
     }
 
+
+
     public void addUser(User user, UserModel.Listener<Void> listener) {
         db.collection(User.COLLECTION).document(user.getId()).set(user.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -100,6 +100,9 @@ public class FireBaseModel {
                     }
                 });
     }
+
+//    public void addUserFromCreate(User user){
+//        db.collection(User.COLLECTION).document(user.getId()).set(user.toJson());}
 
     public void addPost(Post post, PostModel.Listener<Void> listener) {
         db.collection(Post.COLLECTION).document(post.getPostId()).set(post.toJson())
