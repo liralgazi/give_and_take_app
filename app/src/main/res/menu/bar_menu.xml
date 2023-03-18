@@ -12,18 +12,18 @@
 
     </item>
     <item
-        android:title="@string/add_new_post"
         android:id="@+id/addFragment"
+        android:title="@string/add_new_post"
         android:icon="@drawable/plus">
     </item>
     <item
+        android:id="@+id/searchPlaceFragment"
         android:title="@string/editProfile"
-        android:id="@+id/profileEdit"
         android:icon="@drawable/ic_pencil">
     </item>
     <item
-        android:title="@string/profile"
         android:id="@+id/profileFragment"
+        android:title="@string/profile"
         android:icon="@drawable/profile_icon">
     </item>
 

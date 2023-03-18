@@ -36,7 +36,7 @@
             app:destination="@id/profileEdit" />
     </fragment>
     <fragment
-        android:id="@+id/placesSearch"
-        android:name="com.example.giveandtake.model.Places"
+        android:id="@+id/searchPlaceFragment"
+        android:name="com.example.giveandtake.model.PlaceSearch"
         android:label="PlacesSearch" />
 </navigation>
