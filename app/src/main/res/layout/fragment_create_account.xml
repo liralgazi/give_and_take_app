@@ -35,43 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/name"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/age"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/address"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_work"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/work"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
-
-            <EditText
-                android:id="@+id/signup_volunteer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/volunteer"
+                android:hint="UserName"
                 android:inputType="textEmailAddress"
                 android:padding="12dp" />
 
