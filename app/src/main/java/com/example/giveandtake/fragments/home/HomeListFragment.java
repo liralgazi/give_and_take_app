@@ -34,6 +34,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class HomeListFragment extends Fragment {
@@ -67,9 +69,14 @@ public class HomeListFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.GONE);
 
+
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
-            if(list.size() != 0)
-                adapter.setData(list);
+            List<Post> revertList = new LinkedList<>();
+            if(list.size() != 0){
+               for(int i =list.size()-1; i>=0 ;i--)
+                   revertList.add(list.get(i));
+               adapter.setData(revertList);
+            }
         });
 
         PostModel.instance().EventPostListLoadingState.observe(getViewLifecycleOwner(), status->{
