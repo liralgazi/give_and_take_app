@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.giveandtake.fragments.Profile"
+        android:name="com.example.giveandtake.fragments.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
     </fragment>
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.giveandtake.fragments.ProfileEdit"
+        android:name="com.example.giveandtake.fragments.profile.ProfileEdit"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_profile_edit">
     </fragment>
