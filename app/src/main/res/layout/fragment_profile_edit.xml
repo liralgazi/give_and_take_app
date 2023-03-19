@@ -6,37 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.profile.Profile">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/profile_toolbar_edit"
-        android:background="@color/white"
-        android:backgroundTint="@color/purple_200"
-        android:elevation="2dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetEnd="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/updateProfile"
-                android:id="@+id/profile_toolBar_profileTv_edit"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-
     <LinearLayout
         android:id="@+id/liner1"
-        android:layout_below="@+id/profile_toolbar_edit"
+       android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
