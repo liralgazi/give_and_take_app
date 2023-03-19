@@ -91,16 +91,17 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="@color/black"/>
+
             <EditText
+                android:id="@+id/profile_volunteerTv_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:maxLines="3"
-                android:id="@+id/profile_volunteerTv_edit"
                 android:hint="Do you volunteer?"
-                android:textStyle=""
+                android:maxLines="3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
                 android:textColor="@color/black"
-                android:paddingTop="10dp"/>
+                android:textStyle="" />
 
 
         </LinearLayout>
@@ -216,6 +217,7 @@
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
                     android:hint="Enter Address.."
+                    android:layout_marginRight="100dp"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
@@ -225,6 +227,7 @@
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
                     android:hint="Enter workplace.."
+                    android:layout_marginRight="100dp"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
@@ -232,6 +235,7 @@
                     android:id="@+id/birthdayTv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
                     android:textColor='@color/black'
                     android:hint="Enter age.."
                     android:textStyle="bold"
@@ -248,9 +252,11 @@
 
                 <Button
                     android:id="@+id/profile_saveBtn"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_edit"
+                    android:layout_marginLeft="110dp"
                     android:text="SAVE CHANGES"
                     />
 
