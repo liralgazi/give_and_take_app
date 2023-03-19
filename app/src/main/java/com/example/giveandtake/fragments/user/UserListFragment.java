@@ -24,6 +24,7 @@ import com.example.giveandtake.databinding.FragmentUserListBinding;
 import com.example.giveandtake.model.User;
 import com.example.giveandtake.model.UserModel;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class UserListFragment extends Fragment {
@@ -50,33 +51,10 @@ public class UserListFragment extends Fragment {
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 User user = viewModel.getData().getValue().get(pos);
-                //TODO: add other directions to another fragment
-
             }
         });
-         adapter = new UserRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
-        binding.recyclerView.setAdapter(adapter);
+
         binding.progressBar.setVisibility(View.GONE);
-
-        binding.searchView.setActivated(true);
-        binding.searchView.setQueryHint("Search for volunteer");
-        binding.searchView.onActionViewExpanded();
-        binding.searchView.setIconified(false);
-        binding.searchView.clearFocus();
-
-        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-//                adapter.data.stream().filter(user-> user.getName().equals(newText));
-                adapter.data.stream().allMatch(user-> user.getName().equals(newText));
-                return false;
-            }
-        });
 
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
             if(list.size() != 0)
@@ -100,7 +78,7 @@ public class UserListFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(UserListFragmentViewModel.class);
     }
 
-    void reloadUserData(){;
+    void reloadUserData(){
         UserModel.instance().refreshAllUsers();
     }
 }

@@ -4,39 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.Profile">
-
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/profile_toolbar"
-        android:background="@color/white"
-        android:backgroundTint="@color/purple_200"
-        android:elevation="2dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetEnd="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/profile"
-                android:id="@+id/profile_toolBar_profileTv"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-
+    tools:context=".fragments.profile.Profile"
+    android:background="@drawable/light_purpel_background"
+    >
     <LinearLayout
         android:id="@+id/liner1"
-        android:layout_below="@+id/profile_toolbar"
+      android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -202,6 +175,7 @@
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
                     android:text="Address:"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
@@ -211,6 +185,7 @@
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
                     android:text="Work At:"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
@@ -220,9 +195,17 @@
                     android:layout_height="match_parent"
                     android:textColor='@color/black'
                     android:text="Age:"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
+
+                <Button
+                    android:id="@+id/editProfileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Edit Profile"/>
 
 
             </LinearLayout>

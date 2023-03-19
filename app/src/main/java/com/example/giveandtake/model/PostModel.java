@@ -78,6 +78,6 @@ public class PostModel {
     }
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
-        firebaseModel.uploadImage(name,bitmap, listener);
+        firebaseModel.uploadPostImage(name,bitmap, listener);
     }
 }

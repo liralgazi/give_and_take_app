@@ -30,7 +30,7 @@ public class LoginFragment extends Fragment {
 
     private EditText emailEt, passwordEt;
     private TextView signUpTv;
-    private Button loginBtn, googleBtn;
+    private Button loginBtn;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
 

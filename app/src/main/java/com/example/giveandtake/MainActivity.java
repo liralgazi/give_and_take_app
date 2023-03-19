@@ -1,17 +1,14 @@
 package com.example.giveandtake;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
-;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -55,7 +52,6 @@ public class MainActivity extends AppCompatActivity{
     int fragmentMenuId = 0;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == android.R.id.home){
             navController.popBackStack();
         }else{
@@ -64,27 +60,13 @@ public class MainActivity extends AppCompatActivity{
                 finish();
                 Intent i = new Intent(getApplicationContext(),SplashActivity.class);
                 startActivity(i);
-            }else{
+            }
+            else{
+
                 fragmentMenuId = item.getItemId();
                 return NavigationUI.onNavDestinationSelected(item,navController);
             }
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    @Override
-    public void onBackPressed() {
-        //if (viewPager.setCurrentItem()==4)
-            // viewPager.setCurrentItem(0);
-        //else
-        IS_SEARCHED_USER  =false;
-        super.onBackPressed();
-    }
-
-    public static String USER_ID;
-    public static boolean IS_SEARCHED_USER=false;
-
 }

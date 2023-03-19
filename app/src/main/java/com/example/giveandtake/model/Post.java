@@ -12,6 +12,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.ServerTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,43 +22,51 @@ public class Post {
     @PrimaryKey
     @NonNull
     public String postId;
-    public String userName, profileImage, postImage,  postText, postLikeText;
+    public String userName, profileImage, userId, postImage,  postText, postLikeText;
     @ServerTimestamp
     public Date timestamp;
     public Long likeCount;
     public Long lastUpdated;
 
-    public Post(String userName, String profileImage, String postImage, Long likeCount, String postText , String postId ,String postLikeText) {
-        this.userName = userName;
-        this.profileImage = profileImage;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Post(String userName, String profileImage, String userId, String postImage, Long likeCount, String postText , String postId) {
+       this.userName = userName;
+       this.profileImage = profileImage;
+       this.userId = userId;
         this.postImage = postImage;
         this.likeCount = likeCount;
         this.postText = postText;
         this.postId = postId;
-        this.postLikeText= postLikeText;
     }
 
     static final String USERNAME = "userName";
+    static final String USERID = "userId";
     static final String POSTID = "postId";
     static final String PROFILEIMAGE = "profileImage";
     static final String POSTIMAGE = "postImage";
     static final String LIKECOUNT = "likeCount";
     static final String POSTEXT = "postText";
-    static final String POSTLIKETEXT = "postLikeText";
     static final String COLLECTION = "posts";
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
     public static Post fromJson(Map<String,Object> json){
         String postId = (String)json.get(POSTID);
+        String userId = (String)json.get(USERID);
         String name = (String)json.get(USERNAME);
         String profileImage = (String)json.get(PROFILEIMAGE);
         String postImage = (String)json.get(POSTIMAGE);
         String postText = (String)json.get(POSTEXT);
         Long likeCount = (Long) json.get(LIKECOUNT);
-        String likeText = (String)json.get(POSTLIKETEXT);
 
-        Post post = new Post(name,profileImage,postImage,likeCount, postText,postId,likeText);
+        Post post = new Post(name,profileImage,userId,postImage,likeCount, postText,postId);
         try{
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
@@ -82,6 +91,7 @@ public class Post {
     public Map<String,Object> toJson(){
         Map<String, Object> json = new HashMap<>();
         json.put(USERNAME, getUserName());
+        json.put(USERID, getUserId());
         json.put(POSTID, getPostId());
         json.put(PROFILEIMAGE, getProfileImage());
         json.put(POSTIMAGE, getPostImage());

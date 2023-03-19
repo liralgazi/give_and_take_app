@@ -1,4 +1,5 @@
 package com.example.giveandtake.model;
+import android.graphics.Bitmap;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -61,9 +62,6 @@ public class UserModel {
                 for(User user:list){
                     // insert new records into ROOM
                     localDb.userDao().insertAll(user);
-                    if (time < user.getLastUpdated()){
-                        time = user.getLastUpdated();
-                    }
                 }
                 try {
                     Thread.sleep(3000);
@@ -84,9 +82,9 @@ public class UserModel {
         });
     }
 
-//    public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
-//        firebaseModel.uploadImage(name,bitmap,listener);
-//    }
+    public void uploadImage(String name, Bitmap bitmap, Listener<String>listener) {
+        firebaseModel.uploadProfileImage(name,bitmap, listener);
+    }
 }
 
 

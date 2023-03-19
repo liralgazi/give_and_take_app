@@ -13,7 +13,7 @@
 </item>
     <item
         android:title="@string/friends"
-        android:id="@+id/searchFragment"
+        android:id="@+id/userListFragment"
         android:icon="@drawable/friends">
     </item>
     <item
@@ -24,7 +24,9 @@
     <item
         android:id="@+id/searchPlaceFragment"
         android:icon="@drawable/find_people"
-        android:title="@string/places" />
+        android:title="@string/places" >
+
+    </item>
     <item
         android:id="@+id/editProfileFragment"
         android:title="@string/editProfile"
