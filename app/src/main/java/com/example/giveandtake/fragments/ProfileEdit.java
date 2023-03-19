@@ -99,11 +99,8 @@ public class ProfileEdit extends Fragment {
         volunteerET = view.findViewById(R.id.profile_volunteerTv_edit);
         updateBtn = view.findViewById(R.id.profile_saveBtn);
         auth = FirebaseAuth.getInstance();
-        //nameET = view.findViewById(R.id.nameTv_edit);
         progressBar = view.findViewById(R.id.update_progressBar);
 
-        //username
-        //usernameET = view.findViewById(R.id.nameTv);
 
     }
 
@@ -149,10 +146,6 @@ public class ProfileEdit extends Fragment {
 
     private void uploadUpdatedUser(FirebaseUser user,String age,String work, String address, String volunteer ) {
         Map<String, Object> map = new HashMap<>();
-        //CreateAccountFragment ca = new CreateAccountFragment();
-        //Map<String, Object> mapCA =  ca.getMap();
-
-
         if(!age.equals(""))
             map.put("age", age);
         if(!work.equals(""))

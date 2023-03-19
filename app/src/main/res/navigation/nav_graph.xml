@@ -47,4 +47,10 @@
         android:name="com.example.giveandtake.fragments.ProfileEdit"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_profile_edit" />
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.giveandtake.model.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+
 </navigation>

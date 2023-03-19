@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity{
 
 
     NavController navController;
+    String api= "dd16b736845c4011a2b69b986bbc1a32";
+    String authURL = "GET https://newsapi.org/v2/everything?q=keyword&apiKey=dd16b736845c4011a2b69b986bbc1a32";
     private Toolbar toolbar;
 
     @Override

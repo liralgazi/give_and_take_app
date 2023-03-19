@@ -42,6 +42,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
 
         holder.layout.setVisibility(View.VISIBLE);
         holder.placeNameTV.setText(list.get(position).getName());
+        //holder.descriptionTv.setText(list.get(position).getDescription());
         Glide.with(holder.itemView.getContext().getApplicationContext())
                 .load(list.get(position).getImageURL())
                 .placeholder(R.drawable.ic_person)
@@ -73,6 +74,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
         private TextView placeNameTV;
         private RelativeLayout layout;
 
+
+
         public PlaceHolder(@NonNull View itemView) {
             super(itemView);
             placeImage = itemView.findViewById(R.id.placeImage);
@@ -80,7 +83,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
             layout = itemView.findViewById(R.id.relativeLayout_place);
         }
 
+
+
+
+
     }
+
+
+
 
     public void OnPlaceClicked(OnPlaceClicked onPlaceClicked){this.onPlaceClicked = onPlaceClicked;}
     public interface OnPlaceClicked

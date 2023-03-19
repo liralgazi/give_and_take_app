@@ -44,6 +44,7 @@ public class User {
         this.workAt = workAt;
         this.volunteerStatus = volunteerStatus;
     }
+    public User(){}
 
     static public String UID="uid";
     static public String NAME="name";

@@ -28,7 +28,7 @@
     <string name="address">Where do you live?</string>
     <string name="editProfile">Edit Profile Info</string>
     <string name="places">Volunteer</string>
-
+    <string name="news">news</string>
 
 
     <string name="sign_up">Sign Up</string>
@@ -38,5 +38,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_heading_display_here">Main heading display here....</string>
 
 </resources>
