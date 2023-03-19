@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.giveandtake.fragments.profile.ProfileDirections;
 import com.example.giveandtake.model.FireBaseModel;
 import com.example.giveandtake.model.PostModel;
 import com.example.giveandtake.model.Post;

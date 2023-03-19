@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchPlaceFragment"
@@ -48,4 +51,9 @@
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_profile_edit">
     </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.example.giveandtake.fragments.profile.EditPostFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_post" />
 </navigation>
