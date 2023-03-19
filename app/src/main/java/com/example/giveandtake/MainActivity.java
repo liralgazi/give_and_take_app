@@ -55,8 +55,17 @@ public class MainActivity extends AppCompatActivity{
         if (item.getItemId() == android.R.id.home){
             navController.popBackStack();
         }else{
-            fragmentMenuId = item.getItemId();
-            return NavigationUI.onNavDestinationSelected(item,navController);
+            if(item.getItemId() == R.id.nav_logout){
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
+                startActivity(i);
+            }
+            else{
+                fragmentMenuId = item.getItemId();
+                return NavigationUI.onNavDestinationSelected(item,navController);
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
