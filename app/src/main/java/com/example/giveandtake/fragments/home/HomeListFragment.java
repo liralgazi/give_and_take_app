@@ -71,11 +71,8 @@ public class HomeListFragment extends Fragment {
 
 
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
-            List<Post> revertList = new LinkedList<>();
             if(list.size() != 0){
-               for(int i =list.size()-1; i>=0 ;i--)
-                   revertList.add(list.get(i));
-               adapter.setData(revertList);
+               adapter.setData(list);
             }
         });
 
