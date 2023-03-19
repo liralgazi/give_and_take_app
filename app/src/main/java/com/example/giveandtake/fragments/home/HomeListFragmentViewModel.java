@@ -12,7 +12,7 @@ public class HomeListFragmentViewModel extends ViewModel {
 
     private LiveData<List<Post>> data = PostModel.instance().getAllPosts();
 
-    LiveData<List<Post>> getData(){
+    public LiveData<List<Post>> getData(){
         return data;
     }
 }
