@@ -2,8 +2,6 @@ package com.example.giveandtake.model;
 
 import android.net.Uri;
 
-import com.example.giveandtake.adapter.GalleryAdapter;
-
 public class GalleryImages {
 
     public Uri picUri;

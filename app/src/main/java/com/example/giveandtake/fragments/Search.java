@@ -2,9 +2,7 @@ package com.example.giveandtake.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.giveandtake.R;
-import com.example.giveandtake.adapter.UserAdapter;
 import com.example.giveandtake.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +31,6 @@ public class Search extends Fragment {
 
     SearchView searchView;
     RecyclerView recyclerView;
-    UserAdapter adapter;
     private List<User> list;
     CollectionReference reference;
 
@@ -69,18 +65,18 @@ public class Search extends Fragment {
         reference = FirebaseFirestore.getInstance().collection("User");
         loadUserDate();
         searchUser();
-        clickListener();
+       // clickListener();
     }
 
-    private void clickListener()
-    {
-        adapter.OnUserClicked(new UserAdapter.OnUserClicked() {
-            @Override
-            public void onClick(String id) {
-                onDataPass.onChange(id);
-            }
-        });
-    }
+//    private void clickListener()
+//    {
+//        adapter.OnUserClicked(new UserAdapter.OnUserClicked() {
+//            @Override
+//            public void onClick(String id) {
+//                onDataPass.onChange(id);
+//            }
+//        });
+//    }
 
     private void loadUserDate()
     {
@@ -98,7 +94,7 @@ public class Search extends Fragment {
                     User user = snapshot.toObject(User.class);
                     list.add(user);
                 }
-                adapter.notifyDataSetChanged();
+               // adapter.notifyDataSetChanged();
             }
         });
     }
@@ -126,7 +122,7 @@ public class Search extends Fragment {
                                         User user = snapshot.toObject(User.class);
                                         list.add(user);
                                     }
-                                    adapter.notifyDataSetChanged();
+                                   // adapter.notifyDataSetChanged();
                                 }
                             }
                         });
@@ -150,8 +146,8 @@ public class Search extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<User>();
-        adapter = new UserAdapter(list);
-        recyclerView.setAdapter(adapter);
+       // adapter = new UserAdapter(list);
+        //recyclerView.setAdapter(adapter);
 
     }
 }

@@ -62,9 +62,6 @@ public class UserModel {
                 for(User user:list){
                     // insert new records into ROOM
                     localDb.userDao().insertAll(user);
-                    if (time < user.getLastUpdated()){
-                        time = user.getLastUpdated();
-                    }
                 }
                 try {
                     Thread.sleep(3000);

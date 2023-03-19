@@ -37,7 +37,6 @@ public class FireBaseModel {
 
     public void getAllUsersSince(Long since, UserModel.Listener<List<User>> callback){
         db.collection(User.COLLECTION)
-                .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, new Timestamp(since,0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
