@@ -100,6 +100,7 @@ public class Profile extends Fragment {
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 Post post = viewModel.getData().getValue().get(pos);
+                Navigation.createNavigateOnClickListener(action2);
             }
         });
 
