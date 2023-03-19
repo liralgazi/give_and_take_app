@@ -24,7 +24,7 @@
         android:id="@+id/userListFragment"
         android:name="com.example.giveandtake.fragments.user.UserListFragment"
         android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" >
+        tools:layout="@layout/fragment_user_list">
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -34,17 +34,7 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_editPostFragment"
-            app:destination="@id/editPostFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/searchPlaceFragment"
-        android:name="com.example.giveandtake.model.PlaceSearch"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search_place">
-    </fragment>
-
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.giveandtake.fragments.profile.ProfileEdit"
@@ -52,8 +42,8 @@
         tools:layout="@layout/fragment_profile_edit">
     </fragment>
     <fragment
-        android:id="@+id/editPostFragment"
-        android:name="com.example.giveandtake.fragments.profile.EditPostFragment"
-        android:label="fragment_edit_post"
-        tools:layout="@layout/fragment_edit_post" />
+        android:id="@+id/newsFragment"
+        android:name="com.example.giveandtake.model.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
 </navigation>

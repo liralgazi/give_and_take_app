@@ -7,8 +7,6 @@
     tools:context=".fragments.profile.Profile"
     android:background="@drawable/light_purpel_background"
     >
-
-
     <LinearLayout
         android:id="@+id/liner1"
       android:layout_marginTop="50dp"

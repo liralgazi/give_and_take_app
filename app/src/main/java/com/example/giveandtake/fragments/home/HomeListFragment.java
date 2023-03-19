@@ -1,42 +1,22 @@
 package com.example.giveandtake.fragments.home;
-
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.FontRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.navigation.NavDirections;
-
-import com.example.giveandtake.R;
 import com.example.giveandtake.databinding.FragmentHomeListBinding;
-
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.example.giveandtake.fragments.profile.ProfileDirections;
-import com.example.giveandtake.model.FireBaseModel;
 import com.example.giveandtake.model.PostModel;
 import com.example.giveandtake.model.Post;
-import com.example.giveandtake.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class HomeListFragment extends Fragment {
@@ -66,7 +46,6 @@ public class HomeListFragment extends Fragment {
                 setLikeCountToDb(post);
             }
         });
-
         binding.progressBar.setVisibility(View.GONE);
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
             if(list.size() != 0){

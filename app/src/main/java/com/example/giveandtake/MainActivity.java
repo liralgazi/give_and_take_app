@@ -1,12 +1,10 @@
 package com.example.giveandtake;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
-;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +17,8 @@ public class MainActivity extends AppCompatActivity{
 
 
     NavController navController;
+    String api= "dd16b736845c4011a2b69b986bbc1a32";
+    String authURL = "GET https://newsapi.org/v2/everything?q=keyword&apiKey=dd16b736845c4011a2b69b986bbc1a32";
     private Toolbar toolbar;
 
     @Override
@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(i);
             }
             else{
+
                 fragmentMenuId = item.getItemId();
                 return NavigationUI.onNavDestinationSelected(item,navController);
             }
-
         }
         return super.onOptionsItemSelected(item);
     }

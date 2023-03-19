@@ -33,6 +33,11 @@
         android:icon="@drawable/ic_pencil">
     </item>
     <item
+        android:id="@+id/newsFragment"
+        android:title="@string/news"
+        android:icon="@drawable/ic_pencil">
+    </item>
+    <item
         android:title="Logout"
         android:id="@+id/nav_logout"
         android:icon="@drawable/logout">

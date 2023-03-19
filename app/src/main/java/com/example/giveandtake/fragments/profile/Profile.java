@@ -69,19 +69,21 @@ public class Profile extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                nameTv.setText(user.getName());
-                volunteerStatusTv.setText("Volunteering: "+ user.getVolunteerStatus());
-                //profileImage.setImageURI(Uri.parse(documentSnapshot.getString("profileImageURL")));
-                if(documentSnapshot.getString("workAt") == null)
-                    workTv.setText("Work At: ");
-                else
-                     workTv.setText("Work At: "+user.getWorkAt());
-                addressTv.setText("Address: "+user.getAddress());
-                ageTv.setText("Age: " +user.getAge());
-                if (user.getProfileImage() != "" && user.getProfileImage().length() > 5) {
-                    Picasso.get().load(user.getProfileImage()).placeholder(R.drawable.ic_person).into(profileImageView);
-                }else{
-                    profileImageView.setImageResource(R.drawable.ic_person);
+                if(user !=null){
+                    nameTv.setText(user.getName());
+                    volunteerStatusTv.setText("Volunteering: "+ user.getVolunteerStatus());
+                    //profileImage.setImageURI(Uri.parse(documentSnapshot.getString("profileImageURL")));
+                    if(documentSnapshot.getString("workAt") == null)
+                        workTv.setText("Work At: ");
+                    else
+                        workTv.setText("Work At: "+user.getWorkAt());
+                    addressTv.setText("Address: "+user.getAddress());
+                    ageTv.setText("Age: " +user.getAge());
+                    if (user.getProfileImage() != "" && user.getProfileImage().length() > 5) {
+                        Picasso.get().load(user.getProfileImage()).placeholder(R.drawable.ic_person).into(profileImageView);
+                    }else{
+                        profileImageView.setImageResource(R.drawable.ic_person);
+                    }
                 }
             }
         });
@@ -94,13 +96,11 @@ public class Profile extends Fragment {
         adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
         binding.profileRecycle.setAdapter(adapter);
 
-        NavDirections action2 = ProfileDirections.actionProfileFragmentToEditPostFragment();
         adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 Post post = viewModel.getData().getValue().get(pos);
-                Navigation.createNavigateOnClickListener(action2);
             }
         });
 

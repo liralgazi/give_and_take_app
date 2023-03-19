@@ -44,6 +44,7 @@ public class User {
         this.workAt = workAt;
         this.volunteerStatus = volunteerStatus;
     }
+    public User(){}
 
     static public String UID="uid";
     static public String NAME="name";
@@ -52,10 +53,6 @@ public class User {
     static public String ADDRESS= "address";
     static public String WORKAT = "workAt";
     static public String AGE = "age";
-
-    public User() {
-
-    }
 
     public static User fromJson(Map<String,Object> json){
         String uid = (String)json.get(UID);

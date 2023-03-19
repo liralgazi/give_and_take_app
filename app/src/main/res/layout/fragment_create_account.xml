@@ -31,10 +31,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:padding="12dp"
-                android:hint="@string/name"
+                android:hint="UserName"
                 android:inputType="textEmailAddress"
-                android:drawableLeft="@drawable/email" />
+                android:padding="12dp" />
+
+
             <EditText
                 android:id="@+id/signup_confirm_email"
                 android:layout_width="match_parent"

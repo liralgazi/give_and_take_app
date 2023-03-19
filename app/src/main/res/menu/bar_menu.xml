@@ -17,9 +17,9 @@
         android:icon="@drawable/plus">
     </item>
     <item
-        android:id="@+id/searchPlaceFragment"
-        android:title="@string/places"
-        android:icon="@drawable/ic_map">
+        android:id="@+id/newsFragment"
+        android:title="@string/news"
+        android:icon="@drawable/ic_newspaper">
     </item>
 
     <item

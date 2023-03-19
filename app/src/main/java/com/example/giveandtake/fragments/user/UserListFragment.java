@@ -56,26 +56,6 @@ public class UserListFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.GONE);
 
-        binding.searchView.setActivated(true);
-        binding.searchView.setQueryHint("Search for volunteer");
-        binding.searchView.onActionViewExpanded();
-        binding.searchView.setIconified(false);
-        binding.searchView.clearFocus();
-
-        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-//                adapter.data.stream().filter(user-> user.getName().equals(newText));
-                adapter.data.stream().allMatch(user-> user.getName().equals(newText));
-                return false;
-            }
-        });
-
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
             if(list.size() != 0)
                 adapter.setData(list);
