@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/home"
+        android:id="@+id/homeListFragment"
+        android:icon="@drawable/home">
+    </item>
+    <item
+    android:title="@string/profile"
+    android:id="@+id/profileFragment"
+    android:icon="@drawable/profile_icon">
+</item>
+    <item
+        android:title="@string/friends"
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/friends">
+    </item>
+    <item
+        android:title="@string/add_new_post"
+        android:id="@+id/addFragment"
+        android:icon="@drawable/add_post">
+    </item>
+    <item
+        android:id="@+id/searchPlaceFragment"
+        android:icon="@drawable/find_people"
+        android:title="@string/places" >
+
+    </item>
+    <item
+        android:id="@+id/editProfileFragment"
+        android:title="@string/editProfile"
+        android:icon="@drawable/ic_pencil">
+    </item>
     <item
         android:title="Logout"
         android:id="@+id/nav_logout"
         android:icon="@drawable/logout">
     </item>
-    <item
-        android:title="@string/add_new_post"
-        android:id="@+id/nav_post"
-        android:icon="@drawable/add_post">
-    </item>
-    <item
-        android:title="@string/profile"
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/profile_icon">
-    </item>
-    <item
-        android:title="@string/home"
-        android:id="@+id/nav_home"
-        android:icon="@drawable/home">
-    </item>
-    <item
-        android:title="@string/friends"
-        android:id="@+id/nav_friends"
-        android:icon="@drawable/friends">
-    </item>
-    <item
-        android:title="@string/editProfile"
-        android:id="@+id/nav_edit_profile"
-        android:icon="@drawable/ic_pencil">
-    </item>
-    <item
-        android:id="@+id/nav_places"
-        android:icon="@drawable/find_people"
-        android:title="@string/places" />
 
 </menu>

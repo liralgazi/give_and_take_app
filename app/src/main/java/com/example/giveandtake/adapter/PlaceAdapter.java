@@ -8,12 +8,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.Placeholder;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.giveandtake.R;
-import com.example.giveandtake.model.Place;
+import com.example.giveandtake.fragments.PlaceListFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -23,11 +22,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder> {
 
-    private List<Place> list;
+    private List<PlaceListFragment> list;
     OnPlaceClicked onPlaceClicked;
     FirebaseUser place = FirebaseAuth.getInstance().getCurrentUser();
 
-    public PlaceAdapter(List<Place> list){this.list = list;}
+    public PlaceAdapter(List<PlaceListFragment> list){this.list = list;}
 
     @NonNull
     @Override
@@ -38,7 +37,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceHolder>
 
 
     @Override
-    public void onBindViewHolder(@NonNull PlaceAdapter.PlaceHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull PlaceHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
         holder.layout.setVisibility(View.VISIBLE);

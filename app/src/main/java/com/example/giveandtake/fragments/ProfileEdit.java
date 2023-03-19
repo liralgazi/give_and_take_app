@@ -162,7 +162,8 @@ public class ProfileEdit extends Fragment {
         if(!volunteer.equals(""))
             map.put("volunteerStatus", volunteer);
 
-        FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        FirebaseFirestore.getInstance().collection("User").document(user.getUid()).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -62,10 +61,17 @@ public class MainActivity extends AppCompatActivity{
                 finish();
                 Intent i = new Intent(getApplicationContext(),SplashActivity.class);
                 startActivity(i);
-            }else{
+            }
+           // else if (item.getItemId() == R.id.nav_edit_profile){
+             //       Intent i = new Intent(getApplicationContext(), ProfileEdit.class);
+               //     startActivity(i);
+
+       //     }
+        else{
                 fragmentMenuId = item.getItemId();
                 return NavigationUI.onNavDestinationSelected(item,navController);
             }
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -35,6 +35,7 @@ import java.util.Map;
 public class CreateAccountFragment extends Fragment {
 
     private EditText nameEt, emailEt, passwordEt, confirmPasswordEt, confirmEmailEt;
+    //private EditText addressEt, ageEt, volunteerEt, workEt;
     private ProgressBar progressBar;
     private TextView loginTv;
     private Button signUpBtn;
@@ -92,6 +93,7 @@ public class CreateAccountFragment extends Fragment {
                 String confirmEmail = confirmEmailEt.getText().toString();
                 String password = passwordEt.getText().toString();
                 String confirmPassword = confirmPasswordEt.getText().toString();
+
 
                 if (name.isEmpty() || name.equals(" ")) {
                     nameEt.setError("Please input valid name");

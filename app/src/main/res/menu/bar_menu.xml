@@ -18,9 +18,10 @@
     </item>
     <item
         android:id="@+id/searchPlaceFragment"
-        android:title="@string/editProfile"
-        android:icon="@drawable/ic_pencil">
+        android:title="@string/places"
+        android:icon="@drawable/ic_map">
     </item>
+
     <item
         android:id="@+id/profileFragment"
         android:title="@string/profile"

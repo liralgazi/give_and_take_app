@@ -2,6 +2,7 @@ package com.example.giveandtake.model;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,13 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.giveandtake.R;
 import com.example.giveandtake.adapter.PlaceAdapter;
+import com.example.giveandtake.fragments.PlaceListFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -33,13 +36,28 @@ public class PlaceSearch extends Fragment {
     SearchView searchView;
     RecyclerView recyclerView;
     PlaceAdapter adapter;
-    private List<Place> list;
+    private List<PlaceListFragment> list;
     CollectionReference reference;
 
     //Search.onDataPass onDataPass;
 
     public PlaceSearch(){}
 
+/*
+    @Override
+    public void onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        LiveData<List<Place>> data = PlaceModel.instance.searchPlaceByName("avatar");
+        data.observe(getViewLifecycleOwner(),list->{
+            list.forEach(item->{
+                Log.d("TAG","got organisation: " + item.getName() + " " + item.getId());
+            });
+        });
+        return view;
+    }
+
+ */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -50,8 +68,16 @@ public class PlaceSearch extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+       // LiveData<List<Place>> data = PlaceModel.instance.searchPlaceByName("avatar");
+        //data.observe(getViewLifecycleOwner(),list->{
+          //  list.forEach(item->{
+            //    Log.d("TAG","got organisation: " + item.getName() + " " + item.getId());
+           // });
+       // });
         return inflater.inflate(R.layout.fragment_search_place, container, false);
     }
+
+
 
 
     @Override
@@ -61,7 +87,7 @@ public class PlaceSearch extends Fragment {
         init(view);
         reference = FirebaseFirestore.getInstance().collection("Places");
         loadPlaceData();
-        searchPlace();
+        //searchPlace();
         //clickListener();
 
 
@@ -80,6 +106,7 @@ public class PlaceSearch extends Fragment {
  */
 
 
+
     private void searchPlace()
     {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -95,7 +122,7 @@ public class PlaceSearch extends Fragment {
                                     {
                                             if (!snapshot.exists())
                                                 return;
-                                        Place place = snapshot.toObject(Place.class);
+                                        PlaceListFragment place = snapshot.toObject(PlaceListFragment.class);
                                         list.add(place);
                                     }
                                     adapter.notifyDataSetChanged();
@@ -111,6 +138,8 @@ public class PlaceSearch extends Fragment {
             }
         });
     }
+
+
     private void loadPlaceData(){
         reference = FirebaseFirestore.getInstance().collection("Places");
         reference.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -119,7 +148,7 @@ public class PlaceSearch extends Fragment {
                 list.clear();
                 for (QueryDocumentSnapshot snapshot: value)
                 {
-                    Place place = snapshot.toObject(Place.class);
+                    PlaceListFragment place = snapshot.toObject(PlaceListFragment.class);
                     list.add(place);
                 }
                 adapter.notifyDataSetChanged();
@@ -135,7 +164,7 @@ public class PlaceSearch extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list = new ArrayList<Place>();
+        list = new ArrayList<PlaceListFragment>();
         adapter = new PlaceAdapter(list);
         recyclerView.setAdapter(adapter);
     }
