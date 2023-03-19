@@ -6,6 +6,7 @@
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/light_purpel_background"
     tools:context=".fragments.AddPostFragment">
 
     <ScrollView
