@@ -90,7 +90,7 @@
                 android:id="@+id/addpost_postText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/purple_200"
+                android:textColor="@color/black"
                 android:hint="Add Text To Post" />
         </com.google.android.material.textfield.TextInputLayout>
 
