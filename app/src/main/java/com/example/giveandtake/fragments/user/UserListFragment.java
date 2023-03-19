@@ -24,6 +24,7 @@ import com.example.giveandtake.databinding.FragmentUserListBinding;
 import com.example.giveandtake.model.User;
 import com.example.giveandtake.model.UserModel;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class UserListFragment extends Fragment {
@@ -98,7 +99,6 @@ public class UserListFragment extends Fragment {
     }
 
     void reloadUserData(){
-        // binding.progressBar.setVisibility(View.VISIBLE);
         UserModel.instance().refreshAllUsers();
     }
 }

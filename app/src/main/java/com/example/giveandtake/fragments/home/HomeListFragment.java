@@ -41,7 +41,6 @@ import java.util.Map;
 public class HomeListFragment extends Fragment {
     FragmentHomeListBinding binding;
    HomeRecyclerAdapter adapter;
-    DatabaseReference reference;
 
     HomeListFragmentViewModel viewModel;
 
@@ -68,8 +67,6 @@ public class HomeListFragment extends Fragment {
         });
 
         binding.progressBar.setVisibility(View.GONE);
-
-
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
             if(list.size() != 0){
                adapter.setData(list);
@@ -94,7 +91,6 @@ public class HomeListFragment extends Fragment {
     }
 
     void reloadData(){
-       // binding.progressBar.setVisibility(View.VISIBLE);
         PostModel.instance().refreshAllPosts();
     }
 
