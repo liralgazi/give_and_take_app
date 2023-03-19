@@ -26,7 +26,6 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
     TextView likeCountTv;
     ImageView postImage;
     ImageButton likeBtn;
-    ImageButton sendBtn;
     List<Post> data;
 
     public HomeViewHolder(@NonNull View itemView, HomeRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
@@ -40,13 +39,11 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
         likeBtn = itemView.findViewById(R.id.likeBtn);
         likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                int pos = (int)likeBtn.getTag();
-                Post post = data.get(pos);
-                post.likeCount++;
+            public void onClick(View v) {
+                int pos = getBindingAdapterPosition();
+                listener.onItemClick(pos);
             }
         });
-
     }
     public void bind(Post post, int pos) {
         nameTv.setText(post.userName);

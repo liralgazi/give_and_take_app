@@ -50,29 +50,8 @@ public class UserListFragment extends Fragment {
             public void onItemClick(int pos) {
                 Log.d("TAG", "Row was clicked " + pos);
                 User user = viewModel.getData().getValue().get(pos);
-                //TODO: add other directions to another fragment
-//                UserListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = UserListFragmentDirections.actionStudentsListFragmentToBlueFragment(user.name);
-//                Navigation.findNavController(view).navigate(action);
             }
         });
-         adapter = new UserRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
-        binding.recyclerView.setAdapter(adapter);
-//
-
-//        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int pos) {
-//                Log.d("TAG", "Row was clicked " + pos);
-//                Post post = viewModel.getData().getValue().get(pos);
-//                //TODO: add other directions to another fragment
-////                HomeListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = HomeListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.name);
-////                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
-
-//        View addButton = view.findViewById(R.id.btnAdd);
-//        NavDirections action = UserListFragmentDirections.actionHomeListFragmentToAddPostFragment();
-//        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         binding.progressBar.setVisibility(View.GONE);
 
@@ -108,13 +87,6 @@ public class UserListFragment extends Fragment {
         binding.swipeRefresh.setOnRefreshListener(()->{
             reloadUserData();
         });
-
-//        LiveData<List<Movie>> data = MovieModel.instance.searchMoviesByTitle("avatar");
-//        data.observe(getViewLifecycleOwner(),list->{
-//            list.forEach(item->{
-//                Log.d("TAG","got movie: " + item.getTitle() + " " + item.getPoster());
-//            });
-//        });
 
         return view;
     }
