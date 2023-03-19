@@ -44,7 +44,6 @@ public class Post {
         this.likeCount = likeCount;
         this.postText = postText;
         this.postId = postId;
-        this.postLikeText= postLikeText;
     }
 
     static final String USERNAME = "userName";
