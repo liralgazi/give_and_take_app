@@ -52,43 +52,12 @@ public class MainActivity extends AppCompatActivity{
     int fragmentMenuId = 0;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == android.R.id.home){
             navController.popBackStack();
         }else{
-            if(item.getItemId() == R.id.nav_logout){
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent i = new Intent(getApplicationContext(),SplashActivity.class);
-                startActivity(i);
-            }
-           // else if (item.getItemId() == R.id.nav_edit_profile){
-             //       Intent i = new Intent(getApplicationContext(), ProfileEdit.class);
-               //     startActivity(i);
-
-       //     }
-        else{
-                fragmentMenuId = item.getItemId();
-                return NavigationUI.onNavDestinationSelected(item,navController);
-            }
-
+            fragmentMenuId = item.getItemId();
+            return NavigationUI.onNavDestinationSelected(item,navController);
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    @Override
-    public void onBackPressed() {
-        //if (viewPager.setCurrentItem()==4)
-            // viewPager.setCurrentItem(0);
-        //else
-        IS_SEARCHED_USER  =false;
-        super.onBackPressed();
-    }
-
-    public static String USER_ID;
-    public static boolean IS_SEARCHED_USER=false;
-
 }

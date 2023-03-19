@@ -225,6 +225,13 @@
                     android:padding="10dp"
                     android:layout_marginLeft="5dp"/>
 
+                <Button
+                    android:id="@+id/editProfileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Edit Profile"/>
+
 
             </LinearLayout>
 
