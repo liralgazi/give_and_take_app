@@ -24,7 +24,7 @@ public class User {
     @NonNull
     public String uid="";
     public String name="";
-    public String profileImageURL="";
+    public String profileImage="";
     public String volunteerStatus = "";
     public String address= "";
     public String workAt = "";
@@ -35,19 +35,19 @@ public class User {
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
-    public User(String uid, String name, String profileImageURL, String volunteerStatus, String address, String workAt, String age){
+    public User(String uid, String name, String profileImage, String volunteerStatus, String address, String workAt, String age){
         this.uid = uid;
         this.name = name;
         this.address = address;
         this.age = age;
-        this.profileImageURL = profileImageURL;
+        this.profileImage = profileImage;
         this.workAt = workAt;
         this.volunteerStatus = volunteerStatus;
     }
 
     static public String UID="uid";
     static public String NAME="name";
-    static public String PROFILEIMAGE="profileImageURL";
+    static public String PROFILEIMAGE="profileImage";
     static public String VOLUNTEERSTATUS = "volunteerStatus";
     static public String ADDRESS= "address";
     static public String WORKAT = "workAt";
@@ -92,7 +92,7 @@ public class User {
         Map<String, Object> json = new HashMap<>();
         json.put(UID, getId());
         json.put(NAME, getName());
-        json.put(PROFILEIMAGE, getProfileImageURL());
+        json.put(PROFILEIMAGE, getProfileImage());
         json.put(volunteerStatus, getVolunteerStatus());
         json.put(address, getAddress());
         json.put(workAt, getWorkAt());
@@ -116,14 +116,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getProfileImageURL() {
-        return profileImageURL;
-    }
-
-    public void setProfileImageURL(String profileImageURL) {
-        this.profileImageURL = profileImageURL;
     }
 
     public String getVolunteerStatus() {
@@ -165,5 +157,16 @@ public class User {
     public  void setAge(String age) {
         this.age=age;
     }
+
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+
 
 }

@@ -24,19 +24,6 @@
         android:id="@+id/layout1"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/addpostfragment_Tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="false"
-            android:layout_centerVertical="false"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="Edit Profile"
-            android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
     </RelativeLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat

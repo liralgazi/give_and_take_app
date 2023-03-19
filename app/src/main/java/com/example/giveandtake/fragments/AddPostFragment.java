@@ -121,7 +121,7 @@ public class AddPostFragment extends Fragment {
                 }
             }
             String name = postUser.getName();
-            String profileImage = postUser.profileImageURL;
+            String profileImage = postUser.profileImage;
             String userId = postUser.getId();
 
             Post post = new Post(name,profileImage,userId,"", 0L,postText,postId);
