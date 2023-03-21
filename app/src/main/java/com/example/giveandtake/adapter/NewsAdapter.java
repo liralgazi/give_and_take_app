@@ -39,6 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        /*
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                 context.startActivity(intent);
             }
         });
+         */
         holder.mTime.setText("Published At: " + modelNewsArrayList.get(position).getPublishedAt());
         holder.mAuthor.setText("Author: " + modelNewsArrayList.get(position).getAuthor());
         holder.mHeading.setText(modelNewsArrayList.get(position).getTitle());
