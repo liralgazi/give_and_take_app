@@ -39,23 +39,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        /*
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(context, WebView.class);
-                intent.putExtra("url", modelNewsArrayList.get(position).getUrl());
-                context.startActivity(intent);
-            }
-        });
-         */
         holder.mTime.setText("Published At: " + modelNewsArrayList.get(position).getPublishedAt());
         holder.mAuthor.setText("Author: " + modelNewsArrayList.get(position).getAuthor());
         holder.mHeading.setText(modelNewsArrayList.get(position).getTitle());
         holder.mContent.setText(modelNewsArrayList.get(position).getDescription());
         Glide.with(context).load(modelNewsArrayList.get(position).getUrlToImage())
                 .into(holder.imageView);
-
     }
 
     @Override
@@ -68,8 +57,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         TextView mHeading, mContent, mAuthor, mTime;
         CardView cardView;
         ImageView imageView;
-
-
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);

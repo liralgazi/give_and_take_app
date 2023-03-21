@@ -14,8 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity{
-
-
     NavController navController;
     String api= "dd16b736845c4011a2b69b986bbc1a32";
     String authURL = "GET https://newsapi.org/v2/everything?q=keyword&apiKey=dd16b736845c4011a2b69b986bbc1a32";
@@ -35,12 +33,10 @@ public class MainActivity extends AppCompatActivity{
         NavigationUI.setupWithNavController(navView,navController);
     }
 
-
     public void init(){
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

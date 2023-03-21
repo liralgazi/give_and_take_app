@@ -28,14 +28,6 @@ public class Post {
     public Long likeCount;
     public Long lastUpdated;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public Post(String userName, String profileImage, String userId, String postImage, Long likeCount, String postText , String postId) {
        this.userName = userName;
        this.profileImage = profileImage;
@@ -165,6 +157,14 @@ public class Post {
 
     public void setLastUpdated(Long lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 

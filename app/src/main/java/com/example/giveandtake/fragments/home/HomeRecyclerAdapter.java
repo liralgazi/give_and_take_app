@@ -44,13 +44,6 @@ class HomeViewHolder extends RecyclerView.ViewHolder{
                 listener.onItemClick(pos);
             }
         });
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = getBindingAdapterPosition();
-                listener.onItemClick(pos);
-            }
-        });
     }
     public void bind(Post post, int pos) {
         nameTv.setText(post.userName);

@@ -41,13 +41,7 @@ public class CreateAccountFragment extends Fragment {
     private Button signUpBtn;
     private FirebaseAuth auth;
     HashMap<String, Object> map = new HashMap<>();
-
-
     public static final String EMAIL_REGEX = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-    public CreateAccountFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,8 +66,6 @@ public class CreateAccountFragment extends Fragment {
         loginTv = view.findViewById(R.id.signup_tv);
         signUpBtn = view.findViewById(R.id.login_sign_up_btn);
         progressBar = view.findViewById(R.id.singup_progressBar);
-
-
         auth = FirebaseAuth.getInstance();
     }
 
@@ -93,7 +85,6 @@ public class CreateAccountFragment extends Fragment {
                 String confirmEmail = confirmEmailEt.getText().toString();
                 String password = passwordEt.getText().toString();
                 String confirmPassword = confirmPasswordEt.getText().toString();
-
 
                 if (name.isEmpty() || name.equals(" ")) {
                     nameEt.setError("Please input valid name");
@@ -116,18 +107,9 @@ public class CreateAccountFragment extends Fragment {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-
                 createAccount(name, email, password);
             }
         });
-    }
-
-    public HashMap<String, Object> getMap() {
-        return map;
-    }
-
-    public void setMap(HashMap<String, Object> map) {
-        this.map = map;
     }
 
     private void createAccount(String name, String email, String password) {
@@ -156,7 +138,6 @@ public class CreateAccountFragment extends Fragment {
 
 
     public void uploadUser(FirebaseUser user, String name, String email, String age, String work, String address, String volunteer) {
-
         map.put("name", name);
         map.put("email", email);
         map.put("profileImage", "");
@@ -181,5 +162,4 @@ public class CreateAccountFragment extends Fragment {
             }
         });
     }
-
 }

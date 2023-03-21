@@ -72,7 +72,6 @@ public class Profile extends Fragment {
                 if(user !=null){
                     nameTv.setText(user.getName());
                     volunteerStatusTv.setText("Volunteering: "+ user.getVolunteerStatus());
-                    //profileImage.setImageURI(Uri.parse(documentSnapshot.getString("profileImageURL")));
                     if(documentSnapshot.getString("workAt") == null)
                         workTv.setText("Work At: ");
                     else
@@ -95,14 +94,6 @@ public class Profile extends Fragment {
         binding.profileRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
         binding.profileRecycle.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int pos) {
-                Log.d("TAG", "Row was clicked " + pos);
-                Post post = viewModel.getData().getValue().get(pos);
-            }
-        });
 
         List<Post> userPosts = new LinkedList<>();
         viewModel.getData().observe(getViewLifecycleOwner(),list->{
@@ -132,9 +123,5 @@ public class Profile extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         viewModel = new ViewModelProvider(this).get(HomeListFragmentViewModel.class);
-    }
-
-    void reloadData(){
-        PostModel.instance().refreshAllPosts();
     }
 }

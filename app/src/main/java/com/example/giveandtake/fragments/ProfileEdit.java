@@ -31,34 +31,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileEdit extends Fragment {
-
-
     EditText ageET, addressET, workPlaceET, volunteerET, nameET, usernameET;
     Button updateBtn;
-    TextView update;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference;
-
-    DocumentReference documentReference;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String currentId = user.getUid();
     private FirebaseAuth auth;
     ProgressBar progressBar;
 
-    // creating a variable for
-    // our Firebase Database.
-
-    final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
-    // creating a variable for our
-    // Database Reference for Firebase.
-    //DatabaseReference ref = database.getReference("Users/");
-
-    public ProfileEdit()
-    {
-
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,7 +70,6 @@ public class ProfileEdit extends Fragment {
                     String work = workPlaceET.getText().toString();
                     String address = addressET.getText().toString();
                     String volunteer = volunteerET.getText().toString();
-                    //String name = nameET.getText().toString();
 
                     progressBar.setVisibility(View.VISIBLE);
                     updateAccount(age, work, address, volunteer);
@@ -100,8 +77,6 @@ public class ProfileEdit extends Fragment {
 
                 }
             });
-
-
     }
 
     private void updateAccount( String age, String work, String address, String volunteer)
@@ -141,7 +116,6 @@ public class ProfileEdit extends Fragment {
                     sendUserToMainActivity();
                 } else {
                     progressBar.setVisibility(View.GONE);
-                    String exception = task.getException().getMessage();
                     Toast.makeText(getContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

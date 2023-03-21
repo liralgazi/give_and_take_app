@@ -146,10 +146,8 @@ public class ProfileEdit extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
-                    //Toast.makeText(getContext(), "Profile Updated successfully", Toast.LENGTH_SHORT).show();
+                    uploadUpdatedUser(user,age, work, address, volunteer, name, profileImage);
                 }
-                uploadUpdatedUser(user,age, work, address, volunteer, name, profileImage);
-
             }
         });
     }

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-
 public class UserModel {
     private Executor executor = Executors.newSingleThreadExecutor();
     private static final UserModel _instance = new UserModel();
@@ -28,7 +27,6 @@ public class UserModel {
     public enum LoadingState{
         LOADING,
         NOT_LOADING
-
     }
 
     private LiveData<List<User>> usersList;
@@ -39,12 +37,6 @@ public class UserModel {
         }
         return usersList;
     }
-
-//    User user;
-//    public User getUserById(String id){
-//        firebaseModel.getUserById(id);
-//        return user;
-//    }
 
     public void refreshAllUsers(){
         EventUserListLoadingState.setValue(LoadingState.LOADING);

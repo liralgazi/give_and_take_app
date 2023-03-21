@@ -6,7 +6,6 @@ import retrofit2.http.Query;
 
 public interface newsAPI {
 
-    //String BASE_URL = "GET https://newsapi.org/v2/top-headlines?country=il&apiKey=dd16b736845c4011a2b69b986bbc1a32";
     String BASE_URL = "https://newsapi.org/v2/";
 
 
