@@ -1,6 +1,6 @@
 package com.example.giveandtake.fragments.profile;
 
-
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -58,7 +58,6 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
-
         init(view);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();

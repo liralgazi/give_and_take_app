@@ -126,6 +126,7 @@ public class ProfileEdit extends Fragment {
         NavController navController = NavHostFragment.findNavController(this);
         super.onViewCreated(view, savedInstanceState);
         init(view);
+
     }
 
     private void init(View view) {
