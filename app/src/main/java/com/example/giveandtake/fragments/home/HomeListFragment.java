@@ -1,4 +1,6 @@
 package com.example.giveandtake.fragments.home;
+import static com.google.firebase.firestore.FieldValue.serverTimestamp;
+
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -15,7 +17,11 @@ import com.example.giveandtake.model.PostModel;
 import com.example.giveandtake.model.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
